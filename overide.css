@@ -27,6 +27,13 @@ h1 {
   font-weight: 600;
 }
 
+h3{
+  margin: 0
+}
+
+p{
+  margin:0
+}
 /* CSS HEX
 --imperial-red: #e63946ff;
 --honeydew: #f1faeeff;

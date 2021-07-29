@@ -39,12 +39,33 @@
           <div class="col-4">
             <div class="container bg-white rounded-3 border border-1 shadow">
               <h2 class=" container mt-3">Balance</h2>
+              <div class="container">
+                <div class="row mt-5">
+                  <div class="col-6 fs-4">Ganancias</div>
+                  <div class="col-6 fs-4 text-end text-success">+ $0</div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-6 fs-4">Gastos</div>
+                  <div class="col-6 text-end fs-4 text-danger">- $0</div>
+                </div>
+                <div class="row mt-5 mb-5">
+                  <div class="col-6 fs-3 fw-bold">Total</div>
+                  <div class="col-6 text-end fs-3 fw-bold">+ $0</div>
+                </div>
+              </div>
             </div>
             <div class="container bg-white rounded-3 border border-1 mt-3 shadow">
-              <h3 class="container mt-3">Filtros</h3>
+              <div class="d-flex justify-content-md-between">
+                <div class="col-6 mt-3">
+                  <h3>Filtros</h3>
+                </div>
+                <div class="col-6 text-end mt-4">
+                  <a href="#" id="toggle-filtros" class="text-decoration-none">Ocultar filtros</a>
+                </div>
+              </div>
                 <form action="">
                   <div class="container mt-5">
-                    <label for="exampleFormControlInput1" class="form-label">Tipo</label>
+                    <label for="exampleFormControlInput1" class="form-label fs-5">Tipo</label>
                     <select class="form-select" aria-label="Default select example">
                       <option selected>Todos</option>
                       <option value="1">Gasto</option>
@@ -52,7 +73,7 @@
                     </select>
                   </div>
                   <div class="container mt-3">
-                    <label for="exampleFormControlInput1" class="form-label">Categoría</label>
+                    <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
                     <select class="form-select" aria-label="Default select example">
                       <option selected>Todos</option>
                       <option value="1">Comida</option>
@@ -64,11 +85,11 @@
                     </select>
                   </div>
                   <div class="container mt-3">
-                    <label for="exampleFormControlInput1" class="form-label">Categoría</label>
+                    <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
                     <input class="form-control" type="date">
                   </div>
                   <div class="container mt-3 mb-5">
-                    <label for="exampleFormControlInput1" class="form-label">Ordenar por</label>
+                    <label for="exampleFormControlInput1" class="form-label fs-5">Ordenar por</label>
                     <select class="form-select" aria-label="Default select example">
                       <option selected>Más reciente</option>
                       <option value="1">Menos reciente</option>
