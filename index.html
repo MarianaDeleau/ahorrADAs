@@ -35,10 +35,10 @@
   </header>
   <main>
       <div class="container mt-5 mb-5">
-        <div class="container flex-row d-flex justify-content-between">
-          <div class="col-4">
+        <div class="row d-flex">
+          <div class=" col-md-4">
             <div class="container bg-white rounded-3 border border-1 shadow">
-              <h2 class=" container mt-3">Balance</h2>
+              <h2 class="container mt-3">Balance</h2>
               <div class="container">
                 <div class="row mt-5">
                   <div class="col-6 fs-4">Ganancias</div>
@@ -63,53 +63,54 @@
                   <a href="#" id="toggle-filtros" class="text-decoration-none">Ocultar filtros</a>
                 </div>
               </div>
-                <form action="">
-                  <div class="container mt-5">
-                    <label for="exampleFormControlInput1" class="form-label fs-5">Tipo</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Todos</option>
-                      <option value="1">Gasto</option>
-                      <option value="2">Ganancia</option>
-                    </select>
-                  </div>
-                  <div class="container mt-3">
-                    <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Todos</option>
-                      <option value="1">Comida</option>
-                      <option value="2">Servicios</option>
-                      <option value="3">Salidas</option>
-                      <option value="4">Educación</option>
-                      <option value="5">Transporte</option>
-                      <option value="6">Trabajo</option>
-                    </select>
-                  </div>
-                  <div class="container mt-3">
-                    <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
-                    <input class="form-control" type="date">
-                  </div>
-                  <div class="container mt-3 mb-5">
-                    <label for="exampleFormControlInput1" class="form-label fs-5">Ordenar por</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Más reciente</option>
-                      <option value="1">Menos reciente</option>
-                      <option value="2">Mayor monto</option>
-                      <option value="3">Menor Monto</option>
-                      <option value="4">A/Z</option>
-                      <option value="5">Z/A</option>
-                    </select>
-                  </div>
-                </form>
+              <form action="">
+                <div class="container mt-5">
+                  <label for="exampleFormControlInput1" class="form-label fs-5">Tipo</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Todos</option>
+                    <option value="1">Gasto</option>
+                    <option value="2">Ganancia</option>
+                  </select>
+                </div>
+                <div class="container mt-3">
+                  <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Todos</option>
+                    <option value="1">Comida</option>
+                    <option value="2">Servicios</option>
+                    <option value="3">Salidas</option>
+                    <option value="4">Educación</option>
+                    <option value="5">Transporte</option>
+                    <option value="6">Trabajo</option>
+                  </select>
+                </div>
+                <div class="container mt-3">
+                  <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
+                  <input class="form-control" type="date">
+                </div>
+                <div class="container mt-3 mb-5">
+                  <label for="exampleFormControlInput1" class="form-label fs-5">Ordenar por</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Más reciente</option>
+                    <option value="1">Menos reciente</option>
+                    <option value="2">Mayor monto</option>
+                    <option value="3">Menor Monto</option>
+                    <option value="4">A/Z</option>
+                    <option value="5">Z/A</option>
+                  </select>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="container bg-white rounded-3 border border-1 shadow ms-4">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-between mt-3"> 
+          <div class="col-md-7 bg-white rounded-3 border border-1 shadow">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-between mt-3">
               <h3>Operaciones</h3>
               <button class="btn" type="button">+ Nueva operación</button>
             </div>
             <div class="container col-10 mt-4">
               <figure class="figure">
-                <img src="./assets/images/undraw_Credit_card_payments_re_qboh.svg" class="figure-img img-fluid rounded" alt="Operaciones">
+                <img src="./assets/images/undraw_Credit_card_payments_re_qboh.svg" class="figure-img img-fluid rounded"
+                  alt="Operaciones">
                 <figcaption class="figure-caption">Ingresos y gastos</figcaption>
               </figure>
             </div>
