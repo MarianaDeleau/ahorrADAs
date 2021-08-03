@@ -16,6 +16,7 @@ h1 {
 
 .nav-link {
   font-size: 1.3rem;
+
 }
 
 .btn{
@@ -25,6 +26,10 @@ h1 {
 
 .form-label{
   font-weight: 600;
+}
+
+.text-white{
+  text-decoration: none;
 }
 
 h3{
