@@ -1,7 +1,6 @@
 type LocalStorage = {
-    categories?: Category[]
-    gasto?: Gastos[]
-    ganancia?: Ganancias[]
+    categories?: Category[],
+    operaciones?: Operaciones[]
  }
  
 type Category = {
@@ -10,18 +9,14 @@ type Category = {
     slug: string
 }
  
-type Gastos = {
+type Operaciones = {
     id: number,
     category: Category[],
     amount: number,
     description: string,
-    date: Date
+    date: Date,
+    type: "Ganancia" | "Gasto" 
 }
 
-type Ganancias = {
-    id: number,
-    category: Category[],
-    amount: number,
-    description: string,
-    date: Date
-}
+
+
