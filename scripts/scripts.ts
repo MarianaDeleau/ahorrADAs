@@ -1,6 +1,6 @@
 type LocalStorage = {
     categories?: Category[],
-    operaciones?: Operaciones[]
+    operations?: Operation[]
  }
  
 type Category = {
@@ -9,7 +9,7 @@ type Category = {
     slug: string
 }
  
-type Operaciones = {
+type Operation = {
     id: number,
     category: Category[],
     amount: number,
@@ -18,5 +18,17 @@ type Operaciones = {
     type: "Ganancia" | "Gasto" 
 }
 
+const getStorage = (): LocalStorage => {
+    let storageInfo: LocalStorage = JSON.parse(
+        localStorage.getItem("key-ahorradas"));
 
+    if (!storageInfo) {
+        storageInfo = {
+            categories:[],
+            operations:[]
+        };
+    }
+
+    return storageInfo;
+};
 
