@@ -15,8 +15,25 @@ type Operation = {
     amount: number,
     description: string,
     date: Date,
-    type: "Ganancia" | "Gasto" 
+    type: string
 }
+
+type Gain = {
+    id: number;
+    category: Category[],
+    amount: number,
+    description: string,
+    date: Date
+}
+
+type Expense = {
+    id: number;
+    category: Category[],
+    amount: number,
+    description: string,
+    date: Date
+}
+
 
 const getStorage = (): LocalStorage => {
     let storageInfo: LocalStorage = JSON.parse(
