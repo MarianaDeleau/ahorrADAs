@@ -74,18 +74,12 @@
                 </div>
                 <div class="container mt-3">
                   <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
-                  <select class="form-select" aria-label="Default select example">
-                    <option selected>Todos</option>
-                    <option value="1">Comida</option>
-                    <option value="2">Servicios</option>
-                    <option value="3">Salidas</option>
-                    <option value="4">Educación</option>
-                    <option value="5">Transporte</option>
-                    <option value="6">Trabajo</option>
+                  <select name="categories" id="categories" class="form-select" aria-label="Default select example">
+                    <option value="Todas" selected>Todas</option>
                   </select>
                 </div>
                 <div class="container mt-3">
-                  <label for="exampleFormControlInput1" class="form-label fs-5">Categoría</label>
+                  <label for="exampleFormControlInput1" class="form-label fs-5">Fecha</label>
                   <input class="form-control" type="date">
                 </div>
                 <div class="container mt-3 mb-5">
@@ -122,7 +116,9 @@
         </div>
       </div>
   </main>
-  <script src="./scripts/scripts.ts"></script>
-  <script src="./scripts/operations.ts"></script>
+  <script src="./scripts/scripts.js"></script>
+  <script src="./helpers/functions.js"></script>
+  <!-- <script src="./scripts/categories.js"></script>
+              <script src="./scripts/operations.js"></script> -->
 </body>
 </html>

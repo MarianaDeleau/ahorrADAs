@@ -36,15 +36,16 @@
     <main>
       <section>
         <div class="container mt-5 bg-white rounded-3 border border-1 shadow">
-          <form action="">
           <div class="container pb-5">
             <h2 class="mt-3">Categorias</h2>
-            <div class="input-group mt-5">
-              <input type="text" class="form-control" placeholder="Ingrese nueva categoría" aria-label="Recipient's username"
-                aria-describedby="button-addon2">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Agregar</button>
+            <form id="form-add-category" action="">
+              <div class="input-group mt-5">
+                  <input id="nameCategory" name="nameCategory" type="text" class="form-control" placeholder="Ingrese nueva categoría"
+                    aria-label="Recipient's username" aria-describedby="button-addon2" />
+                  <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Agregar</button>
               </div>
-              </div>
+            </form>
+          </div>
             <div class="container mt-5 mb-5">
               <div class="row mt-5">
                 <div class="col-9 align-items-center d-flex">
@@ -56,12 +57,14 @@
                   </div>
                   </div>
             </div>
-          </form>
+        
           </div>
       </section>
     </main> 
-    <script src="./scripts/scripts.ts"></script>
-    <script src="./scripts/operations.ts"></script>
+    <script src="./scripts/scripts.js"></script>
+    <script src="./helpers/functions.js"></script>
+    <!-- <script src="./scripts/categories.js"></script>
+                                                    <script src="./scripts/operations.js"></script> -->
 </body>
 </html>
 
