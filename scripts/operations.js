@@ -1,5 +1,4 @@
 var formOperation = document.getElementById('formNewOperation');
-var storage = getStorage();
 var getOperationId = function () {
     var storage = getStorage();
     if (storage.operations.length > 0) {
@@ -26,6 +25,6 @@ var addOperation = function (e) {
         type: typeOperation
     };
     storage.operations.push(newOperation);
-    localStorage.setItem("key-ahorradas", JSON.stringify(storage));
+    localStorage.setItem('key-ahorradas', JSON.stringify(storage));
 };
 formOperation.addEventListener("submit", addOperation);

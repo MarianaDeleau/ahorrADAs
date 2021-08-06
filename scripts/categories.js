@@ -13,25 +13,9 @@ var createCategory = function (e) {
     var newCategoryName = form.nameCategory.value;
     var newCategory = {
         id: getIdCategory(),
-        name: newCategoryName,
-        slug: slugify(newCategoryName)
+        name: newCategoryName
     };
     storage.categories.push(newCategory);
-    localStorage.setItem('todo-storage', JSON.stringify(storage));
+    localStorage.setItem('key-ahorradas', JSON.stringify(storage));
 };
 formAddCategory.addEventListener('submit', createCategory);
-var loadFields = function () {
-    var storage = getStorage();
-    var selectCategories = document.getElementById('categories');
-    for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
-        var category = _a[_i];
-        var elem = document.createElement('option');
-        elem.innerText = category.name;
-        elem.value = category.id.toString();
-        selectCategories.appendChild(elem);
-    }
-};
-var init = function () {
-    loadFields();
-};
-init();
