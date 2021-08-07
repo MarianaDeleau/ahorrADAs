@@ -24,7 +24,8 @@ var addOperation = function (e) {
         date: dateOperation,
         type: typeOperation
     };
-    storage.operations.push(newOperation);
-    localStorage.setItem('key-ahorradas', JSON.stringify(storage));
+    var storageAux = getStorage();
+    storageAux.operations.push(newOperation);
+    localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
 };
 formOperation.addEventListener("submit", addOperation);
