@@ -10,7 +10,7 @@ var getOperationId = function () {
 var addOperation = function (e) {
     e.preventDefault();
     var form = e.target;
-    var categoryOperation = form.categoryOp.value;
+    var categoryOperation = form.categoryOp.value; /*chequear q tome del LS*/
     var amountOperation = form.amountOp.value;
     var newOperationName = form.descriptionOp.value;
     var dateOperation = form.dateOp.value;

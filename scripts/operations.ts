@@ -17,7 +17,7 @@ const getOperationId = () => {
 const addOperation= (e)=>{
     e.preventDefault();
     const form = e.target;
-    const categoryOperation: Category[] = form.categoryOp.value;
+    const categoryOperation: Category[] = form.categoryOp.value; /*chequear q tome del LS*/
     const amountOperation: number = form.amountOp.value;
     const newOperationName: string = form.descriptionOp.value;
     const dateOperation: Date = form.dateOp.value;
@@ -36,6 +36,7 @@ const addOperation= (e)=>{
     storage.operations.push(newOperation)
     localStorage.setItem('key-ahorradas', JSON.stringify(storage));
 }
+
 formOperation.addEventListener("submit", addOperation);
 
 
