@@ -41,26 +41,26 @@
             <form action="" id="formNewOperation">
               <div class="form-group mt-3">
                 <label for="descriptionOp">Descripción</label>
-                <input type="text" class="form-control" id="descriptionOp" placeholder="Inserte Descripción">
+                <input type="text" class="form-control" id="descriptionOp" name="descriptionOp" placeholder="Inserte Descripción">
               </div>
               <div class="form-group mt-3">
                 <label for="amountOp">Monto</label>
-                <input type="number" class="form-control" id="amountOp" min="1" placeholder="Inserte Monto">
+                <input type="number" class="form-control" id="amountOp" name="amountOp" min="1" placeholder="Inserte Monto">
               </div>
               <div class="form-group mt-3">
                 <label for="typeOp">Tipo</label>
-                <select class="form-control" id="typeOp">
+                <select class="form-control" id="typeOp" name="typeOp">
                   <option>Gasto</option>
                   <option>Ganancia</option>
                 </select>
               </div>
               <div class="form-group mt-3">
                 <label for="categoryOp">Categorias</label>
-                <select id="categories-nuevaOp" class="form-control" id="categoryOp"></select>
+                <select id="categories-nuevaOp" class="form-control" id="categoryOp" name="categoryOp"></select>
               </div>
               <div class="form-group mt-3 mb-4">
                 <label for="dateOp">Fecha</label>
-                <input type="date" class="form-control" id="dateOp">
+                <input type="date" class="form-control" id="dateOp" name="dateOp">
               </div>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
                 <button type="button" class="btn btn-primary">Cancelar</button>
