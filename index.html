@@ -102,16 +102,57 @@
               <h3>Operaciones</h3>
               <button class="btn" type="button"><a class="text-white" href="./nuevaOperacion.html">+ Nueva operación</a></button>
             </div>
-            <div class="container col-10 mt-4">
-              <figure class="figure">
-                <img src="./assets/images/undraw_Credit_card_payments_re_qboh.svg" class="figure-img img-fluid rounded"
-                  alt="Operaciones">
-                <figcaption class="figure-caption">Ingresos y gastos</figcaption>
-              </figure>
-            </div>
-            <div class="container col-6 text-center">
-              <h4>Sin resultados</h4>
-              <p>Cambia los filtros o agrega operaciones</p>
+            <div id="noOperations" style="display: none;">
+              <div class="container col-10 mt-4">
+                <figure class="figure">
+                  <img src="./assets/images/undraw_Credit_card_payments_re_qboh.svg" class="figure-img img-fluid rounded"
+                    alt="Operaciones">
+                  <figcaption class="figure-caption">Ingresos y gastos</figcaption>
+                </figure>
+              </div>
+              <div class="container col-6 text-center">
+                <h4>Sin resultados</h4>
+                <p>Cambia los filtros o agrega operaciones</p>
+              </div>
+              </div>
+              <div id="operations" class="mt-5">
+                <div class="row">
+                  <div class="col-md-3">
+                    <h5 class="text-start">Descripción</h5>
+                  </div>
+                  <div class="col-md-3">
+                    <h5>Categoría</h5>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 class="text-end">Fecha</h5>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 class="text-end">Monto</h5>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 class="text-end">Acciones</h5>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col-md-3 d-flex align-items-center ">
+                    <h6>Ejemplo</h6>
+                  </div>
+                  <div class="col-md-3 d-flex align-items-center">
+                    <div class="badge bg-success p-2 text-white text-wrap" style="width: 6rem;">
+                      text wrap
+                    </div>
+                  </div>
+                  <div class="col-md-2 d-flex align-items-center justify-content-end">
+                    <p class="text-end">05/03/2021</p>
+                  </div>
+                  <div class="col-md-2 d-flex align-items-center justify-content-end">
+                    <h6 class="text-end">1.000.000</h6>
+                  </div>
+                  <div class="col-md-2 d-flex align-items-end flex-column justify-content-center">
+                    <a href="" class="text-end">Editar</a>
+                    <a href="" class="text-end">Eliminar</a>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
