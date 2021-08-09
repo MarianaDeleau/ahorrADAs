@@ -41,3 +41,24 @@ const addOperation= (e)=>{
 formOperation.addEventListener("submit", addOperation);
 
 
+
+const categoryNewOperation = () => {
+    const storage: LocalStorage = getStorage();
+
+    const selectCategoriesNuevaOp = document.getElementById("categories-nuevaOp");
+    
+
+    for (const category of storage.categories) {
+        // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
+        const elem = document.createElement("option");
+        elem.innerText = category.name;
+        elem.value = category.id.toString();
+        selectCategoriesNuevaOp.appendChild(elem);
+    }
+};
+
+const init2 = () => {
+    categoryNewOperation();
+};
+
+init2();
