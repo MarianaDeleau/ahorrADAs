@@ -19,13 +19,21 @@ var createCategory = function (e) {
     var storageAux = getStorage();
     storageAux.categories.push(newCategory);
     localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
-    addcategoryToList(newCategory.name);
+    window.location.reload();
     //storage.categories.push(newCategory);
     //localStorage.setItem('key-ahorradas', JSON.stringify(storage));
 };
 formAddCategory.addEventListener('submit', createCategory);
-var addcategoryToList = function (name) {
-    var newCategoryLine = document.createElement('div');
-    newCategoryLine.innerHTML = "<div class=\"row mt-5 mb-5\">\n   <div class=\"col-9 align-items-center d-flex\">\n      <p class=\"fs-5\">" + name + "</p>\n   </div>\n   <div class=\"col-3 d-flex justify-content-end\">\n      <button class=\"btn me-3\" type=\"button\"><a class=\"text-white\" href=\"./editarCategoria.html\">Editar</a></button>\n      <button class=\"btn\">Eliminar</button>\n   </div>\n   </div>";
-    categoriesList.appendChild(newCategoryLine);
+var addcategoryToList = function () {
+    var storage = getStorage();
+    for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
+        var category = _a[_i];
+        var newCategoryLine = document.createElement('div');
+        newCategoryLine.innerHTML = "<div class=\"row mt-5 mb-5\">\n      <div class=\"col-9 align-items-center d-flex\">\n         <p class=\"fs-5\">" + category.name + "</p>\n      </div>\n      <div class=\"col-3 d-flex justify-content-end\">\n         <button class=\"btn me-3\" type=\"button\"><a class=\"text-white\" href=\"./editarCategoria.html\">Editar</a></button>\n         <button class=\"btn\">Eliminar</button>\n      </div>\n      </div>";
+        categoriesList.appendChild(newCategoryLine);
+    }
 };
+var init3 = function () {
+    addcategoryToList();
+};
+init3();
