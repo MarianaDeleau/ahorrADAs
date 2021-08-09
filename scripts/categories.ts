@@ -31,7 +31,7 @@ const getIdCategory = () => {
    storageAux.categories.push(newCategory)
    localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
    
-    addcategoryToList(newCategory.name)
+   window.location.reload();
 
    //storage.categories.push(newCategory);
    //localStorage.setItem('key-ahorradas', JSON.stringify(storage));
@@ -40,18 +40,32 @@ const getIdCategory = () => {
  
 formAddCategory.addEventListener('submit', createCategory);
 
-const addcategoryToList = (name) => {
+const addcategoryToList = () => {
 
-   const newCategoryLine = document.createElement('div');
-   newCategoryLine.innerHTML = `<div class="row mt-5 mb-5">
-   <div class="col-9 align-items-center d-flex">
-      <p class="fs-5">${name}</p>
-   </div>
-   <div class="col-3 d-flex justify-content-end">
-      <button class="btn me-3" type="button"><a class="text-white" href="./editarCategoria.html">Editar</a></button>
-      <button class="btn">Eliminar</button>
-   </div>
-   </div>`;
-   categoriesList.appendChild(newCategoryLine);
+   const storage: LocalStorage = getStorage();
+
+   for (const category of storage.categories) {
+      const newCategoryLine = document.createElement('div');
+      newCategoryLine.innerHTML = `<div class="row mt-5 mb-5">
+      <div class="col-9 align-items-center d-flex">
+         <p class="fs-5">${category.name}</p>
+      </div>
+      <div class="col-3 d-flex justify-content-end">
+         <button class="btn me-3" type="button"><a class="text-white" href="./editarCategoria.html">Editar</a></button>
+         <button class="btn">Eliminar</button>
+      </div>
+      </div>`;
+      categoriesList.appendChild(newCategoryLine);
+      
+   }
+   
 
 }
+
+  
+const init3 = () => {
+   addcategoryToList();
+ 
+};
+
+init3();
