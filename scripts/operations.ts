@@ -17,7 +17,7 @@ const getOperationId = () => {
 const addOperation= (e)=>{
     e.preventDefault();
     const form = e.target;
-    const categoryOperation: Category[] = form.categoryOp.value; /*chequear q tome del LS*/
+    const categoryOperation: Category[] = form.categoriesNuevaOp.value; /*chequear q tome del LS*/
     const amountOperation: number = form.amountOp.value;
     const newOperationName: string = form.descriptionOp.value;
     const dateOperation: Date = form.dateOp.value;
@@ -43,9 +43,10 @@ formOperation.addEventListener("submit", addOperation);
 
 
 const categoryNewOperation = () => {
+    
     const storage: LocalStorage = getStorage();
 
-    const selectCategoriesNuevaOp = document.getElementById("categories-nuevaOp");
+    const selectCategoriesNuevaOp = document.getElementById('categoriesNuevaOp');
     
 
     for (const category of storage.categories) {
