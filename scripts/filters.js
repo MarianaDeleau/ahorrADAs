@@ -27,3 +27,9 @@ var init = function () {
     loadSelect();
 };
 init();
+//######### FILTRA POR GASTO O GANANCIA #######
+var typeOpFilter = function (type) {
+    var storage = getStorage();
+    var operationsType = storage.operations.filter(function (operation) { return operation.type === type; });
+    return addOperationToList(operationsType);
+};

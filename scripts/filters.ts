@@ -56,4 +56,16 @@ const init = () => {
     loadSelect()
  }
  
- init();
+init();
+ 
+//######### FILTRA POR GASTO O GANANCIA #######
+
+const typeOpFilter = (type) => {
+    
+    const storage: LocalStorage = getStorage();
+  
+    let operationsType = storage.operations.filter((operation) => operation.type === type);
+  
+    return addOperationToList(operationsType)
+}
+  
