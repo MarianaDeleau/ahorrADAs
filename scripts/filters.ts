@@ -80,3 +80,24 @@ const categoryOpFilter = (Category) => {
     return addOperationToList(operationsCategory)
 }
   
+//######### FUNCION PARA FILTROS GENERAL #######
+
+const formFilters = document.getElementById('filtersForm');
+
+const operationFilter = () => {
+  const typeFilter = document.getElementById('typeFilter')
+  const categoryFilter = document.getElementById('categories')
+  let type = typeFilter.value
+  let category = categoryFilter.value
+  
+    if (type !== 'Todas') {
+      console.log(typeOpFilter(type));
+      
+    } else if (category !== 'Todas') {
+        console.log(categoryOpFilter(category));
+    }
+   
+}
+
+
+formFilters.addEventListener('change', operationFilter)

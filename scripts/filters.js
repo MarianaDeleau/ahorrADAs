@@ -39,3 +39,18 @@ var categoryOpFilter = function (Category) {
     var operationsCategory = storage.operations.filter(function (operation) { return operation.category === Category; });
     return addOperationToList(operationsCategory);
 };
+//######### FUNCION PARA FILTROS GENERAL #######
+var formFilters = document.getElementById('filtersForm');
+var operationFilter = function () {
+    var typeFilter = document.getElementById('typeFilter');
+    var categoryFilter = document.getElementById('categories');
+    var type = typeFilter.value;
+    var category = categoryFilter.value;
+    if (type !== 'Todas') {
+        console.log(typeOpFilter(type));
+    }
+    else if (category !== 'Todas') {
+        console.log(categoryOpFilter(category));
+    }
+};
+formFilters.addEventListener('change', operationFilter);
