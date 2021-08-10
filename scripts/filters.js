@@ -33,3 +33,9 @@ var typeOpFilter = function (type) {
     var operationsType = storage.operations.filter(function (operation) { return operation.type === type; });
     return addOperationToList(operationsType);
 };
+//######### FILTRA POR CATEGORIA #######
+var categoryOpFilter = function (Category) {
+    var storage = getStorage();
+    var operationsCategory = storage.operations.filter(function (operation) { return operation.category === Category; });
+    return addOperationToList(operationsCategory);
+};
