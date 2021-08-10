@@ -69,3 +69,14 @@ const typeOpFilter = (type) => {
     return addOperationToList(operationsType)
 }
   
+//######### FILTRA POR CATEGORIA #######
+
+const categoryOpFilter = (Category) => {
+    
+    const storage: LocalStorage = getStorage();
+  
+    let operationsCategory =  storage.operations.filter((operation) => operation.category === Category)
+  
+    return addOperationToList(operationsCategory)
+}
+  
