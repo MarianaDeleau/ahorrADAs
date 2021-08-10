@@ -1,4 +1,4 @@
-var loadFields = function () {
+var loadSelect = function () {
     var storage = getStorage();
     var selectCategories = document.getElementById('categories');
     //console.log(selectCategories)
@@ -8,15 +8,15 @@ var loadFields = function () {
         // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         var elem = document.createElement('option');
         elem.innerText = category.name;
-        elem.value = category.id.toString();
+        elem.value = category.name;
         selectCategories.appendChild(elem);
     }
 };
+//######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 var operationsList = document.getElementById('operations');
-var addOperationToList = function () {
-    var storage = getStorage();
-    for (var _i = 0, _a = storage.operations; _i < _a.length; _i++) {
-        var operation = _a[_i];
+var addOperationToList = function (array) {
+    for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
+        var operation = array_1[_i];
         var newOperationLine = document.createElement('div');
         newOperationLine.classList.add('row', 'mt-3');
         newOperationLine.innerHTML = "<div class=\"col-md-3 d-flex align-items-center \">\n        <h6>" + operation.description + "</h6>\n        </div>\n        <div class=\"col-md-3 d-flex align-items-center\">\n        <div class=\"badge bg-success p-2 text-white text-wrap\" style=\"width: 6rem;\">\n        " + operation.category + "\n        </div>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-center justify-content-end\">\n        <p class=\"text-end\">" + operation.date + "</p>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-center justify-content-end\">\n        <h6 class=\"text-end\">" + operation.amount + "</h6>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-end flex-column justify-content-center\">\n        <a href=\"\" class=\"text-end\">Editar</a>\n        <a href=\"\" class=\"text-end\">Eliminar</a>\n        </div>";
@@ -24,7 +24,6 @@ var addOperationToList = function () {
     }
 };
 var init = function () {
-    loadFields();
-    addOperationToList();
+    loadSelect();
 };
 init();

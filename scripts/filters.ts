@@ -1,4 +1,4 @@
-const loadFields = () => {
+const loadSelect = () => {
 
     const storage: LocalStorage = getStorage();
  
@@ -11,21 +11,21 @@ const loadFields = () => {
         // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         const elem = document.createElement('option');
         elem.innerText = category.name;
-        elem.value = category.id.toString();
+        elem.value = category.name;
         selectCategories.appendChild(elem);
          
     }
  
 };
 
+//######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 
 const operationsList = document.getElementById('operations');
 
-const addOperationToList = () => {
+const addOperationToList = (array) => {
 
-    const storage: LocalStorage = getStorage();
  
-    for (const operation of storage.operations) {
+    for (const operation of array) {
         const newOperationLine = document.createElement('div');
         newOperationLine.classList.add('row', 'mt-3');
         newOperationLine.innerHTML = `<div class="col-md-3 d-flex align-items-center ">
@@ -53,8 +53,7 @@ const addOperationToList = () => {
  }
  
 const init = () => {
-    loadFields()
-    addOperationToList()
+    loadSelect()
  }
  
  init();

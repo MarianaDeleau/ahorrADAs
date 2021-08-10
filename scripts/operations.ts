@@ -22,8 +22,7 @@ const addOperation= (e)=>{
     const newOperationName: string = form.descriptionOp.value;
     const dateOperation: Date = form.dateOp.value;
     const typeOperation: string = form.typeOp.value
- // verificar
-
+ 
     const newOperation: Operation = {
         id: getOperationId(),
         category: categoryOperation,
@@ -53,7 +52,7 @@ const categoryNewOperation = () => {
         // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         const elem = document.createElement("option");
         elem.innerText = category.name;
-        elem.value = category.id.toString();
+        elem.value = category.name;
         selectCategoriesNuevaOp.appendChild(elem);
     }
 };
