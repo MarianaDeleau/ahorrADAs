@@ -15,7 +15,6 @@ var addOperation = function (e) {
     var newOperationName = form.descriptionOp.value;
     var dateOperation = form.dateOp.value;
     var typeOperation = form.typeOp.value;
-    // verificar
     var newOperation = {
         id: getOperationId(),
         category: categoryOperation,
@@ -37,7 +36,7 @@ var categoryNewOperation = function () {
         // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         var elem = document.createElement("option");
         elem.innerText = category.name;
-        elem.value = category.id.toString();
+        elem.value = category.name;
         selectCategoriesNuevaOp.appendChild(elem);
     }
 };
