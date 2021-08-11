@@ -92,10 +92,10 @@ const operationFilter = () => {
   let category = categoryFilter.value
   
     if (type !== 'Todas') {
-      console.log(typeOpFilter(type));
+      typeOpFilter(type);
       
     } else if (category !== 'Todas') {
-        console.log(categoryOpFilter(category));
+        categoryOpFilter(category);
     }
    
 }

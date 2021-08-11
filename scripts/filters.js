@@ -48,10 +48,10 @@ var operationFilter = function () {
     var type = typeFilter.value;
     var category = categoryFilter.value;
     if (type !== 'Todas') {
-        console.log(typeOpFilter(type));
+        typeOpFilter(type);
     }
     else if (category !== 'Todas') {
-        console.log(categoryOpFilter(category));
+        categoryOpFilter(category);
     }
 };
 formFilters.addEventListener('change', operationFilter);
