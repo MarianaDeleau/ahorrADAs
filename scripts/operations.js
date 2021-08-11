@@ -1,3 +1,4 @@
+var _this = this;
 var formOperation = document.getElementById('formNewOperation');
 var getOperationId = function () {
     var storage = getStorage();
@@ -26,6 +27,7 @@ var addOperation = function (e) {
     var storageAux = getStorage();
     storageAux.operations.push(newOperation);
     localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
+    closeOpenedWindow();
 };
 formOperation.addEventListener("submit", addOperation);
 var categoryNewOperation = function () {
@@ -44,3 +46,13 @@ var init2 = function () {
     categoryNewOperation();
 };
 init2();
+//######### FUNCION PARA CERRAR VENTANA LUEGO DE AGREGAR OPERACION #######
+var closeOpenedWindow = function () {
+    _this.close();
+};
+//######### FUNCION PARA CERRAR VENTANA COON CANCELAR #######
+var cancelNewOp = function () {
+    closeOpenedWindow();
+};
+var btnCancelOp = document.getElementById('btnCancelOp');
+btnCancelOp.addEventListener("click", cancelNewOp);

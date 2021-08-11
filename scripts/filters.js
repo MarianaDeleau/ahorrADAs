@@ -55,3 +55,10 @@ var operationFilter = function () {
     }
 };
 formFilters.addEventListener('change', operationFilter);
+//######### FUNCION PARA ABRIR VENTANA #######
+var openedWindow;
+var btnNewOp = document.getElementById('btnNewOp');
+var openWindow = function () {
+    openedWindow = window.open('./nuevaOperacion.html');
+};
+btnNewOp.addEventListener("click", openWindow);

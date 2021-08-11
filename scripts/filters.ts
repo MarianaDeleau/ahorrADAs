@@ -102,3 +102,15 @@ const operationFilter = () => {
 
 
 formFilters.addEventListener('change', operationFilter)
+
+//######### FUNCION PARA ABRIR VENTANA #######
+
+let openedWindow;
+
+const btnNewOp = document.getElementById('btnNewOp')
+
+const openWindow = () => {
+    openedWindow = window.open('./nuevaOperacion.html');
+}
+
+btnNewOp.addEventListener("click", openWindow)
