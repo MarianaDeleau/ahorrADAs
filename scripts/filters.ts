@@ -85,6 +85,7 @@ const categoryOpFilter = (Category) => {
 const formFilters = document.getElementById('filtersForm');
 
 const operationFilter = () => {
+  operationsList.innerHTML= ""
   const typeFilter = document.getElementById('typeFilter')
   const categoryFilter = document.getElementById('categories')
   let type = typeFilter.value
