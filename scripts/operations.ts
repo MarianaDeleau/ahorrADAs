@@ -35,6 +35,7 @@ const addOperation= (e)=>{
     const storageAux = getStorage()
     storageAux.operations.push(newOperation)
     localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
+    closeOpenedWindow();
 }
 
 formOperation.addEventListener("submit", addOperation);
@@ -62,3 +63,23 @@ const init2 = () => {
 };
 
 init2();
+
+//######### FUNCION PARA CERRAR VENTANA LUEGO DE AGREGAR OPERACION #######
+
+const closeOpenedWindow = () => {
+    
+    this.close();
+}
+
+
+//######### FUNCION PARA CERRAR VENTANA COON CANCELAR #######
+
+const cancelNewOp = () => {
+
+    closeOpenedWindow()
+
+}
+
+const btnCancelOp = document.getElementById('btnCancelOp');
+
+btnCancelOp.addEventListener("click", cancelNewOp)
