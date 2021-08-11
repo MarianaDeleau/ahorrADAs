@@ -42,6 +42,7 @@ var categoryOpFilter = function (Category) {
 //######### FUNCION PARA FILTROS GENERAL #######
 var formFilters = document.getElementById('filtersForm');
 var operationFilter = function () {
+    operationsList.innerHTML = "";
     var typeFilter = document.getElementById('typeFilter');
     var categoryFilter = document.getElementById('categories');
     var type = typeFilter.value;

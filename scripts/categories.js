@@ -19,12 +19,13 @@ var createCategory = function (e) {
     var storageAux = getStorage();
     storageAux.categories.push(newCategory);
     localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
-    window.location.reload();
+    addcategoryToList();
     //storage.categories.push(newCategory);
     //localStorage.setItem('key-ahorradas', JSON.stringify(storage));
 };
 formAddCategory.addEventListener('submit', createCategory);
 var addcategoryToList = function () {
+    categoriesList.innerHTML = " ";
     var storage = getStorage();
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var category = _a[_i];

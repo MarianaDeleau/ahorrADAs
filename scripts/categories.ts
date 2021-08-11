@@ -31,8 +31,7 @@ const getIdCategory = () => {
    storageAux.categories.push(newCategory)
    localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
    
-   window.location.reload();
-
+   addcategoryToList();
    //storage.categories.push(newCategory);
    //localStorage.setItem('key-ahorradas', JSON.stringify(storage));
  
@@ -42,6 +41,7 @@ formAddCategory.addEventListener('submit', createCategory);
 
 const addcategoryToList = () => {
 
+   categoriesList.innerHTML= " "
    const storage: LocalStorage = getStorage();
 
    for (const category of storage.categories) {
