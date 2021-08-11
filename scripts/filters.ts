@@ -87,6 +87,8 @@ const typeOpFilter = (type) => {
   
     let operationsType = storage.operations.filter((operation) => operation.type === type);
   
+    balance(operationsType);
+
     return addOperationToList(operationsType)
 }
   
@@ -98,6 +100,8 @@ const categoryOpFilter = (Category) => {
   
     let operationsCategory =  storage.operations.filter((operation) => operation.category === Category)
   
+    balance(operationsCategory);
+    
     return addOperationToList(operationsCategory)
 }
   
@@ -135,3 +139,42 @@ const openWindow = () => {
 }
 
 btnNewOp.addEventListener("click", openWindow)
+
+//######### FUNCION PARA BALANCE #######
+
+
+let balanceGastos: number = 0 
+let balanceGanancias: number = 0
+let res: number = 0
+
+let balance = (operations) => {    
+
+    let divGanancias = document.getElementById('balanceGanancias')
+    let divGastos = document.getElementById('balanceGastos')
+    let divTotal = document.getElementById('balanceTotal')
+    divGastos.innerText = "$ 0";
+    divGanancias.innerText = "$ 0";
+    divTotal.innerText = "$ 0";
+    
+    for (let operation of operations){
+        
+        
+        if (operation.type === 'Gasto') {
+           balanceGastos = balanceGastos + parseInt(operation.amount);
+           divGastos.innerText=`$ -${balanceGastos}`
+        } else if (operation.type === 'Ganancia') {
+            balanceGanancias = balanceGanancias + parseInt(operation.amount)
+            divGanancias.innerText=`$ +${balanceGanancias}`            
+        } 
+
+        res = balanceGanancias - balanceGastos
+        divTotal.innerText=`$ ${res}`
+
+        
+    }
+
+    balanceGastos = 0;
+    balanceGanancias = 0;
+    res = 0;
+
+}
