@@ -36,12 +36,14 @@ init();
 var typeOpFilter = function (type) {
     var storage = getStorage();
     var operationsType = storage.operations.filter(function (operation) { return operation.type === type; });
+    balance(operationsType);
     return addOperationToList(operationsType);
 };
 //######### FILTRA POR CATEGORIA #######
 var categoryOpFilter = function (Category) {
     var storage = getStorage();
     var operationsCategory = storage.operations.filter(function (operation) { return operation.category === Category; });
+    balance(operationsCategory);
     return addOperationToList(operationsCategory);
 };
 //######### FUNCION PARA FILTROS GENERAL #######
@@ -67,3 +69,31 @@ var openWindow = function () {
     openedWindow = window.open('./nuevaOperacion.html');
 };
 btnNewOp.addEventListener("click", openWindow);
+//######### FUNCION PARA BALANCE #######
+var balanceGastos = 0;
+var balanceGanancias = 0;
+var res = 0;
+var balance = function (operations) {
+    var divGanancias = document.getElementById('balanceGanancias');
+    var divGastos = document.getElementById('balanceGastos');
+    var divTotal = document.getElementById('balanceTotal');
+    divGastos.innerText = "$ 0";
+    divGanancias.innerText = "$ 0";
+    divTotal.innerText = "$ 0";
+    for (var _i = 0, operations_1 = operations; _i < operations_1.length; _i++) {
+        var operation = operations_1[_i];
+        if (operation.type === 'Gasto') {
+            balanceGastos = balanceGastos + parseInt(operation.amount);
+            divGastos.innerText = "$ -" + balanceGastos;
+        }
+        else if (operation.type === 'Ganancia') {
+            balanceGanancias = balanceGanancias + parseInt(operation.amount);
+            divGanancias.innerText = "$ +" + balanceGanancias;
+        }
+        res = balanceGanancias - balanceGastos;
+        divTotal.innerText = "$ " + res;
+    }
+    balanceGastos = 0;
+    balanceGanancias = 0;
+    res = 0;
+};
