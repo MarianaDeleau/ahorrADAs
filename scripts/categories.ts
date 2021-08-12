@@ -58,6 +58,35 @@ const deleteCategory = (e) => {
 
 };
 
+// #### Editar categoria ####
+const editCategory = (e) => {
+	e.preventDefault();
+
+	const idToModify = e.srcElement.dataset.category;
+
+	const storageAux = getStorage(); // Leo el local storage y lo guardo en esta variable
+
+	// Recorro el local storage en búsqueda del elemento que quiero modificar/editar
+
+	for (let i = 0; i < storageAux.categories.length; i++) {
+		if (storageAux.categories[i].name == idToModify) {
+      // const form = e.target;
+      // const newCategoryName: string = form.nameCategory.value;
+			// storageAux.categories[i].name = newCategoryName;
+			break;
+		}
+
+    // COMO VOLVER AL EVENTO CLICK EN EDITAR???
+    
+	}
+
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+	addcategoryToList();
+};
+
+
+
+
 const addcategoryToList = () => {
 	categoriesList.innerHTML = " ";
 	const storage: LocalStorage = getStorage();
@@ -69,17 +98,24 @@ const addcategoryToList = () => {
          <p class="fs-5">${category.name}</p>
       </div>
       <div class="col-3 d-flex justify-content-end">
-         <button class="btn me-3" type="button"><a class="text-white" href="./editarCategoria.html">Editar</a></button>
+         <button class="btn me-3 edit-btn" type="button"><a class="text-white" href="./editarCategoria.html">Editar</a></button>
          <button class="btn delete-btn" data-category=${category.id}>Eliminar</button>
       </div>
       </div>`;
 
 		categoriesList.appendChild(newCategoryLine);
 	}
+  //RECORRE LOS BOTONES
+  
 	const deleteBtn = document.querySelectorAll(".delete-btn");
 	for (let i = 0; i < deleteBtn.length; i++) {
 		deleteBtn[i].addEventListener("click", deleteCategory);
 	}
+
+  const editBtn = document.querySelectorAll(".edit-btn");
+  for (let i = 0; i < editBtn.length; i++) {
+		editBtn[i].addEventListener("click", editCategory);
+  }
 };
 
 formAddCategory.addEventListener("submit", createCategory);
