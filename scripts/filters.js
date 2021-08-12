@@ -54,3 +54,12 @@ var operationFilter = function () {
     }
 };
 formFilters.addEventListener('change', operationFilter);
+//filtro de fecha
+var dateOperationFilter = document.getElementById("dateOperationFilter");
+var operationsDate = function () {
+    console.log("++++operationDate+++++");
+};
+dateOperationFilter.addEventListener("onChange", function () {
+    console.log("++++date++++");
+    operationsDate();
+});

@@ -101,3 +101,15 @@ const operationFilter = () => {
 
 
 formFilters.addEventListener('change', operationFilter)
+
+
+
+//filtro de fecha
+const dateOperationFilter = document.getElementById(`dateOperationFilter`)
+const operationsDate = () => {
+  console.log("++++operationDate+++++")
+}
+dateOperationFilter.addEventListener(`onChange`, () => {
+  console.log(`++++date++++`)
+  operationsDate()
+});
