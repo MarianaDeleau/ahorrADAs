@@ -49,6 +49,11 @@ p{
   padding: 24px;
   margin-top: 16px
 }
+
+.badge{
+  background-color: #a8dadcff;
+
+}
 /* CSS HEX
 --imperial-red: #e63946ff;
 --honeydew: #f1faeeff;

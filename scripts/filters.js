@@ -20,11 +20,11 @@ var addOperationToList = function (array) {
         if (operation.type === 'Gasto') {
             var h6 = createNode("h6", { "class": "text-center" }, document.createTextNode(operation.description));
             var divDescription = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, h6);
-            var badge = createNode("div", { "class": "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            var badge = createNode("div", { "class": "badge p-2 text-dark text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
             var divCategory = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, badge);
             var date = createNode("p", { "class": "text-end" }, document.createTextNode(operation.date));
             var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
-            var amount = createNode("h6", { "class": "text-end", style: "color:red; font-weight:700" }, document.createTextNode((parseInt(operation.amount) * -1).toString()));
+            var amount = createNode("h6", { "class": "text-end", style: "color:red; font-weight:800" }, document.createTextNode((parseInt(operation.amount) * -1).toString()));
             var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
             var editLink = createNode("a", { "class": "text-end" }, document.createTextNode("Editar"));
             var deleteLink = createNode("a", { "class": "text-end" }, document.createTextNode("Eliminar"));
@@ -35,11 +35,11 @@ var addOperationToList = function (array) {
         else if (operation.type === 'Ganancia') {
             var h6 = createNode("h6", { "class": "text-center" }, document.createTextNode(operation.description));
             var divDescription = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, h6);
-            var badge = createNode("div", { "class": "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            var badge = createNode("div", { "class": "badge p-2 text-dark text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
             var divCategory = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, badge);
             var date = createNode("p", { "class": "text-end" }, document.createTextNode(operation.date));
             var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
-            var amount = createNode("h6", { "class": "text-end", style: "color:green; font-weight:700" }, document.createTextNode(operation.amount));
+            var amount = createNode("h6", { "class": "text-end", style: "color:green; font-weight:800" }, document.createTextNode(operation.amount));
             var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
             var editLink = createNode("a", { "class": "text-end" }, document.createTextNode("Editar"));
             var deleteLink = createNode("a", { "class": "text-end" }, document.createTextNode("Eliminar"));
@@ -70,7 +70,11 @@ var categoryOpFilter = function (Category) {
 };
 //######### FUNCION PARA FILTROS GENERAL #######
 var formFilters = document.getElementById('filtersForm');
+var divNoOps = document.getElementById('noOperations');
+var divWithOps = document.getElementById('operationsListHeader');
 var operationFilter = function () {
+    divNoOps.style.display = 'none';
+    divWithOps.style.display = 'block';
     operationsList.innerHTML = "";
     var typeFilter = document.getElementById('typeFilter');
     var categoryFilter = document.getElementById('categories');
