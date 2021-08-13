@@ -30,18 +30,14 @@ const createCategory = (e) => {
 	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
 
 	addcategoryToList();
-	//storage.categories.push(newCategory);
-	//localStorage.setItem('key-ahorradas', JSON.stringify(storage));
 };
-
 
 // ##### Eliminar Categoria #####
 
 const deleteCategory = (e) => {
-	e.preventDefault();
 
-	const idToDelete = e.srcElement.dataset.category; //id del elemento a eliminar
-
+	const idToDelete = e.target.dataset.category; //id del elemento a eliminar
+  //console.log(idToDelete,e.target)
 	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
 
 	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
@@ -49,14 +45,40 @@ const deleteCategory = (e) => {
 	for (let i = 0; i < storageAux.categories.length; i++) {
 		if (storageAux.categories[i].id == idToDelete) {
 			storageAux.categories.splice(i, 1); // posicion y cuantos elementos elimino
-      break
+			break;
 		}
 	}
-  
-  localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
-  addcategoryToList();
 
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+	addcategoryToList();
 };
+
+// #### Editar categoria ####
+const editCategory = (e) => {
+	e.preventDefault();
+
+	const idToModify = e.srcElement.dataset.category;
+
+	const storageAux = getStorage(); // Leo el local storage y lo guardo en esta variable
+
+	// Recorro el local storage en búsqueda del elemento que quiero modificar/editar
+
+	for (let i = 0; i < storageAux.categories.length; i++) {
+		if (storageAux.categories[i].name == idToModify) {
+			// const form = e.target;
+			// const newCategoryName: string = form.nameCategory.value;
+			// storageAux.categories[i].name = newCategoryName;
+			break;
+		}
+
+		// COMO VOLVER AL EVENTO CLICK EN EDITAR???
+	}
+
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+	addcategoryToList();
+};
+
+//### agrega lista de categorias ###
 
 const addcategoryToList = () => {
 	categoriesList.innerHTML = " ";
@@ -64,30 +86,88 @@ const addcategoryToList = () => {
 
 	for (const category of storage.categories) {
 		const newCategoryLine = document.createElement("div");
-		newCategoryLine.innerHTML = `<div class="row mt-5 mb-5">
-      <div class="col-9 align-items-center d-flex">
-         <p class="fs-5">${category.name}</p>
-      </div>
-      <div class="col-3 d-flex justify-content-end">
-         <button class="btn me-3" type="button"><a class="text-white" href="./editarCategoria.html">Editar</a></button>
-         <button class="btn delete-btn" data-category=${category.id}>Eliminar</button>
-      </div>
-      </div>`;
+		const p = createNode(
+			"p",
+			{ class: "fs-5" },
+			document.createTextNode(category.name)
+		);
+		const div = createNode(
+			"div",
+			{ class: "col-9 align-items-center d-flex" },
+			p
+		);
+		const btnEdit = createNode(
+			"button",
+			{
+				class: "btn me-3 edit-btn",
+				data: { category: category.id },
+				type: "button",
+			},
+			document.createTextNode("Editar")
+		);
+		const btnDelete = createNode(
+			"button",
+			{
+				class: "btn delete-btn",
+				data: { category: category.id },
+				type: "button",
+			},
+			document.createTextNode("Eliminar")
+		);
+		const divTwo = createNode(
+			"div",
+			{ class: "col-3 d-flex justify-content-end" },
+			btnEdit,
+			btnDelete
+		);
+		const divContainer = createNode(
+			"div",
+			{ class: "row mt-5 mb-5" },
+			div, divTwo
+		);
 
+	
+		newCategoryLine.appendChild(divContainer);
 		categoriesList.appendChild(newCategoryLine);
 	}
+	//RECORRE LOS BOTONES
+
 	const deleteBtn = document.querySelectorAll(".delete-btn");
 	for (let i = 0; i < deleteBtn.length; i++) {
 		deleteBtn[i].addEventListener("click", deleteCategory);
 	}
+
+	const editBtn = document.querySelectorAll(".edit-btn");
+	for (let i = 0; i < editBtn.length; i++) {
+		editBtn[i].addEventListener("click", editCategory);
+	}
 };
 
 formAddCategory.addEventListener("submit", createCategory);
+
+const createNode = (tag, attr, ...children) => {
+	const elem = document.createElement(tag);
+
+	for (const prop in attr) {
+		if (prop === "data") {
+			for (const dataElement in attr[prop]) {
+        console.log({dataElement, tag, prop})
+			
+        elem.dataset[dataElement] = attr[prop][dataElement];
+			}
+		} else {
+			elem.setAttribute(prop, attr[prop]);
+		}
+	}
+	for (const child of children) {
+		elem.appendChild(child);
+	}
+
+	return elem;
+};
 
 const init3 = () => {
 	addcategoryToList();
 };
 
 init3();
-
-
