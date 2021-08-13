@@ -31,11 +31,11 @@ const addOperationToList = (array) => {
             
             const h6 = createNode("h6", { class: "text-center" }, document.createTextNode(operation.description));
             const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6);
-            const badge = createNode("div", { class: "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            const badge = createNode("div", { class: "badge p-2 text-dark text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
             const divCategory = createNode("div", { class: "col-md-3 d-flex align-items-center" }, badge)
             const date = createNode("p", { class: "text-end" }, document.createTextNode(operation.date));
             const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
-            const amount = createNode("h6", { class: "text-end", style: "color:red; font-weight:700" }, document.createTextNode((parseInt(operation.amount) * -1).toString()))
+            const amount = createNode("h6", { class: "text-end", style: "color:red; font-weight:800" }, document.createTextNode((parseInt(operation.amount) * -1).toString()))
             const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
             const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
             const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
@@ -47,11 +47,11 @@ const addOperationToList = (array) => {
 
             const h6 = createNode("h6", { class: "text-center" }, document.createTextNode(operation.description));
             const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6);
-            const badge = createNode("div", { class: "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            const badge = createNode("div", { class: "badge p-2 text-dark text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
             const divCategory = createNode("div", { class: "col-md-3 d-flex align-items-center" }, badge)
             const date = createNode("p", { class: "text-end" }, document.createTextNode(operation.date));
             const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
-            const amount = createNode("h6", { class: "text-end", style: "color:green; font-weight:700" }, document.createTextNode(operation.amount))
+            const amount = createNode("h6", { class: "text-end", style: "color:green; font-weight:800" }, document.createTextNode(operation.amount))
             const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
             const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
             const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
@@ -102,9 +102,16 @@ const categoryOpFilter = (Category) => {
 //######### FUNCION PARA FILTROS GENERAL #######
 
 const formFilters = document.getElementById('filtersForm');
+const divNoOps = document.getElementById('noOperations');
+const divWithOps = document.getElementById('operationsListHeader');
+
 
 const operationFilter = () => {
-  operationsList.innerHTML= ""
+
+    divNoOps.style.display = 'none'
+    divWithOps.style.display = 'block'
+    operationsList.innerHTML = ""
+    
   const typeFilter = document.getElementById('typeFilter')
   const categoryFilter = document.getElementById('categories')
   let type = typeFilter.value
