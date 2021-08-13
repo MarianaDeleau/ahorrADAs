@@ -26,52 +26,46 @@ const addOperationToList = (array) => {
 
  
     for (const operation of array) {
-        const newOperationLine = document.createElement('div');
-        newOperationLine.classList.add('row', 'mt-3');
+        
         if (operation.type === 'Gasto') {
-            newOperationLine.innerHTML = `<div class="col-md-3 d-flex align-items-center ">
-        <h6>${operation.description}</h6>
-        </div>
-        <div class="col-md-3 d-flex align-items-center">
-        <div class="badge bg-success p-2 text-white text-wrap" style="width: 6rem;">
-        ${operation.category}
-        </div>
-        </div>
-        <div class="col-md-2 d-flex align-items-center justify-content-end">
-        <p class="text-end">${operation.date}</p>
-        </div>
-        <div class="col-md-2 d-flex align-items-center justify-content-end">
-        <h6 class="text-end" style="color:red; font-weight:700">-${operation.amount}</h6>
-        </div>
-        <div class="col-md-2 d-flex align-items-end flex-column justify-content-center">
-        <a href="" class="text-end">Editar</a>
-        <a href="" class="text-end">Eliminar</a>
-        </div>`;
+            
+            const h6 = createNode("h6", { class: "text-center" }, document.createTextNode(operation.description));
+            const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6);
+            const badge = createNode("div", { class: "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            const divCategory = createNode("div", { class: "col-md-3 d-flex align-items-center" }, badge)
+            const date = createNode("p", { class: "text-end" }, document.createTextNode(operation.date));
+            const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
+            const amount = createNode("h6", { class: "text-end", style: "color:red; font-weight:700" }, document.createTextNode((parseInt(operation.amount) * -1).toString()))
+            const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
+            const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
+            const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
+            const divLinks = createNode("div", { class: "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink)
+            const newOperationLine = createNode("div", { class: "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
+            operationsList.appendChild(newOperationLine);
+            
         } else if (operation.type === 'Ganancia') {
-            newOperationLine.innerHTML = `<div class="col-md-3 d-flex align-items-center ">
-        <h6>${operation.description}</h6>
-        </div>
-        <div class="col-md-3 d-flex align-items-center">
-        <div class="badge bg-success p-2 text-white text-wrap" style="width: 6rem;">
-        ${operation.category}
-        </div>
-        </div>
-        <div class="col-md-2 d-flex align-items-center justify-content-end">
-        <p class="text-end">${operation.date}</p>
-        </div>
-        <div class="col-md-2 d-flex align-items-center justify-content-end">
-        <h6 class="text-end" style="color:green; font-weight:700">+${operation.amount}</h6>
-        </div>
-        <div class="col-md-2 d-flex align-items-end flex-column justify-content-center">
-        <a href="" class="text-end">Editar</a>
-        <a href="" class="text-end">Eliminar</a>
-        </div>`;
+
+            const h6 = createNode("h6", { class: "text-center" }, document.createTextNode(operation.description));
+            const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6);
+            const badge = createNode("div", { class: "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            const divCategory = createNode("div", { class: "col-md-3 d-flex align-items-center" }, badge)
+            const date = createNode("p", { class: "text-end" }, document.createTextNode(operation.date));
+            const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
+            const amount = createNode("h6", { class: "text-end", style: "color:green; font-weight:700" }, document.createTextNode(operation.amount))
+            const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
+            const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
+            const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
+            const divLinks = createNode("div", { class: "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink)
+            const newOperationLine = createNode("div", { class: "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
+            operationsList.appendChild(newOperationLine);
+            
         }
-        operationsList.appendChild(newOperationLine);
     
     }
     
- }
+}
+ 
+//######### INICIALIZA LA PAGINA #######
  
 const init = () => {
     loadSelect()

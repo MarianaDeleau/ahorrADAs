@@ -145,26 +145,6 @@ const addcategoryToList = () => {
 
 formAddCategory.addEventListener("submit", createCategory);
 
-const createNode = (tag, attr, ...children) => {
-	const elem = document.createElement(tag);
-
-	for (const prop in attr) {
-		if (prop === "data") {
-			for (const dataElement in attr[prop]) {
-        console.log({dataElement, tag, prop})
-			
-        elem.dataset[dataElement] = attr[prop][dataElement];
-			}
-		} else {
-			elem.setAttribute(prop, attr[prop]);
-		}
-	}
-	for (const child of children) {
-		elem.appendChild(child);
-	}
-
-	return elem;
-};
 
 const init3 = () => {
 	addcategoryToList();

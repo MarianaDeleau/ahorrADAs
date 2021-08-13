@@ -17,17 +17,39 @@ var operationsList = document.getElementById('operations');
 var addOperationToList = function (array) {
     for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
         var operation = array_1[_i];
-        var newOperationLine = document.createElement('div');
-        newOperationLine.classList.add('row', 'mt-3');
         if (operation.type === 'Gasto') {
-            newOperationLine.innerHTML = "<div class=\"col-md-3 d-flex align-items-center \">\n        <h6>" + operation.description + "</h6>\n        </div>\n        <div class=\"col-md-3 d-flex align-items-center\">\n        <div class=\"badge bg-success p-2 text-white text-wrap\" style=\"width: 6rem;\">\n        " + operation.category + "\n        </div>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-center justify-content-end\">\n        <p class=\"text-end\">" + operation.date + "</p>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-center justify-content-end\">\n        <h6 class=\"text-end\" style=\"color:red; font-weight:700\">-" + operation.amount + "</h6>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-end flex-column justify-content-center\">\n        <a href=\"\" class=\"text-end\">Editar</a>\n        <a href=\"\" class=\"text-end\">Eliminar</a>\n        </div>";
+            var h6 = createNode("h6", { "class": "text-center" }, document.createTextNode(operation.description));
+            var divDescription = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, h6);
+            var badge = createNode("div", { "class": "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            var divCategory = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, badge);
+            var date = createNode("p", { "class": "text-end" }, document.createTextNode(operation.date));
+            var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
+            var amount = createNode("h6", { "class": "text-end", style: "color:red; font-weight:700" }, document.createTextNode((parseInt(operation.amount) * -1).toString()));
+            var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
+            var editLink = createNode("a", { "class": "text-end" }, document.createTextNode("Editar"));
+            var deleteLink = createNode("a", { "class": "text-end" }, document.createTextNode("Eliminar"));
+            var divLinks = createNode("div", { "class": "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink);
+            var newOperationLine = createNode("div", { "class": "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
+            operationsList.appendChild(newOperationLine);
         }
         else if (operation.type === 'Ganancia') {
-            newOperationLine.innerHTML = "<div class=\"col-md-3 d-flex align-items-center \">\n        <h6>" + operation.description + "</h6>\n        </div>\n        <div class=\"col-md-3 d-flex align-items-center\">\n        <div class=\"badge bg-success p-2 text-white text-wrap\" style=\"width: 6rem;\">\n        " + operation.category + "\n        </div>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-center justify-content-end\">\n        <p class=\"text-end\">" + operation.date + "</p>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-center justify-content-end\">\n        <h6 class=\"text-end\" style=\"color:green; font-weight:700\">+" + operation.amount + "</h6>\n        </div>\n        <div class=\"col-md-2 d-flex align-items-end flex-column justify-content-center\">\n        <a href=\"\" class=\"text-end\">Editar</a>\n        <a href=\"\" class=\"text-end\">Eliminar</a>\n        </div>";
+            var h6 = createNode("h6", { "class": "text-center" }, document.createTextNode(operation.description));
+            var divDescription = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, h6);
+            var badge = createNode("div", { "class": "badge bg-success p-2 text-white text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
+            var divCategory = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, badge);
+            var date = createNode("p", { "class": "text-end" }, document.createTextNode(operation.date));
+            var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
+            var amount = createNode("h6", { "class": "text-end", style: "color:green; font-weight:700" }, document.createTextNode(operation.amount));
+            var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
+            var editLink = createNode("a", { "class": "text-end" }, document.createTextNode("Editar"));
+            var deleteLink = createNode("a", { "class": "text-end" }, document.createTextNode("Eliminar"));
+            var divLinks = createNode("div", { "class": "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink);
+            var newOperationLine = createNode("div", { "class": "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
+            operationsList.appendChild(newOperationLine);
         }
-        operationsList.appendChild(newOperationLine);
     }
 };
+//######### INICIALIZA LA PAGINA #######
 var init = function () {
     loadSelect();
 };
