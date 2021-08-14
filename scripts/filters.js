@@ -93,6 +93,17 @@ var categoryOpFilter = function (Category) {
     balance(operationsCategory);
     return addOperationToList(operationsCategory);
 };
+//######### FILTRA POR FECHA #######
+var operationsDate = function (date) {
+    var storage = getStorage();
+    var storageFilter = storage.operations.filter(function (op) {
+        var opDate = new Date(op.date);
+        //console.log(opDate)
+        return date <= opDate;
+    });
+    balance(storageFilter);
+    return addOperationToList(storageFilter);
+};
 //######### FUNCION PARA FILTROS GENERAL #######
 var formFilters = document.getElementById('filtersForm');
 var divNoOps = document.getElementById('noOperations');
@@ -105,11 +116,16 @@ var operationFilter = function () {
     var categoryFilter = document.getElementById('categories');
     var type = typeFilter.value;
     var category = categoryFilter.value;
+    var dateOperationFilter = document.getElementById("dateOperationFilter");
+    var date = new Date(dateOperationFilter.value);
     if (type !== 'Todas') {
         typeOpFilter(type);
     }
     else if (category !== 'Todas') {
         categoryOpFilter(category);
+    }
+    else if (date !== undefined) {
+        operationsDate(date);
     }
 };
 formFilters.addEventListener('change', operationFilter);

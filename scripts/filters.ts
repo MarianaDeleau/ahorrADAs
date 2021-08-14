@@ -136,6 +136,20 @@ const categoryOpFilter = (Category) => {
     
     return addOperationToList(operationsCategory)
 }
+
+//######### FILTRA POR FECHA #######
+
+const operationsDate = (date) => {
+    
+    const storage: LocalStorage = getStorage();
+    const storageFilter = storage.operations.filter(op =>{
+    const opDate = new Date(op.date)
+    //console.log(opDate)
+    return date <= opDate
+    })
+    balance(storageFilter)
+    return addOperationToList(storageFilter)
+}
   
 //######### FUNCION PARA FILTROS GENERAL #######
 
@@ -150,17 +164,23 @@ const operationFilter = () => {
     divWithOps.style.display = 'block'
     operationsList.innerHTML = ""
     
-  const typeFilter = document.getElementById('typeFilter')
-  const categoryFilter = document.getElementById('categories')
-  let type = typeFilter.value
-  let category = categoryFilter.value
-  
+    const typeFilter = document.getElementById('typeFilter');
+    const categoryFilter = document.getElementById('categories');
+    let type = typeFilter.value;
+    let category = categoryFilter.value;
+    const dateOperationFilter = document.getElementById(`dateOperationFilter`)
+    const date = new Date(dateOperationFilter.value)
+   
     if (type !== 'Todas') {
-      typeOpFilter(type);
-      
-    } else if (category !== 'Todas') {
-        categoryOpFilter(category);
-    }
+        typeOpFilter(type);
+        
+      } else if (category !== 'Todas') {
+          categoryOpFilter(category);
+  
+      } else if (date !== undefined) {
+          operationsDate(date);
+  
+      }
    
 }
 
