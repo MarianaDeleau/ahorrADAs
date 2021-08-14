@@ -43,15 +43,15 @@
               <div class="container">
                 <div class="row mt-5">
                   <div class="col-6 fs-4">Ganancias</div>
-                  <div class="col-6 fs-4 text-end text-success">+ $0</div>
+                  <div id="balanceGanancias" class="col-6 fs-4 text-end text-success">+ $0</div>
                 </div>
                 <div class="row mt-5">
                   <div class="col-6 fs-4">Gastos</div>
-                  <div class="col-6 text-end fs-4 text-danger">- $0</div>
+                  <div id="balanceGastos" class="col-6 text-end fs-4 text-danger">- $0</div>
                 </div>
                 <div class="row mt-5 mb-5">
                   <div class="col-6 fs-3 fw-bold">Total</div>
-                  <div class="col-6 text-end fs-3 fw-bold">+ $0</div>
+                  <div id="balanceTotal" class="col-6 text-end fs-3 fw-bold">+ $0</div>
                 </div>
               </div>
             </div>
@@ -100,9 +100,9 @@
           <div class="col-md-8 bg-white rounded-3 border border-1 shadow ps-5">
             <div class="d-grid gap-2 d-md-flex justify-content-md-between">
               <h3>Operaciones</h3>
-              <button class="btn" type="button"><a class="text-white" href="./nuevaOperacion.html">+ Nueva operación</a></button>
+              <button id="btnNewOp" class="btn" type="button"><a class="text-white" href="">+ Nueva operación</a></button>
             </div>
-            <div id="noOperations" style="display: none;">
+            <div id="noOperations">
               <div class="container col-10 mt-4">
                 <figure class="figure">
                   <img src="./assets/images/undraw_Credit_card_payments_re_qboh.svg" class="figure-img img-fluid rounded"
@@ -115,7 +115,7 @@
                 <p>Cambia los filtros o agrega operaciones</p>
               </div>
               </div>
-              <div id="operations" class="mt-5">
+              <div id="operationsListHeader" class="mt-5" style="display: none;">
                 <div class="row">
                   <div class="col-md-3">
                     <h5 class="text-start">Descripción</h5>
@@ -133,6 +133,7 @@
                     <h5 class="text-end">Acciones</h5>
                   </div>
                 </div>
+                <div id="operations" class="mt-5"></div>
               </div>
           </div>
         </div>

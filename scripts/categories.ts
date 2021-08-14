@@ -1,71 +1,153 @@
-const formAddCategory = document.getElementById('form-add-category');
-const categoriesList = document.getElementById('categoriesList');
+const formAddCategory = document.getElementById("form-add-category");
+const categoriesList = document.getElementById("categoriesList");
 
 const getIdCategory = () => {
+	const storage: LocalStorage = getStorage();
 
-   const storage: LocalStorage = getStorage();
- 
-    if(storage.categories.length > 0) {
-      const lastItem = storage.categories[storage.categories.length -1];
-      return lastItem.id + 1;
-    } 
- 
-   return 1;
- }
+	if (storage.categories.length > 0) {
+		const lastItem = storage.categories[storage.categories.length - 1];
+		return lastItem.id + 1;
+	}
 
- const createCategory = (e) => {
-   e.preventDefault();
- 
-      const form = e.target;
+	return 1;
+};
 
-      const newCategoryName: string = form.nameCategory.value;
-      
-      const newCategory: Category = {
-         id: getIdCategory(),
-         name: newCategoryName,
-         //slug: slugify(newCategoryName)
-      }
+const createCategory = (e) => {
+	e.preventDefault();
 
-   
-   const storageAux = getStorage()
-   storageAux.categories.push(newCategory)
-   localStorage.setItem('key-ahorradas', JSON.stringify(storageAux));
-   
-   window.location.reload();
+	const form = e.target;
 
-   //storage.categories.push(newCategory);
-   //localStorage.setItem('key-ahorradas', JSON.stringify(storage));
- 
- }
- 
-formAddCategory.addEventListener('submit', createCategory);
+	const newCategoryName: string = form.nameCategory.value;
+
+	const newCategory: Category = {
+		id: getIdCategory(),
+		name: newCategoryName,
+		//slug: slugify(newCategoryName)
+	};
+
+	const storageAux = getStorage();
+	storageAux.categories.push(newCategory);
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+
+	addcategoryToList();
+};
+
+// ##### Eliminar Categoria #####
+
+const deleteCategory = (e) => {
+
+	const idToDelete = e.target.dataset.category; //id del elemento a eliminar
+  //console.log(idToDelete,e.target)
+	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
+
+	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
+
+	for (let i = 0; i < storageAux.categories.length; i++) {
+		if (storageAux.categories[i].id == idToDelete) {
+			storageAux.categories.splice(i, 1); // posicion y cuantos elementos elimino
+			break;
+		}
+	}
+
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+	addcategoryToList();
+};
+
+// #### Editar categoria ####
+const editCategory = (e) => {
+	e.preventDefault();
+
+	const idToModify = e.srcElement.dataset.category;
+
+	const storageAux = getStorage(); // Leo el local storage y lo guardo en esta variable
+
+	// Recorro el local storage en búsqueda del elemento que quiero modificar/editar
+
+	for (let i = 0; i < storageAux.categories.length; i++) {
+		if (storageAux.categories[i].name == idToModify) {
+			// const form = e.target;
+			// const newCategoryName: string = form.nameCategory.value;
+			// storageAux.categories[i].name = newCategoryName;
+			break;
+		}
+
+		// COMO VOLVER AL EVENTO CLICK EN EDITAR???
+	}
+
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+	addcategoryToList();
+};
+
+//### agrega lista de categorias ###
 
 const addcategoryToList = () => {
+	categoriesList.innerHTML = " ";
+	const storage: LocalStorage = getStorage();
 
-   const storage: LocalStorage = getStorage();
+	for (const category of storage.categories) {
+		const newCategoryLine = document.createElement("div");
+		const p = createNode(
+			"p",
+			{ class: "fs-5" },
+			document.createTextNode(category.name)
+		);
+		const div = createNode(
+			"div",
+			{ class: "col-9 align-items-center d-flex" },
+			p
+		);
+		const btnEdit = createNode(
+			"button",
+			{
+				class: "btn me-3 edit-btn",
+				data: { category: category.id },
+				type: "button",
+			},
+			document.createTextNode("Editar")
+		);
+		const btnDelete = createNode(
+			"button",
+			{
+				class: "btn delete-btn",
+				data: { category: category.id },
+				type: "button",
+			},
+			document.createTextNode("Eliminar")
+		);
+		const divTwo = createNode(
+			"div",
+			{ class: "col-3 d-flex justify-content-end" },
+			btnEdit,
+			btnDelete
+		);
+		const divContainer = createNode(
+			"div",
+			{ class: "row mt-5 mb-5" },
+			div, divTwo
+		);
 
-   for (const category of storage.categories) {
-      const newCategoryLine = document.createElement('div');
-      newCategoryLine.innerHTML = `<div class="row mt-5 mb-5">
-      <div class="col-9 align-items-center d-flex">
-         <p class="fs-5">${category.name}</p>
-      </div>
-      <div class="col-3 d-flex justify-content-end">
-         <button class="btn me-3" type="button"><a class="text-white" href="./editarCategoria.html">Editar</a></button>
-         <button class="btn">Eliminar</button>
-      </div>
-      </div>`;
-      categoriesList.appendChild(newCategoryLine);
-      
-   }
-   
+	
+		newCategoryLine.appendChild(divContainer);
+		categoriesList.appendChild(newCategoryLine);
+	}
+	//RECORRE LOS BOTONES
 
-}
+	const deleteBtn = document.querySelectorAll(".delete-btn");
+	for (let i = 0; i < deleteBtn.length; i++) {
+		deleteBtn[i].addEventListener("click", deleteCategory);
+	}
 
-  
+	const editBtn = document.querySelectorAll(".edit-btn");
+	for (let i = 0; i < editBtn.length; i++) {
+		editBtn[i].addEventListener("click", editCategory);
+	}
+};
+
+formAddCategory.addEventListener("submit", createCategory);
+
+
 const init3 = () => {
-   addcategoryToList();
- 
+	addcategoryToList();
 };
 
 init3();
