@@ -72,7 +72,7 @@ const closeOpenedWindow = () => {
 }
 
 
-//######### FUNCION PARA CERRAR VENTANA COON CANCELAR #######
+//######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 
 const cancelNewOp = () => {
 
@@ -83,3 +83,6 @@ const cancelNewOp = () => {
 const btnCancelOp = document.getElementById('btnCancelOp');
 
 btnCancelOp.addEventListener("click", cancelNewOp)
+
+
+

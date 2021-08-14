@@ -18,6 +18,37 @@ const loadSelect = () => {
  
 };
 
+//######### FUNCION PARA ELIMINAR OPERACIONES #######
+
+// const deleteLink = document.querySelectorAll(".deleteLink");
+	
+const deleteOperation = (e) => {
+
+	const idToDelete = e.target.dataset.operation; //id del elemento a eliminar
+    console.log(idToDelete)
+	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
+
+	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
+
+	for (let i = 0; i < storageAux.operations.length; i++) {
+		if (storageAux.operations[i].id == idToDelete) {
+            storageAux.operations.splice(i, 1); // posicion y cuantos elementos elimino
+            console.log(storageAux)
+        
+			break;
+		}
+	}
+    
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+    addOperationToList(storageAux);
+    
+};
+
+// for (let i = 0; i < deleteLink.length; i++) {
+//     deleteLink[i].addEventListener("click", deleteOperation);
+// }
+ 
+
 //######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 
 const operationsList = document.getElementById('operations');
@@ -37,8 +68,8 @@ const addOperationToList = (array) => {
             const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
             const amount = createNode("h6", { class: "text-end", style: "color:red; font-weight:800" }, document.createTextNode((parseInt(operation.amount) * -1).toString()))
             const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
-            const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
-            const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
+            const editLink = createNode("a", { class: "text-end", id: "editLink", data: { operation: operation.id }}, document.createTextNode("Editar"));
+            const deleteLink = createNode("a", { class: "text-end", id: "deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             const divLinks = createNode("div", { class: "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink)
             const newOperationLine = createNode("div", { class: "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
@@ -53,8 +84,8 @@ const addOperationToList = (array) => {
             const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
             const amount = createNode("h6", { class: "text-end", style: "color:green; font-weight:800" }, document.createTextNode(operation.amount))
             const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
-            const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
-            const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
+            const editLink = createNode("a", { class: "text-end", id: "editLink", data: { operation: operation.id } }, document.createTextNode("Editar"));
+            const deleteLink = createNode("a", { class: "text-end", id: "deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             const divLinks = createNode("div", { class: "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink)
             const newOperationLine = createNode("div", { class: "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
@@ -63,6 +94,17 @@ const addOperationToList = (array) => {
     
     }
     
+    //RECORRE LOS BOTONES
+
+	const deleteLink = document.querySelectorAll(".deleteLink");
+	for (let i = 0; i < deleteLink.length; i++) {
+		deleteLink[i].addEventListener("click", deleteOperation);
+	}
+
+	// const editLink = document.querySelectorAll(".editLink");
+	// for (let i = 0; i < editLink.length; i++) {
+	// 	editLink[i].addEventListener("click", editCategory);
+	// }
 }
  
 //######### INICIALIZA LA PAGINA #######
@@ -72,7 +114,8 @@ const init = () => {
  }
  
 init();
- 
+
+
 //######### FILTRA POR GASTO O GANANCIA #######
 
 const typeOpFilter = (type) => {

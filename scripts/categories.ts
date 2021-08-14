@@ -86,47 +86,12 @@ const addcategoryToList = () => {
 
 	for (const category of storage.categories) {
 		const newCategoryLine = document.createElement("div");
-		const p = createNode(
-			"p",
-			{ class: "fs-5" },
-			document.createTextNode(category.name)
-		);
-		const div = createNode(
-			"div",
-			{ class: "col-9 align-items-center d-flex" },
-			p
-		);
-		const btnEdit = createNode(
-			"button",
-			{
-				class: "btn me-3 edit-btn",
-				data: { category: category.id },
-				type: "button",
-			},
-			document.createTextNode("Editar")
-		);
-		const btnDelete = createNode(
-			"button",
-			{
-				class: "btn delete-btn",
-				data: { category: category.id },
-				type: "button",
-			},
-			document.createTextNode("Eliminar")
-		);
-		const divTwo = createNode(
-			"div",
-			{ class: "col-3 d-flex justify-content-end" },
-			btnEdit,
-			btnDelete
-		);
-		const divContainer = createNode(
-			"div",
-			{ class: "row mt-5 mb-5" },
-			div, divTwo
-		);
-
-	
+		const p = createNode("p", { class: "fs-5" }, document.createTextNode(category.name));
+		const div = createNode(	"div", { class: "col-9 align-items-center d-flex" },p);
+		const btnEdit = createNode(	"button", {	class: "btn me-3 edit-btn",	data: { category: category.id }, type: "button", },	document.createTextNode("Editar"));
+		const btnDelete = createNode("button",	{ class: "btn delete-btn",	data: { category: category.id }, type: "button"},document.createTextNode("Eliminar"));
+		const divTwo = createNode("div", { class: "col-3 d-flex justify-content-end" },	btnEdit, btnDelete );
+		const divContainer = createNode("div", { class: "row mt-5 mb-5" },	div, divTwo);
 		newCategoryLine.appendChild(divContainer);
 		categoriesList.appendChild(newCategoryLine);
 	}

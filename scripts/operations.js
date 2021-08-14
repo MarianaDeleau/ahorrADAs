@@ -50,7 +50,7 @@ init2();
 var closeOpenedWindow = function () {
     _this.close();
 };
-//######### FUNCION PARA CERRAR VENTANA COON CANCELAR #######
+//######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 var cancelNewOp = function () {
     closeOpenedWindow();
 };
