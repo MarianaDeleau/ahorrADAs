@@ -61,7 +61,7 @@ var addcategoryToList = function () {
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var category = _a[_i];
         var newCategoryLine = document.createElement("div");
-        var p = createNode("p", { "class": "fs-5" }, document.createTextNode(category.name));
+        var p = createNode("p", { "class": "fs-5 badge p-2 text-dark text-wrap ms-3" }, document.createTextNode(category.name));
         var div = createNode("div", { "class": "col-9 align-items-center d-flex" }, p);
         var btnEdit = createNode("button", { "class": "btn me-3 edit-btn", data: { category: category.id }, type: "button" }, document.createTextNode("Editar"));
         var btnDelete = createNode("button", { "class": "btn delete-btn", data: { category: category.id }, type: "button" }, document.createTextNode("Eliminar"));

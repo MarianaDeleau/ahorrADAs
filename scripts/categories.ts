@@ -22,7 +22,7 @@ const createCategory = (e) => {
 	const newCategory: Category = {
 		id: getIdCategory(),
 		name: newCategoryName,
-		//slug: slugify(newCategoryName)
+		
 	};
 
 	const storageAux = getStorage();
@@ -86,7 +86,7 @@ const addcategoryToList = () => {
 
 	for (const category of storage.categories) {
 		const newCategoryLine = document.createElement("div");
-		const p = createNode("p", { class: "fs-5" }, document.createTextNode(category.name));
+		const p = createNode("p", { class: "fs-5 badge p-2 text-dark text-wrap ms-3" }, document.createTextNode(category.name));
 		const div = createNode(	"div", { class: "col-9 align-items-center d-flex" },p);
 		const btnEdit = createNode(	"button", {	class: "btn me-3 edit-btn",	data: { category: category.id }, type: "button", },	document.createTextNode("Editar"));
 		const btnDelete = createNode("button",	{ class: "btn delete-btn",	data: { category: category.id }, type: "button"},document.createTextNode("Eliminar"));

@@ -35,7 +35,6 @@ var categoryNewOperation = function () {
     var selectCategoriesNuevaOp = document.getElementById('categoriesNuevaOp');
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var category = _a[_i];
-        // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         var elem = document.createElement("option");
         elem.innerText = category.name;
         elem.value = category.name;

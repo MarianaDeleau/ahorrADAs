@@ -50,7 +50,6 @@ const categoryNewOperation = () => {
     
 
     for (const category of storage.categories) {
-        // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         const elem = document.createElement("option");
         elem.innerText = category.name;
         elem.value = category.name;

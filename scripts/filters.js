@@ -5,7 +5,6 @@ var loadSelect = function () {
     //let selectCategoriesNuevaOp= document.getElementById('categories-nuevaOp')
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var category = _a[_i];
-        // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         var elem = document.createElement('option');
         elem.innerText = category.name;
         elem.value = category.name;
@@ -29,7 +28,6 @@ var deleteOperation = function (e) {
     localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
     operationFilter();
 };
-// //
 //######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 var operationsList = document.getElementById('operations');
 var addOperationToList = function (array) {

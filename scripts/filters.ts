@@ -8,7 +8,6 @@ const loadSelect = () => {
  
     for (const category of storage.categories) {
  
-        // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         const elem = document.createElement('option');
         elem.innerText = category.name;
         elem.value = category.name;
@@ -44,8 +43,6 @@ const deleteOperation = (e) => {
     
 };
 
-// //
- 
 
 //######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 
@@ -199,8 +196,7 @@ let balance = (operations) => {
     divTotal.innerText = "$ 0";
     
     for (let operation of operations){
-        
-        
+                
         if (operation.type === 'Gasto') {
            balanceGastos = balanceGastos + parseInt(operation.amount);
            divGastos.innerText=`$ -${balanceGastos}`
