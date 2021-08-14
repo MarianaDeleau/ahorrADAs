@@ -13,7 +13,7 @@ var loadSelect = function () {
     }
 };
 //######### FUNCION PARA ELIMINAR OPERACIONES #######
-// const deleteLink = document.querySelectorAll(".deleteLink");
+var deleteLink = document.querySelectorAll(".deleteLink");
 var deleteOperation = function (e) {
     var idToDelete = e.target.dataset.operation; //id del elemento a eliminar
     console.log(idToDelete);
@@ -27,11 +27,9 @@ var deleteOperation = function (e) {
         }
     }
     localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
-    addOperationToList(storageAux);
+    operationFilter();
 };
-// for (let i = 0; i < deleteLink.length; i++) {
-//     deleteLink[i].addEventListener("click", deleteOperation);
-// }
+// //
 //######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 var operationsList = document.getElementById('operations');
 var addOperationToList = function (array) {
@@ -46,8 +44,8 @@ var addOperationToList = function (array) {
             var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
             var amount = createNode("h6", { "class": "text-end", style: "color:red; font-weight:800" }, document.createTextNode((parseInt(operation.amount) * -1).toString()));
             var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
-            var editLink = createNode("a", { "class": "text-end", id: "editLink", data: { operation: operation.id } }, document.createTextNode("Editar"));
-            var deleteLink_1 = createNode("a", { "class": "text-end", id: "deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
+            var editLink = createNode("a", { "class": "text-end editLink", data: { operation: operation.id } }, document.createTextNode("Editar"));
+            var deleteLink_1 = createNode("a", { "class": "text-end deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             var divLinks = createNode("div", { "class": "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink_1);
             var newOperationLine = createNode("div", { "class": "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
@@ -61,8 +59,8 @@ var addOperationToList = function (array) {
             var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
             var amount = createNode("h6", { "class": "text-end", style: "color:green; font-weight:800" }, document.createTextNode(operation.amount));
             var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
-            var editLink = createNode("a", { "class": "text-end", id: "editLink", data: { operation: operation.id } }, document.createTextNode("Editar"));
-            var deleteLink_2 = createNode("a", { "class": "text-end", id: "deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
+            var editLink = createNode("a", { "class": "text-end editLink", data: { operation: operation.id } }, document.createTextNode("Editar"));
+            var deleteLink_2 = createNode("a", { "class": "text-end deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             var divLinks = createNode("div", { "class": "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink_2);
             var newOperationLine = createNode("div", { "class": "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
