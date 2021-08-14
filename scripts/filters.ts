@@ -105,11 +105,57 @@ formFilters.addEventListener('change', operationFilter)
 
 
 //filtro de fecha
+
 const dateOperationFilter = document.getElementById(`dateOperationFilter`)
-const operationsDate = () => {
-  console.log("++++operationDate+++++")
+
+const operationsDate = (e) => {
+    
+    const storage: LocalStorage = getStorage();
+    const date = new Date(e.target.value);
+    console.log(date.getTime())
+  const storageFilter = storage.operations.filter(op =>{
+ const opDate = new Date(op.date)
+ console.log(opDate)
+return date < opDate
+})
+console.log(storageFilter)
 }
-dateOperationFilter.addEventListener(`onChange`, () => {
-  console.log(`++++date++++`)
-  operationsDate()
-});
+
+dateOperationFilter.addEventListener(`change`, operationsDate) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let searchDate = storage.operations.filter(op => op.date == dateOperationFilter.value
+
+// }
+// dateOperationFilter.addEventListener(`onChange`, () => {
+//   console.log(`++++date++++`)
+//   operationsDate()
+// });
+
+
+// Aquí necesitamos filtrar por la fecha, indicando que solo nos muestre aquellas que sean mayores a "10-18-2018"
+
+// Como puedes observar hago n.date es n la var que uso para acceder a la clave date y hacer mi comparación
+
+// let busca = accounts.filter(n => n.date == "10-18-2018")
+
+
+// array.sort(function(a, b) {
+//     a = new Date(a.dateModified);
+//     b = new Date(b.dateModified);
+//     return a>b ? -1 : a<b ? 1 : 0;
+// });
+// Esto ordena las fechas de las más recientes.
+
