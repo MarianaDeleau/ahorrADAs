@@ -79,7 +79,7 @@ const addcategoryToList = () => {
 			"a",
 			{
 				class: "btn me-3 edit-btn",
-				href: `./editarCategoria.html?id=${category.id}`
+				href: `./editarCategoria.html?id=${category.id}&category=${category.name}`
 			},
 			document.createTextNode("Editar")
 		);

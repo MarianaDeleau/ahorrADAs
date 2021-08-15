@@ -47,7 +47,7 @@ var addcategoryToList = function () {
         var div = createNode("div", { "class": "col-9 align-items-center d-flex" }, p);
         var btnEdit = createNode("a", {
             "class": "btn me-3 edit-btn",
-            href: "./editarCategoria.html?id=" + category.id
+            href: "./editarCategoria.html?id=" + category.id + "&category=" + category.name
         }, document.createTextNode("Editar"));
         var btnDelete = createNode("button", {
             "class": "btn delete-btn",
