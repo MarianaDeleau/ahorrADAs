@@ -201,9 +201,11 @@ var balance = function (operations) {
 var toggleLink = document.getElementById('toggle-filtros');
 var hideFilters = document.getElementById('hideFilters');
 var displayFilters = document.getElementById('displayFilters');
+var headerFilters = document.getElementById('headerFilters');
 var toggleFilters = function () {
     formFilters.classList.toggle('dnone');
     hideFilters.classList.toggle('dnone');
     displayFilters.classList.toggle('dnone');
+    headerFilters.classList.toggle('mb-4');
 };
 toggleLink.addEventListener('click', toggleFilters);

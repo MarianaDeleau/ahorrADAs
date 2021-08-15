@@ -33,4 +33,3 @@ var createNode = function (tag, attr) {
     }
     return elem;
 };
-//let storage = getStorage();
