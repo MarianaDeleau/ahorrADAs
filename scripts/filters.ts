@@ -8,7 +8,6 @@ const loadSelect = () => {
  
     for (const category of storage.categories) {
  
-        // selectCategories.innerHTML += `<option value="${category.id}">${category.name}</option>`
         const elem = document.createElement('option');
         elem.innerText = category.name;
         elem.value = category.name;
@@ -17,6 +16,33 @@ const loadSelect = () => {
     }
  
 };
+
+//######### FUNCION PARA ELIMINAR OPERACIONES #######
+
+const deleteLink = document.querySelectorAll(".deleteLink");
+	
+const deleteOperation = (e) => {
+
+	const idToDelete = e.target.dataset.operation; //id del elemento a eliminar
+    console.log(idToDelete)
+	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
+
+	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
+
+	for (let i = 0; i < storageAux.operations.length; i++) {
+		if (storageAux.operations[i].id == idToDelete) {
+            storageAux.operations.splice(i, 1); // posicion y cuantos elementos elimino
+            console.log(storageAux)
+        
+			break;
+		}
+	}
+    
+    localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+    operationFilter()
+    
+};
+
 
 //######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 
@@ -37,8 +63,8 @@ const addOperationToList = (array) => {
             const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
             const amount = createNode("h6", { class: "text-end", style: "color:red; font-weight:800" }, document.createTextNode((parseInt(operation.amount) * -1).toString()))
             const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
-            const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
-            const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
+            const editLink = createNode("a", { class: "text-end editLink", data: { operation: operation.id }}, document.createTextNode("Editar"));
+            const deleteLink = createNode("a", { class: "text-end deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             const divLinks = createNode("div", { class: "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink)
             const newOperationLine = createNode("div", { class: "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
@@ -53,8 +79,8 @@ const addOperationToList = (array) => {
             const divDate = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, date)
             const amount = createNode("h6", { class: "text-end", style: "color:green; font-weight:800" }, document.createTextNode(operation.amount))
             const divAmount = createNode("div", { class: "col-md-2 d-flex align-items-center justify-content-end" }, amount);
-            const editLink = createNode("a", { class: "text-end" }, document.createTextNode("Editar"));
-            const deleteLink = createNode("a", { class: "text-end" }, document.createTextNode("Eliminar"));
+            const editLink = createNode("a", { class: "text-end editLink", data: { operation: operation.id } }, document.createTextNode("Editar"));
+            const deleteLink = createNode("a", { class: "text-end deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             const divLinks = createNode("div", { class: "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink)
             const newOperationLine = createNode("div", { class: "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
@@ -63,6 +89,17 @@ const addOperationToList = (array) => {
     
     }
     
+    //RECORRE LOS BOTONES
+
+	const deleteLink = document.querySelectorAll(".deleteLink");
+	for (let i = 0; i < deleteLink.length; i++) {
+		deleteLink[i].addEventListener("click", deleteOperation);
+	}
+
+	// const editLink = document.querySelectorAll(".editLink");
+	// for (let i = 0; i < editLink.length; i++) {
+	// 	editLink[i].addEventListener("click", editCategory);
+	// }
 }
  
 //######### INICIALIZA LA PAGINA #######
@@ -72,7 +109,8 @@ const init = () => {
  }
  
 init();
- 
+
+
 //######### FILTRA POR GASTO O GANANCIA #######
 
 const typeOpFilter = (type) => {
@@ -98,6 +136,20 @@ const categoryOpFilter = (Category) => {
     
     return addOperationToList(operationsCategory)
 }
+
+//######### FILTRA POR FECHA #######
+
+const operationsDate = (date) => {
+    
+    const storage: LocalStorage = getStorage();
+    const storageFilter = storage.operations.filter(op =>{
+    const opDate = new Date(op.date)
+    //console.log(opDate)
+    return date <= opDate
+    })
+    balance(storageFilter)
+    return addOperationToList(storageFilter)
+}
   
 //######### FUNCION PARA FILTROS GENERAL #######
 
@@ -112,17 +164,23 @@ const operationFilter = () => {
     divWithOps.style.display = 'block'
     operationsList.innerHTML = ""
     
-  const typeFilter = document.getElementById('typeFilter')
-  const categoryFilter = document.getElementById('categories')
-  let type = typeFilter.value
-  let category = categoryFilter.value
-  
+    const typeFilter = document.getElementById('typeFilter');
+    const categoryFilter = document.getElementById('categories');
+    let type = typeFilter.value;
+    let category = categoryFilter.value;
+    const dateOperationFilter = document.getElementById(`dateOperationFilter`)
+    const date = new Date(dateOperationFilter.value)
+   
     if (type !== 'Todas') {
-      typeOpFilter(type);
-      
-    } else if (category !== 'Todas') {
-        categoryOpFilter(category);
-    }
+        typeOpFilter(type);
+        
+      } else if (category !== 'Todas') {
+          categoryOpFilter(category);
+  
+      } else if (date !== undefined) {
+          operationsDate(date);
+  
+      }
    
 }
 
@@ -158,8 +216,7 @@ let balance = (operations) => {
     divTotal.innerText = "$ 0";
     
     for (let operation of operations){
-        
-        
+                
         if (operation.type === 'Gasto') {
            balanceGastos = balanceGastos + parseInt(operation.amount);
            divGastos.innerText=`$ -${balanceGastos}`

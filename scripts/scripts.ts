@@ -59,8 +59,7 @@ const createNode = (tag, attr, ...children) => {
 	for (const prop in attr) {
 		if (prop === "data") {
 			for (const dataElement in attr[prop]) {
-        console.log({dataElement, tag, prop})
-			
+             //console.log({dataElement, tag, prop})			
         elem.dataset[dataElement] = attr[prop][dataElement];
 			}
 		} else {

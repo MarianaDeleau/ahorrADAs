@@ -22,7 +22,7 @@ const createCategory = (e) => {
 	const newCategory: Category = {
 		id: getIdCategory(),
 		name: newCategoryName,
-		//slug: slugify(newCategoryName)
+		
 	};
 
 	const storageAux = getStorage();
