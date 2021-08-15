@@ -12,6 +12,9 @@ const btnCanceled = document.getElementById("canceled-btn")
 // Busco en la url el id de la categoría que voy a editar.
 const paramsUrl = new URLSearchParams(window.location.search);
 const idUrl = parseInt(paramsUrl.get("id"));
+const categoryUrl = paramsUrl.get("category")
+
+inputCategory.value = categoryUrl
 
 const editCategories = (e) =>{
   e.preventDefault();

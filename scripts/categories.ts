@@ -67,7 +67,7 @@ const addcategoryToList = () => {
 		const newCategoryLine = document.createElement("div");
 		const p = createNode(
 			"p",
-			{ class: "fs-5" },
+			{ class: "fs-5 badge p-2 text-dark text-wrap ms-3" },
 			document.createTextNode(category.name)
 		);
 		const div = createNode(
@@ -79,7 +79,7 @@ const addcategoryToList = () => {
 			"a",
 			{
 				class: "btn me-3 edit-btn",
-				href: `./editarCategoria.html?id=${category.id}`
+				href: `./editarCategoria.html?id=${category.id}&category=${category.name}`
 			},
 			document.createTextNode("Editar")
 		);
@@ -116,11 +116,6 @@ const addcategoryToList = () => {
 		deleteBtn[i].addEventListener("click", deleteCategory);
 	}
 
-	// const editBtn = document.querySelectorAll(".edit-btn");
-	// for (let i = 0; i < editBtn.length; i++) {
-	// 	// editBtn[i].addEventListener("click", editCategory);
-
-	// }
 };
 
 formAddCategory.addEventListener("submit", createCategory);

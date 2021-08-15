@@ -43,11 +43,11 @@ var addcategoryToList = function () {
     for (var _i = 0, _a = storage.categories; _i < _a.length; _i++) {
         var category = _a[_i];
         var newCategoryLine = document.createElement("div");
-        var p = createNode("p", { "class": "fs-5" }, document.createTextNode(category.name));
+        var p = createNode("p", { "class": "fs-5 badge p-2 text-dark text-wrap ms-3" }, document.createTextNode(category.name));
         var div = createNode("div", { "class": "col-9 align-items-center d-flex" }, p);
         var btnEdit = createNode("a", {
             "class": "btn me-3 edit-btn",
-            href: "./editarCategoria.html?id=" + category.id
+            href: "./editarCategoria.html?id=" + category.id + "&category=" + category.name
         }, document.createTextNode("Editar"));
         var btnDelete = createNode("button", {
             "class": "btn delete-btn",
@@ -64,10 +64,6 @@ var addcategoryToList = function () {
     for (var i = 0; i < deleteBtn.length; i++) {
         deleteBtn[i].addEventListener("click", deleteCategory);
     }
-    // const editBtn = document.querySelectorAll(".edit-btn");
-    // for (let i = 0; i < editBtn.length; i++) {
-    // 	// editBtn[i].addEventListener("click", editCategory);
-    // }
 };
 formAddCategory.addEventListener("submit", createCategory);
 var init3 = function () {

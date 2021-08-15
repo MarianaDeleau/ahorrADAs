@@ -98,7 +98,7 @@ const addOperationToList = (array) => {
 				{
 					class: "text-end editLink",
 					data: { operation: operation.id },
-					href: `./nuevaOperacion.html?id=${operation.id}`,
+					href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}`,
 				},
 				document.createTextNode("Editar")
 			);
@@ -181,7 +181,7 @@ const addOperationToList = (array) => {
 				{
 					class: "text-end editLink",
 					data: { operation: operation.id },
-					href: `./nuevaOperacion.html?id=${operation.id}`,
+					href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}`,
 				},
 				document.createTextNode("Editar")
 			);
