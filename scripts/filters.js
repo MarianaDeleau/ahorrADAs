@@ -52,7 +52,7 @@ var addOperationToList = function (array) {
             var editLink = createNode("a", {
                 "class": "text-end editLink",
                 data: { operation: operation.id },
-                href: "./nuevaOperacion.html?id=" + operation.id
+                href: "./editarOperacion.html?id=" + operation.id + "&description=" + operation.description + "&amount=" + operation.amount + "&type=" + operation.type + "&category=" + operation.category + "&date=" + operation.date
             }, document.createTextNode("Editar"));
             var deleteLink_1 = createNode("a", {
                 "class": "text-end deleteLink",
@@ -83,7 +83,7 @@ var addOperationToList = function (array) {
             var editLink = createNode("a", {
                 "class": "text-end editLink",
                 data: { operation: operation.id },
-                href: "./nuevaOperacion.html?id=" + operation.id
+                href: "./editarOperacion.html?id=" + operation.id + "&description=" + operation.description + "&amount=" + operation.amount + "&type=" + operation.type + "&category=" + operation.category + "&date=" + operation.date
             }, document.createTextNode("Editar"));
             var deleteLink_2 = createNode("a", {
                 "class": "text-end deleteLink",
