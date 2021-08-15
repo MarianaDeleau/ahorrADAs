@@ -47,11 +47,11 @@
                 <h2 class="mt-3">Editar Categoría</h2>
                 <form action="">
                     <div class="input-group mt-5 mb-5">
-                        <input type="text" class="form-control" placeholder="Ingrese nueva categoría"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input  id="editCategory" type="text" class="form-control" placeholder="Ingrese nuevo nombre"
+                            aria-label="Recipient's username" aria-describedby="button-addon2" required>
                         <div class="col-3 d-md-flex justify-content-md-end">
-                            <button class="btn me-3">Editar</button>
-                            <button class="btn">Cancelar</button>
+                            <button class="btn me-3 edit-btn" id="edit-btn2">Editar</button>
+                            <button class="btn"id="canceled-btn">Cancelar</button>
                         </div>
                     </div>
             </div>
@@ -59,6 +59,8 @@
         </div>
     </section>
     </main>
+    <script src="./scripts/scripts.js"></script>
+    <script src="./scripts/editCategories.js"></script>
 </body>
 
 </html>

@@ -53,30 +53,9 @@ const deleteCategory = (e) => {
 	addcategoryToList();
 };
 
-// #### Editar categoria ####
-const editCategory = (e) => {
-	e.preventDefault();
 
-	const idToModify = e.srcElement.dataset.category;
 
-	const storageAux = getStorage(); // Leo el local storage y lo guardo en esta variable
 
-	// Recorro el local storage en búsqueda del elemento que quiero modificar/editar
-
-	for (let i = 0; i < storageAux.categories.length; i++) {
-		if (storageAux.categories[i].name == idToModify) {
-			// const form = e.target;
-			// const newCategoryName: string = form.nameCategory.value;
-			// storageAux.categories[i].name = newCategoryName;
-			break;
-		}
-
-		// COMO VOLVER AL EVENTO CLICK EN EDITAR???
-	}
-
-	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
-	addcategoryToList();
-};
 
 //### agrega lista de categorias ###
 
@@ -97,14 +76,14 @@ const addcategoryToList = () => {
 			p
 		);
 		const btnEdit = createNode(
-			"button",
+			"a",
 			{
 				class: "btn me-3 edit-btn",
-				data: { category: category.id },
-				type: "button",
+				href: `./editarCategoria.html?id=${category.id}`
 			},
 			document.createTextNode("Editar")
 		);
+    
 		const btnDelete = createNode(
 			"button",
 			{
@@ -130,20 +109,22 @@ const addcategoryToList = () => {
 		newCategoryLine.appendChild(divContainer);
 		categoriesList.appendChild(newCategoryLine);
 	}
-	//RECORRE LOS BOTONES
+	//RECORRE LOS BOTONES 
 
 	const deleteBtn = document.querySelectorAll(".delete-btn");
 	for (let i = 0; i < deleteBtn.length; i++) {
 		deleteBtn[i].addEventListener("click", deleteCategory);
 	}
 
-	const editBtn = document.querySelectorAll(".edit-btn");
-	for (let i = 0; i < editBtn.length; i++) {
-		editBtn[i].addEventListener("click", editCategory);
-	}
+	// const editBtn = document.querySelectorAll(".edit-btn");
+	// for (let i = 0; i < editBtn.length; i++) {
+	// 	// editBtn[i].addEventListener("click", editCategory);
+
+	// }
 };
 
 formAddCategory.addEventListener("submit", createCategory);
+
 
 
 const init3 = () => {
