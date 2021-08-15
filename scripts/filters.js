@@ -1,3 +1,4 @@
+//######### AGREGA CATEGORIAS AL SELECT DE FILTROS #######
 var loadSelect = function () {
     var storage = getStorage();
     var selectCategories = document.getElementById("categories");
@@ -106,7 +107,7 @@ var addOperationToList = function (array) {
     // 	editLink[i].addEventListener("click", editCategory);
     // }
 };
-//######### INICIALIZA LA PAGINA #######
+//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
 var init = function () {
     loadSelect();
 };
@@ -161,7 +162,7 @@ var operationFilter = function () {
     }
 };
 formFilters.addEventListener("change", operationFilter);
-//######### FUNCION PARA ABRIR VENTANA #######
+//######### FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
 var openedWindow;
 var btnNewOp = document.getElementById("btnNewOp");
 var openWindow = function () {
@@ -196,3 +197,13 @@ var balance = function (operations) {
     balanceGanancias = 0;
     res = 0;
 };
+//######### TOGGLE FILTROS #######
+var toggleLink = document.getElementById('toggle-filtros');
+var hideFilters = document.getElementById('hideFilters');
+var displayFilters = document.getElementById('displayFilters');
+var toggleFilters = function () {
+    formFilters.classList.toggle('dnone');
+    hideFilters.classList.toggle('dnone');
+    displayFilters.classList.toggle('dnone');
+};
+toggleLink.addEventListener('click', toggleFilters);

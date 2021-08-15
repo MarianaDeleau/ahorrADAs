@@ -73,5 +73,5 @@ const createNode = (tag, attr, ...children) => {
 	return elem;
 }; 
 
-//let storage = getStorage();
+
 

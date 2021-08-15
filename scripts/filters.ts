@@ -1,3 +1,5 @@
+//######### AGREGA CATEGORIAS AL SELECT DE FILTROS #######
+
 const loadSelect = () => {
 	const storage: LocalStorage = getStorage();
 
@@ -227,7 +229,7 @@ const addOperationToList = (array) => {
 	// }
 };
 
-//######### INICIALIZA LA PAGINA #######
+//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
 
 const init = () => {
 	loadSelect();
@@ -305,7 +307,7 @@ const operationFilter = () => {
 
 formFilters.addEventListener("change", operationFilter);
 
-//######### FUNCION PARA ABRIR VENTANA #######
+//######### FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
 
 let openedWindow;
 
@@ -348,3 +350,20 @@ let balance = (operations) => {
 	balanceGanancias = 0;
 	res = 0;
 };
+
+
+
+//######### TOGGLE FILTROS #######
+
+const toggleLink = document.getElementById('toggle-filtros')
+const hideFilters = document.getElementById('hideFilters')
+const displayFilters = document.getElementById('displayFilters')
+
+const toggleFilters = () => {
+
+    formFilters.classList.toggle('dnone');
+    hideFilters.classList.toggle('dnone');
+    displayFilters.classList.toggle('dnone')
+}
+
+toggleLink.addEventListener('click', toggleFilters)
