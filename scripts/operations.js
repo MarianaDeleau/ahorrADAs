@@ -30,6 +30,7 @@ var addOperation = function (e) {
     closeOpenedWindow();
 };
 formOperation.addEventListener("submit", addOperation);
+//######### AGREGA CATEGORIAS AL SELECT DE NUEVAS OPERACIONES #######
 var categoryNewOperation = function () {
     var storage = getStorage();
     var selectCategoriesNuevaOp = document.getElementById('categoriesNuevaOp');
@@ -41,6 +42,7 @@ var categoryNewOperation = function () {
         selectCategoriesNuevaOp.appendChild(elem);
     }
 };
+//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 var init2 = function () {
     categoryNewOperation();
 };

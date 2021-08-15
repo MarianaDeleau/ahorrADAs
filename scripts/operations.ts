@@ -40,7 +40,7 @@ const addOperation= (e)=>{
 
 formOperation.addEventListener("submit", addOperation);
 
-
+//######### AGREGA CATEGORIAS AL SELECT DE NUEVAS OPERACIONES #######
 
 const categoryNewOperation = () => {
     
@@ -56,6 +56,8 @@ const categoryNewOperation = () => {
         selectCategoriesNuevaOp.appendChild(elem);
     }
 };
+
+//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 
 const init2 = () => {
     categoryNewOperation();

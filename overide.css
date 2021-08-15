@@ -54,6 +54,13 @@ p{
   background-color: #a8dadcff;
 
 }
+
+.dnone{
+ display: none
+}
+
+
+
 /* CSS HEX
 --imperial-red: #e63946ff;
 --honeydew: #f1faeeff;

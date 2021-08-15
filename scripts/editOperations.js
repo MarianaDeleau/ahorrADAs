@@ -1,4 +1,4 @@
-//##### Funcion para editar operaciones #####
+//##### FUNCION PARA EDITAR OPERACIONES #####
 // boton a de filters creado por nodos
 var btnEditOperation = document.getElementById("editLink");
 //inputs editar operacion 
@@ -47,11 +47,13 @@ var editOperations = function (e) {
     }
 };
 btnAddEditOp.addEventListener("click", editOperations);
-// boton de cancelar deberia volver a la pagina pricipal index. html (no funciona)
-// const canceledEdit = () => {
-// 	window.location.href = "index.html";
-// };
-// btnCanceledEdit.addEventListener("click", canceledEdit);
+//######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
+var cancelEditOp = function () {
+    closeOpenedWindow();
+};
+var btnCancelEditOp = document.getElementById('canceled-btn');
+btnCancelEditOp.addEventListener("click", cancelEditOp);
+//######### AGREGA CATEGORIAS AL SELECT DE EDITAR OPERACIONES #######
 var categoryEditOperation = function () {
     var storage = getStorage();
     var selectCategoriesNuevaOp = document.getElementById('categoriesEditOp');
@@ -63,6 +65,7 @@ var categoryEditOperation = function () {
         selectCategoriesNuevaOp.appendChild(elem);
     }
 };
+//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 var init4 = function () {
     categoryEditOperation();
 };
