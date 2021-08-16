@@ -113,53 +113,127 @@ var init = function () {
 };
 init();
 //######### FILTRA POR GASTO O GANANCIA #######
-var typeOpFilter = function (type) {
-    var storage = getStorage();
-    var operationsType = storage.operations.filter(function (operation) { return operation.type === type; });
-    balance(operationsType);
-    return addOperationToList(operationsType);
+// const typeOpFilter = (type) => {
+// 	const storage: LocalStorage = getStorage();
+// 	let operationsType = storage.operations.filter(
+// 		(operation) => operation.type === type
+// 	);
+// 	balance(operationsType);
+// 	return addOperationToList(operationsType);
+// };
+var typeOpFilter = function (operationsArray, filterType) {
+    if (filterType !== "Todas")
+        return operationsArray.filter(function (operation) { return operation.type === filterType; });
+    return operationsArray;
 };
 //######### FILTRA POR CATEGORIA #######
-var categoryOpFilter = function (Category) {
-    var storage = getStorage();
-    var operationsCategory = storage.operations.filter(function (operation) { return operation.category === Category; });
-    balance(operationsCategory);
-    return addOperationToList(operationsCategory);
+// const categoryOpFilter = (Category) => {
+// 	const storage: LocalStorage = getStorage();
+// 	let operationsCategory = storage.operations.filter(
+// 		(operation) => operation.category === Category
+// 	);
+// 	balance(operationsCategory);
+// 	return addOperationToList(operationsCategory);
+// };
+var categoryOpFilter = function (operationsArray, category) {
+    if (category !== "Todas")
+        return operationsArray.filter(function (operation) { return operation.category === category; });
+    return operationsArray;
 };
 //######### FILTRA POR FECHA #######
-var operationsDate = function (date) {
-    var storage = getStorage();
-    var storageFilter = storage.operations.filter(function (op) {
-        var opDate = new Date(op.date);
-        //console.log(opDate)
-        return date <= opDate;
+// const operationsDate = (date) => {
+// 	const storage: LocalStorage = getStorage();
+// 	const storageFilter = storage.operations.filter((op) => {
+// 		const opDate = new Date(op.date);
+// 		//console.log(opDate)
+// 		return date <= opDate;
+// 	});
+// 	balance(storageFilter);
+// 	return addOperationToList(storageFilter);
+// };
+var operationsDate = function (operationsArray, date) {
+    return operationsArray.filter(function (op) {
+        return date <= new Date(op.date);
     });
-    balance(storageFilter);
-    return addOperationToList(storageFilter);
+};
+//######### FILTRO ORDENAR #######
+var sortDate = function (op1, op2) {
+    if (op1.date > op2.date) {
+        return 1;
+    }
+    if (op1.date < op2.date) {
+        return -1;
+    }
+    // a must be equal to b
+    return 0;
+};
+var sortAmount = function (op1, op2) {
+    if (Number(op1.amount) > Number(op2.amount)) {
+        return 1;
+    }
+    if (Number(op1.amount) < Number(op2.amount)) {
+        return -1;
+    }
+    // a must be equal to b
+    return 0;
+};
+var sortAZ = function (op1, op2) {
+    if (op1.description > op2.description) {
+        return 1;
+    }
+    if (op1.description < op2.description) {
+        return -1;
+    }
+    // a must be equal to b
+    return 0;
+};
+var operationsSort = function (operationsArray, sortType) {
+    switch (sortType) {
+        case "sortDateAsc":
+            return operationsArray.sort(function (op1, op2) { return sortDate(op1, op2); });
+        case "sortDateDesc":
+            return operationsArray.sort(function (op1, op2) { return sortDate(op2, op1); });
+        case "sortAmountAsc":
+            return operationsArray.sort(function (op1, op2) { return sortAmount(op1, op2); });
+        case "sortAmountDesc":
+            return operationsArray.sort(function (op1, op2) { return sortAmount(op2, op1); });
+        case "sortAZ":
+            return operationsArray.sort(function (op1, op2) { return sortAZ(op1, op2); });
+        case "sortZA":
+            return operationsArray.sort(function (op1, op2) { return sortAZ(op2, op1); });
+        default:
+            return operationsArray;
+    }
 };
 //######### FUNCION PARA FILTROS GENERAL #######
 var formFilters = document.getElementById("filtersForm");
 var divNoOps = document.getElementById("noOperations");
 var divWithOps = document.getElementById("operationsListHeader");
-var operationFilter = function () {
+var operationFilter = function (event) {
     divNoOps.style.display = "none";
     divWithOps.style.display = "block";
     operationsList.innerHTML = "";
+    console.log("*** event.target.name *** ", event.target.name);
+    console.log("*** event.target.value *** ", event.target.value);
+    // Operations list
+    var storage = getStorage();
+    var operationsArray = storage.operations;
     var typeFilter = document.getElementById("typeFilter");
-    var categoryFilter = document.getElementById("categories");
     var type = typeFilter.value;
+    operationsArray = typeOpFilter(operationsArray, type);
+    var categoryFilter = document.getElementById("categories");
     var category = categoryFilter.value;
+    operationsArray = categoryOpFilter(operationsArray, category);
     var dateOperationFilter = document.getElementById("dateOperationFilter");
-    var date = new Date(dateOperationFilter.value);
-    if (type !== "Todas") {
-        typeOpFilter(type);
+    if (dateOperationFilter.value !== "") {
+        var date = new Date(dateOperationFilter.value);
+        operationsArray = operationsDate(operationsArray, date);
     }
-    else if (category !== "Todas") {
-        categoryOpFilter(category);
-    }
-    else if (date !== undefined) {
-        operationsDate(date);
-    }
+    var sortFilter = document.getElementById("sortFilter");
+    var sortType = sortFilter.value;
+    operationsArray = operationsSort(operationsArray, sortType);
+    balance(operationsArray);
+    return addOperationToList(operationsArray);
 };
 formFilters.addEventListener("change", operationFilter);
 //######### FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
@@ -209,3 +283,12 @@ var toggleFilters = function () {
     headerFilters.classList.toggle('mb-4');
 };
 toggleLink.addEventListener('click', toggleFilters);
+// TODO
+// const typeOpFilter = (operationList, sortType) => {
+// 	const storage: LocalStorage = getStorage();
+// 	let operationsType = storage.operations.filter(
+// 		(operation) => operation.type === type
+// 	);
+// 	balance(operationsType);
+// 	return addOperationToList(operationsType);
+// };

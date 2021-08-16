@@ -239,43 +239,119 @@ init();
 
 //######### FILTRA POR GASTO O GANANCIA #######
 
-const typeOpFilter = (type) => {
-	const storage: LocalStorage = getStorage();
+// const typeOpFilter = (type) => {
+// 	const storage: LocalStorage = getStorage();
 
-	let operationsType = storage.operations.filter(
-		(operation) => operation.type === type
-	);
+// 	let operationsType = storage.operations.filter(
+// 		(operation) => operation.type === type
+// 	);
 
-	balance(operationsType);
+// 	balance(operationsType);
 
-	return addOperationToList(operationsType);
+// 	return addOperationToList(operationsType);
+// };
+
+const typeOpFilter = (operationsArray, filterType) => {
+  if (filterType !== "Todas")
+    return operationsArray.filter(
+      operation => operation.type === filterType
+    );
+  return operationsArray;
 };
 
 //######### FILTRA POR CATEGORIA #######
 
-const categoryOpFilter = (Category) => {
-	const storage: LocalStorage = getStorage();
+// const categoryOpFilter = (Category) => {
+// 	const storage: LocalStorage = getStorage();
 
-	let operationsCategory = storage.operations.filter(
-		(operation) => operation.category === Category
-	);
+// 	let operationsCategory = storage.operations.filter(
+// 		(operation) => operation.category === Category
+// 	);
 
-	balance(operationsCategory);
+// 	balance(operationsCategory);
 
-	return addOperationToList(operationsCategory);
+// 	return addOperationToList(operationsCategory);
+// };
+
+const categoryOpFilter = (operationsArray, category) => {
+  if(category !== "Todas") 
+    return operationsArray.filter(
+      operation => operation.category === category
+    );
+  return operationsArray;
 };
 
 //######### FILTRA POR FECHA #######
 
-const operationsDate = (date) => {
-	const storage: LocalStorage = getStorage();
-	const storageFilter = storage.operations.filter((op) => {
-		const opDate = new Date(op.date);
-		//console.log(opDate)
-		return date <= opDate;
+// const operationsDate = (date) => {
+// 	const storage: LocalStorage = getStorage();
+// 	const storageFilter = storage.operations.filter((op) => {
+// 		const opDate = new Date(op.date);
+// 		//console.log(opDate)
+// 		return date <= opDate;
+// 	});
+// 	balance(storageFilter);
+// 	return addOperationToList(storageFilter);
+// };
+
+const operationsDate = (operationsArray, date) => {
+	return operationsArray.filter((op) => {
+		return date <= new Date(op.date);
 	});
-	balance(storageFilter);
-	return addOperationToList(storageFilter);
+};
+
+//######### FILTRO ORDENAR #######
+
+const sortDate = (op1, op2) => {
+  if (op1.date > op2.date) {
+    return 1
+  }
+  if (op1.date < op2.date) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
+const sortAmount = (op1, op2) => {
+  if (Number(op1.amount) > Number(op2.amount)) {
+    return 1
+  }
+  if (Number(op1.amount) < Number(op2.amount)) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
+const sortAZ = (op1, op2) => {
+  if (op1.description > op2.description) {
+    return 1
+  }
+  if (op1.description < op2.description) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
+const operationsSort = (operationsArray, sortType) => {
+  switch(sortType){
+    case "sortDateAsc":
+      return operationsArray.sort((op1, op2) => { return sortDate(op1, op2) });
+    case "sortDateDesc":
+      return operationsArray.sort((op1, op2) => { return sortDate(op2, op1) });
+    case "sortAmountAsc":
+      return operationsArray.sort((op1, op2) => { return sortAmount(op1, op2) });
+    case "sortAmountDesc":
+      return operationsArray.sort((op1, op2) => { return sortAmount(op2, op1) });
+    case "sortAZ":
+      return operationsArray.sort((op1, op2) => { return sortAZ(op1, op2) });
+    case "sortZA":
+      return operationsArray.sort((op1, op2) => { return sortAZ(op2, op1) });
+    default:
+      return operationsArray
+  }
 };
 
 //######### FUNCION PARA FILTROS GENERAL #######
@@ -284,25 +360,40 @@ const formFilters = document.getElementById("filtersForm");
 const divNoOps = document.getElementById("noOperations");
 const divWithOps = document.getElementById("operationsListHeader");
 
-const operationFilter = () => {
+const operationFilter = (event) => {
 	divNoOps.style.display = "none";
 	divWithOps.style.display = "block";
 	operationsList.innerHTML = "";
 
-	const typeFilter = document.getElementById("typeFilter");
-	const categoryFilter = document.getElementById("categories");
-	let type = typeFilter.value;
-	let category = categoryFilter.value;
-	const dateOperationFilter = document.getElementById(`dateOperationFilter`);
-	const date = new Date(dateOperationFilter.value);
+  console.log("*** event.target.name *** ", event.target.name)  
+  console.log("*** event.target.value *** ", event.target.value)
 
-	if (type !== "Todas") {
-		typeOpFilter(type);
-	} else if (category !== "Todas") {
-		categoryOpFilter(category);
-	} else if (date !== undefined) {
-		operationsDate(date);
-	}
+  // Operations list
+	const storage: LocalStorage = getStorage();
+  let operationsArray = storage.operations;
+
+  const typeFilter = document.getElementById("typeFilter");
+  const type = typeFilter.value;
+  operationsArray = typeOpFilter(operationsArray, type);
+  
+  const categoryFilter = document.getElementById("categories");
+  const category = categoryFilter.value;
+  operationsArray = categoryOpFilter(operationsArray, category);
+
+  const dateOperationFilter = document.getElementById(`dateOperationFilter`);
+  if(dateOperationFilter.value !== "") {
+    const date = new Date(dateOperationFilter.value);
+    operationsArray = operationsDate(operationsArray, date);
+  }
+
+  const sortFilter = document.getElementById("sortFilter");
+  const sortType = sortFilter.value;
+  operationsArray = operationsSort(operationsArray, sortType)
+
+  balance(operationsArray);
+
+  return addOperationToList(operationsArray);
+
 };
 
 formFilters.addEventListener("change", operationFilter);
@@ -369,3 +460,17 @@ const toggleFilters = () => {
 }
 
 toggleLink.addEventListener('click', toggleFilters)
+
+
+// TODO
+// const typeOpFilter = (operationList, sortType) => {
+// 	const storage: LocalStorage = getStorage();
+
+// 	let operationsType = storage.operations.filter(
+// 		(operation) => operation.type === type
+// 	);
+
+// 	balance(operationsType);
+
+// 	return addOperationToList(operationsType);
+// };
