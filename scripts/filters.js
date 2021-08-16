@@ -141,7 +141,7 @@ var operationsDate = function (date) {
 var formFilters = document.getElementById("filtersForm");
 var divNoOps = document.getElementById("noOperations");
 var divWithOps = document.getElementById("operationsListHeader");
-var operationFilter = function () {
+var operationFilter = function (event) {
     divNoOps.style.display = "none";
     divWithOps.style.display = "block";
     operationsList.innerHTML = "";
@@ -151,6 +151,7 @@ var operationFilter = function () {
     var category = categoryFilter.value;
     var dateOperationFilter = document.getElementById("dateOperationFilter");
     var date = new Date(dateOperationFilter.value);
+    console.log("*** event.target.value *** ", event.target.value);
     if (type !== "Todas") {
         typeOpFilter(type);
     }
@@ -159,6 +160,10 @@ var operationFilter = function () {
     }
     else if (date !== undefined) {
         operationsDate(date);
+    }
+    // TODO
+    if (event.target.value.startsWith('sort')) {
+        console.log('Yay');
     }
 };
 formFilters.addEventListener("change", operationFilter);
@@ -209,3 +214,12 @@ var toggleFilters = function () {
     headerFilters.classList.toggle('mb-4');
 };
 toggleLink.addEventListener('click', toggleFilters);
+// TODO
+// const typeOpFilter = (operationList, sortType) => {
+// 	const storage: LocalStorage = getStorage();
+// 	let operationsType = storage.operations.filter(
+// 		(operation) => operation.type === type
+// 	);
+// 	balance(operationsType);
+// 	return addOperationToList(operationsType);
+// };

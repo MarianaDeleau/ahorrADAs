@@ -284,7 +284,7 @@ const formFilters = document.getElementById("filtersForm");
 const divNoOps = document.getElementById("noOperations");
 const divWithOps = document.getElementById("operationsListHeader");
 
-const operationFilter = () => {
+const operationFilter = (event) => {
 	divNoOps.style.display = "none";
 	divWithOps.style.display = "block";
 	operationsList.innerHTML = "";
@@ -296,6 +296,8 @@ const operationFilter = () => {
 	const dateOperationFilter = document.getElementById(`dateOperationFilter`);
 	const date = new Date(dateOperationFilter.value);
 
+  console.log("*** event.target.value *** ", event.target.value)
+
 	if (type !== "Todas") {
 		typeOpFilter(type);
 	} else if (category !== "Todas") {
@@ -303,6 +305,13 @@ const operationFilter = () => {
 	} else if (date !== undefined) {
 		operationsDate(date);
 	}
+
+  // TODO
+  if(event.target.value.startsWith('sort')) {
+    console.log('Yay');
+  }
+
+
 };
 
 formFilters.addEventListener("change", operationFilter);
@@ -369,3 +378,17 @@ const toggleFilters = () => {
 }
 
 toggleLink.addEventListener('click', toggleFilters)
+
+
+// TODO
+// const typeOpFilter = (operationList, sortType) => {
+// 	const storage: LocalStorage = getStorage();
+
+// 	let operationsType = storage.operations.filter(
+// 		(operation) => operation.type === type
+// 	);
+
+// 	balance(operationsType);
+
+// 	return addOperationToList(operationsType);
+// };
