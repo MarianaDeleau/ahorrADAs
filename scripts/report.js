@@ -12,6 +12,30 @@ operaciones.forEach(function (op) {
     if (!totales[date.getFullYear()][date.getMonth()][op.type]) {
         totales[date.getFullYear()][date.getMonth()][op.type] = 0;
     }
-    totales[date.getFullYear()][date.getMonth()][op.type] += op.amount;
+    totales[date.getFullYear()][date.getMonth()][op.type] += Number(op.amount);
 });
 console.log(totales);
+// let reportByCategory = {};
+// operaciones.forEach((op) => {
+// 	const category = op.category;
+// 	const type = op.type
+// 	if (!reportByCategory[category]) {
+// 		reportByCategory[category] = 0;
+// 	}
+// 	if (!reportByCategory[category]) {
+// 	reportByCategory[category] += Number(op.amount);
+// });
+// console.log(reportByCategory);
+var reportByCategory = {};
+operaciones.forEach(function (op) {
+    //const category = op.category;
+    var category = op.category, type = op.type, amount = op.amount;
+    if (!reportByCategory[category]) {
+        console.log(reportByCategory[category][type]);
+        reportByCategory[category] = 0;
+    }
+    if (!reportByCategory[category]) {
+        reportByCategory[category] += Number(amount);
+    }
+});
+console.log(reportByCategory);
