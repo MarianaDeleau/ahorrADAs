@@ -35,6 +35,40 @@ operaciones.forEach(function (op) {
     return reportByCategory;
 });
 console.log(reportByCategory);
+var addReportByCategoryToList = function (object) {
+    //const categories = Object.keys(reportByCategory)
+    var totalsByCategory = document.getElementById('totalsByCategoryDiv');
+    for (var prop in object) {
+        var categoryTag = createNode('p', { "class": "fs-5 badge p-1 text-dark text-wrap ms-3" }, document.createTextNode(prop));
+        var divP = createNode('div', { "class": "col-md-3" }, categoryTag);
+        if (object[prop].Ganancia) {
+            var ganancia = createNode('div', { "class": "col-md-3 fs-5 text-end text-success" }, document.createTextNode("$ " + Number(object[prop].Ganancia)));
+        }
+        else {
+            var ganancia = createNode('div', { "class": "col-md-3 fs-5 text-end text-success" }, document.createTextNode("$ " + Number(0)));
+        }
+        if (object[prop].Gasto) {
+            var gasto = createNode('div', { "class": "col-md-3 fs-5 text-end text-danger" }, document.createTextNode("$ " + Number(object[prop].Gasto)));
+        }
+        else {
+            var gasto = createNode('div', { "class": "col-md-3 fs-5 text-end text-danger" }, document.createTextNode("$ " + Number(0)));
+        }
+        var balance = createNode('div', { "class": "col-md-3 fs-5 text-end" }, document.createTextNode("" + (Number(object[prop].Ganancia) - Number(object[prop].Gasto))));
+        var row = createNode('div', { "class": "row mb-4" }, divP, ganancia, gasto, balance);
+        totalsByCategory.appendChild(row);
+        console.log(object[prop]); //imprime Propiedad y valor - {Ganancia: 150000, Gasto: 25000}
+        console.log(prop); //imprime Propiedad categoria - Trabajo
+        console.log(Object.values(object[prop])); //imprime el valor solo - [150000, 25000]
+        // const categoryTag = createNode('p', { class: "fs-5 badge p-1 text-dark text-wrap ms-3" }, document.createTextNode(prop));
+        // const divP = createNode('div', { class: "col-md-3" }, categoryTag);
+        // const ganancia = createNode('div', { class: "col-md-3 fs-5 text-end text-success" }, document.createTextNode(`${Number(object[prop].Ganancia)}`));
+        // const gasto = createNode('div', { class: "col-md-3 fs-5 text-end text-danger" }, document.createTextNode(`${Number(object[prop].Gasto)}`));
+        // const balance = createNode('div', { class: "col-md-3 fs-5 text-end" }, document.createTextNode(`${ Number(object[prop].Ganancia) - Number(object[prop].Gasto)}`));
+        // const row = createNode('div', { class: "row mb-4" }, divP, ganancia, gasto, balance);
+        // totalsByCategory.appendChild(row)
+    }
+};
+addReportByCategoryToList(reportByCategory);
 //###### FUNCION PARA CREAR LAS FILAS CON LOS RESUMENES POR CATEGORIA ######
 // const totalsByCategory = document.getElementById('totalsByCategoryDiv')
 // const createCategoryReportLine = (obj) => {
