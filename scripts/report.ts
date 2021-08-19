@@ -55,9 +55,10 @@ let reportByCategory = {}
 
 console.log(reportByCategory);
 
+//###### VISTA RESUMEN POR CATEGORIA ######
+
 const addReportByCategoryToList = (object) => {
 
-	//const categories = Object.keys(reportByCategory)
 	const totalsByCategory = document.getElementById('totalsByCategoryDiv')
 		
 	for (const prop in object) {
@@ -67,56 +68,27 @@ const addReportByCategoryToList = (object) => {
 		if (object[prop].Ganancia) {
 			const ganancia = createNode('div', { class: "col-md-3 fs-5 text-end text-success" }, document.createTextNode(`$ ${Number(object[prop].Ganancia)}`));
 		} else {
-			const ganancia = createNode('div', { class: "col-md-3 fs-5 text-end text-success" }, document.createTextNode(`$ ${Number(0)}`));
+			const ganancia = createNode('div', { class: "col-md-3 fs-5 text-end text-success" }, document.createTextNode(`$ ${object[prop].Ganancia = 0}`));
 		}
 		if (object[prop].Gasto) {
 			const gasto = createNode('div', { class: "col-md-3 fs-5 text-end text-danger" }, document.createTextNode(`$ ${Number(object[prop].Gasto)}`));
 		} else {
-			const gasto = createNode('div', { class: "col-md-3 fs-5 text-end text-danger" }, document.createTextNode(`$ ${Number(0)}`));
+			const gasto = createNode('div', { class: "col-md-3 fs-5 text-end text-danger" }, document.createTextNode(`$ ${object[prop].Ganancia = 0}`));
 		}
 
-		const balance = createNode('div', { class: "col-md-3 fs-5 text-end" }, document.createTextNode(`${ Number(object[prop].Ganancia) - Number(object[prop].Gasto)}`));
+		const balance = createNode('div', { class: "col-md-3 fs-5 text-end" }, document.createTextNode(`$ ${ Number(object[prop].Ganancia) - Number(object[prop].Gasto)}`));
 		const row = createNode('div', { class: "row mb-4" }, divP, ganancia, gasto, balance);
 		totalsByCategory.appendChild(row)
 
-		
-		console.log(object[prop]) //imprime Propiedad y valor - {Ganancia: 150000, Gasto: 25000}
-		console.log(prop) //imprime Propiedad categoria - Trabajo
-		console.log(Object.values(object[prop])) //imprime el valor solo - [150000, 25000]
-	
-		
-		// const categoryTag = createNode('p', { class: "fs-5 badge p-1 text-dark text-wrap ms-3" }, document.createTextNode(prop));
-		// const divP = createNode('div', { class: "col-md-3" }, categoryTag);
-		// const ganancia = createNode('div', { class: "col-md-3 fs-5 text-end text-success" }, document.createTextNode(`${Number(object[prop].Ganancia)}`));
-		// const gasto = createNode('div', { class: "col-md-3 fs-5 text-end text-danger" }, document.createTextNode(`${Number(object[prop].Gasto)}`));
-		// const balance = createNode('div', { class: "col-md-3 fs-5 text-end" }, document.createTextNode(`${ Number(object[prop].Ganancia) - Number(object[prop].Gasto)}`));
-		// const row = createNode('div', { class: "row mb-4" }, divP, ganancia, gasto, balance);
-		// totalsByCategory.appendChild(row)
+		// console.log(object[prop]) //imprime Propiedad y valor - {Ganancia: 150000, Gasto: 25000}
+		// console.log(prop) //imprime Propiedad categoria - Trabajo
+		// console.log(Object.values(object[prop])) //imprime el valor solo - [150000, 25000]
 
 		}
 
 }
 
 addReportByCategoryToList(reportByCategory)
-
-
-//###### FUNCION PARA CREAR LAS FILAS CON LOS RESUMENES POR CATEGORIA ######
-
-// const totalsByCategory = document.getElementById('totalsByCategoryDiv')
-// const createCategoryReportLine = (obj) => {
-// 		for (const op in obj) {
-// 			const categoryTag = createNode('p', { class: "fs-5 badge p-1 text-dark text-wrap ms-3" }, document.createTextNode(DATO));
-// 			const divP = createNode('div', { class: "col-md-3" }, categoryTag);
-// 			const ganancia = createNode('div', { class: "col-md-3 fs-5 text-end text-success" }, document.createTextNode(DATO));
-// 			const gasto = createNode('div', { class: "col-md-3 fs-5 text-end text-danger" }, document.createTextNode(DATO));
-// 			const balance = createNode('div', { class: "col-md-3 fs-5 text-end" }, document.createTextNode(DATO));
-// 			const row = createNode('div', { class: "row mb-4" }, divP, ganancia, gasto, balance);
-// 			totalsByCategory.appendChild(row)
-// 		}
-// }
-
-// createCategoryReportLine(reportByCategory)
-
 
 //###### FUNCION RESUMEN POR MES ######
 
