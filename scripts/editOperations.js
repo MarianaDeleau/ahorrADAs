@@ -48,11 +48,14 @@ var editOperations = function (e) {
 };
 btnAddEditOp.addEventListener("click", editOperations);
 //######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
-var cancelEditOp = function () {
-    closeOpenedWindow();
+// const cancelEditOp = () => {
+//     closeOpenedWindow()
+// }
+// btnCanceledEdit.addEventListener("click", cancelEditOp)
+var canceled = function () {
+    window.location.href = "index.html";
 };
-var btnCancelEditOp = document.getElementById('canceled-btn');
-btnCancelEditOp.addEventListener("click", cancelEditOp);
+btnCanceledEdit.addEventListener("click", canceled);
 //######### AGREGA CATEGORIAS AL SELECT DE EDITAR OPERACIONES #######
 var categoryEditOperation = function () {
     var storage = getStorage();

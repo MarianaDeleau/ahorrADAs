@@ -60,15 +60,17 @@ btnAddEditOp.addEventListener("click", editOperations);
 
 //######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 
-const cancelEditOp = () => {
+// const cancelEditOp = () => {
 
-    closeOpenedWindow()
+//     closeOpenedWindow()
 
+// }
+
+// btnCanceledEdit.addEventListener("click", cancelEditOp)
+const canceled = () =>{
+  window.location.href = "index.html";
 }
-
-const btnCancelEditOp = document.getElementById('canceled-btn');
-
-btnCancelEditOp.addEventListener("click", cancelEditOp)
+btnCanceledEdit.addEventListener("click",canceled)
 
 //######### AGREGA CATEGORIAS AL SELECT DE EDITAR OPERACIONES #######
 
