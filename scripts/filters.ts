@@ -15,29 +15,14 @@ const loadSelect = () => {
 	}
 };
 
-//######### FUNCION PARA ELIMINAR OPERACIONES #######
+//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
 
-const deleteLink = document.querySelectorAll(".deleteLink");
-
-const deleteOperation = (e) => {
-	const idToDelete = e.target.dataset.operation; //id del elemento a eliminar
-	console.log(idToDelete);
-	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
-
-	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
-
-	for (let i = 0; i < storageAux.operations.length; i++) {
-		if (storageAux.operations[i].id == idToDelete) {
-			storageAux.operations.splice(i, 1); // posicion y cuantos elementos elimino
-			console.log(storageAux);
-
-			break;
-		}
-	}
-
-	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
-	operationFilter();
+const init = () => {
+	loadSelect();
 };
+
+init();
+
 
 //######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
 
@@ -46,172 +31,33 @@ const operationsList = document.getElementById("operations");
 const addOperationToList = (array) => {
 	for (const operation of array) {
 		if (operation.type === "Gasto") {
-			const h6 = createNode(
-				"h6",
-				{ class: "text-center" },
-				document.createTextNode(operation.description)
-			);
-			const divDescription = createNode(
-				"div",
-				{ class: "col-md-3 d-flex align-items-center" },
-				h6
-			);
-			const badge = createNode(
-				"div",
-				{
-					class: "badge p-2 text-dark text-wrap",
-					style: "width: 6rem",
-				},
-				document.createTextNode(operation.category)
-			);
-			const divCategory = createNode(
-				"div",
-				{ class: "col-md-3 d-flex align-items-center" },
-				badge
-			);
-			const date = createNode(
-				"p",
-				{ class: "text-end" },
-				document.createTextNode(operation.date)
-			);
-			const divDate = createNode(
-				"div",
-				{
-					class: "col-md-2 d-flex align-items-center justify-content-end",
-				},
-				date
-			);
-			const amount = createNode(
-				"h6",
-				{ class: "text-end", style: "color:red; font-weight:800" },
-				document.createTextNode(
-					(parseInt(operation.amount) * -1).toString()
-				)
-			);
-			const divAmount = createNode(
-				"div",
-				{
-					class: "col-md-2 d-flex align-items-center justify-content-end",
-				},
-				amount
-			);
-			const editLink = createNode(
-				"a",
-				{
-					class: "text-end editLink",
-					data: { operation: operation.id },
-					href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}`,
-				},
-				document.createTextNode("Editar")
-			);
-			const deleteLink = createNode(
-				"a",
-				{
-					class: "text-end deleteLink",
-					data: { operation: operation.id },
-				},
-				document.createTextNode("Eliminar")
-			);
-			const divLinks = createNode(
-				"div",
-				{
-					class: "col-md-2 d-flex align-items-end flex-column justify-content-center",
-				},
-				editLink,
-				deleteLink
-			);
-			const newOperationLine = createNode(
-				"div",
-				{ class: "row mt-3" },
-				divDescription,
-				divCategory,
-				divDate,
-				divAmount,
-				divLinks
-			);
+			const h6 = createNode("h6",	{ class: "text-center" }, document.createTextNode(operation.description));
+			const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6	);
+			const badge = createNode("div",	{ class: "badge p-2 text-dark text-wrap", style: "width: 6rem"	}, document.createTextNode(operation.category));
+			const divCategory = createNode('div', { class: "col-md-3 d-flex align-items-center" }, badge);
+			const date = createNode("p", { class: "text-end" }, document.createTextNode(operation.date));
+			const divDate = createNode(	"div", { class: "col-md-2 d-flex align-items-center justify-content-end"},	date);
+			const amount = createNode( "h6", { class: "text-end", style: "color:red; font-weight:800" }, document.createTextNode(`-${operation.amount}`)); //document.createTextNode((parseInt(operation.amount) * -1).toString()));
+			const divAmount = createNode("div",	{ class: "col-md-2 d-flex align-items-center justify-content-end"},	amount);
+			const editLink = createNode("a", { class: "text-end editLink", data: { operation: operation.id }, href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}` }, document.createTextNode("Editar"));
+			const deleteLink = createNode("a",	{ class: "text-end deleteLink",	data: { operation: operation.id }}, document.createTextNode("Eliminar")	);
+			const divLinks = createNode("div",	{class: "col-md-2 d-flex align-items-end flex-column justify-content-center"},	editLink,deleteLink	);
+			const newOperationLine = createNode("div",	{ class: "row mt-3" },	divDescription,	divCategory, divDate, divAmount, divLinks);
 			operationsList.appendChild(newOperationLine);
+
 		} else if (operation.type === "Ganancia") {
-			const h6 = createNode(
-				"h6",
-				{ class: "text-center" },
-				document.createTextNode(operation.description)
-			);
-			const divDescription = createNode(
-				"div",
-				{ class: "col-md-3 d-flex align-items-center" },
-				h6
-			);
-			const badge = createNode(
-				"div",
-				{
-					class: "badge p-2 text-dark text-wrap",
-					style: "width: 6rem",
-				},
-				document.createTextNode(operation.category)
-			);
-			const divCategory = createNode(
-				"div",
-				{ class: "col-md-3 d-flex align-items-center" },
-				badge
-			);
-			const date = createNode(
-				"p",
-				{ class: "text-end" },
-				document.createTextNode(operation.date)
-			);
-			const divDate = createNode(
-				"div",
-				{
-					class: "col-md-2 d-flex align-items-center justify-content-end",
-				},
-				date
-			);
-			const amount = createNode(
-				"h6",
-				{ class: "text-end", style: "color:green; font-weight:800" },
-				document.createTextNode(operation.amount)
-			);
-			const divAmount = createNode(
-				"div",
-				{
-					class: "col-md-2 d-flex align-items-center justify-content-end",
-				},
-				amount
-			);
-			const editLink = createNode(
-				"a",
-				{
-					class: "text-end editLink",
-					data: { operation: operation.id },
-					href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}`,
-				},
-				document.createTextNode("Editar")
-			);
-			const deleteLink = createNode(
-				"a",
-				{
-					class: "text-end deleteLink",
-					data: { operation: operation.id },
-				},
-				document.createTextNode("Eliminar")
-			);
-			const divLinks = createNode(
-				"div",
-				{
-					class: "col-md-2 d-flex align-items-end flex-column justify-content-center",
-				},
-				editLink,
-				deleteLink
-			);
-			const newOperationLine = createNode(
-				"div",
-				{ class: "row mt-3" },
-				divDescription,
-				divCategory,
-				divDate,
-				divAmount,
-				divLinks
-			);
+			const h6 = createNode("h6", { class: "text-center" }, document.createTextNode(operation.description));
+			const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6);
+			const badge = createNode("div",	{ class: "badge p-2 text-dark text-wrap", style: "width: 6rem"	},	document.createTextNode(operation.category));
+			const divCategory = createNode(	"div",	{ class: "col-md-3 d-flex align-items-center" },	badge);
+			const date = createNode("p",	{ class: "text-end" },	document.createTextNode(operation.date));
+			const divDate = createNode(	"div", { class: "col-md-2 d-flex align-items-center justify-content-end"}, date);
+			const amount = createNode("h6",	{ class: "text-end", style: "color:green; font-weight:800" },	document.createTextNode(operation.amount));
+			const divAmount = createNode("div",	{	class: "col-md-2 d-flex align-items-center justify-content-end"},	amount);
+			const editLink = createNode("a", {	class: "text-end editLink",	data: { operation: operation.id }, href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}`},	document.createTextNode("Editar"));
+			const deleteLink = createNode("a",	{ class: "text-end deleteLink",	data: { operation: operation.id },}, document.createTextNode("Eliminar"));
+			const divLinks = createNode("div",	{	class: "col-md-2 d-flex align-items-end flex-column justify-content-center"}, editLink,deleteLink);
+			const newOperationLine = createNode("div",	{ class: "row mt-3" },	divDescription,	divCategory, divDate, divAmount, divLinks);
 			operationsList.appendChild(newOperationLine);
 		}
 	}
@@ -223,33 +69,11 @@ const addOperationToList = (array) => {
 		deleteLink[i].addEventListener("click", deleteOperation);
 	}
 
-	// const editLink = document.querySelectorAll(".editLink");
-	// for (let i = 0; i < editLink.length; i++) {
-	// 	editLink[i].addEventListener("click", editCategory);
-	// }
 };
 
-//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
 
-const init = () => {
-	loadSelect();
-};
-
-init();
 
 //######### FILTRA POR GASTO O GANANCIA #######
-
-// const typeOpFilter = (type) => {
-// 	const storage: LocalStorage = getStorage();
-
-// 	let operationsType = storage.operations.filter(
-// 		(operation) => operation.type === type
-// 	);
-
-// 	balance(operationsType);
-
-// 	return addOperationToList(operationsType);
-// };
 
 const typeOpFilter = (operationsArray, filterType) => {
   if (filterType !== "Todas")
@@ -261,18 +85,6 @@ const typeOpFilter = (operationsArray, filterType) => {
 
 //######### FILTRA POR CATEGORIA #######
 
-// const categoryOpFilter = (Category) => {
-// 	const storage: LocalStorage = getStorage();
-
-// 	let operationsCategory = storage.operations.filter(
-// 		(operation) => operation.category === Category
-// 	);
-
-// 	balance(operationsCategory);
-
-// 	return addOperationToList(operationsCategory);
-// };
-
 const categoryOpFilter = (operationsArray, category) => {
   if(category !== "Todas") 
     return operationsArray.filter(
@@ -283,16 +95,6 @@ const categoryOpFilter = (operationsArray, category) => {
 
 //######### FILTRA POR FECHA #######
 
-// const operationsDate = (date) => {
-// 	const storage: LocalStorage = getStorage();
-// 	const storageFilter = storage.operations.filter((op) => {
-// 		const opDate = new Date(op.date);
-// 		//console.log(opDate)
-// 		return date <= opDate;
-// 	});
-// 	balance(storageFilter);
-// 	return addOperationToList(storageFilter);
-// };
 
 const operationsDate = (operationsArray, date) => {
 	return operationsArray.filter((op) => {
@@ -365,38 +167,60 @@ const operationFilter = (event) => {
 	divWithOps.style.display = "block";
 	operationsList.innerHTML = "";
 
-  console.log("*** event.target.name *** ", event.target.name)  
-  console.log("*** event.target.value *** ", event.target.value)
+//   console.log("*** event.target.name *** ", event.target.name)  
+//   console.log("*** event.target.value *** ", event.target.value)
 
   // Operations list
 	const storage: LocalStorage = getStorage();
-  let operationsArray = storage.operations;
+    let operationsArray = storage.operations;
 
-  const typeFilter = document.getElementById("typeFilter");
-  const type = typeFilter.value;
-  operationsArray = typeOpFilter(operationsArray, type);
+    const typeFilter = document.getElementById("typeFilter");
+    const type = typeFilter.value;
+    operationsArray = typeOpFilter(operationsArray, type);
   
-  const categoryFilter = document.getElementById("categories");
-  const category = categoryFilter.value;
-  operationsArray = categoryOpFilter(operationsArray, category);
+    const categoryFilter = document.getElementById("categories");
+    const category = categoryFilter.value;
+    operationsArray = categoryOpFilter(operationsArray, category);
 
-  const dateOperationFilter = document.getElementById(`dateOperationFilter`);
-  if(dateOperationFilter.value !== "") {
-    const date = new Date(dateOperationFilter.value);
-    operationsArray = operationsDate(operationsArray, date);
-  }
+    const dateOperationFilter = document.getElementById(`dateOperationFilter`);
+		if(dateOperationFilter.value !== "") {
+		const date = new Date(dateOperationFilter.value);
+		operationsArray = operationsDate(operationsArray, date);
+		}
 
-  const sortFilter = document.getElementById("sortFilter");
-  const sortType = sortFilter.value;
-  operationsArray = operationsSort(operationsArray, sortType)
+	const sortFilter = document.getElementById("sortFilter");
+	const sortType = sortFilter.value;
+	operationsArray = operationsSort(operationsArray, sortType)
 
-  balance(operationsArray);
+	balance(operationsArray);
 
-  return addOperationToList(operationsArray);
+	return addOperationToList(operationsArray);
 
 };
 
 formFilters.addEventListener("change", operationFilter);
+
+//######### FUNCION PARA ELIMINAR OPERACIONES #######
+
+const deleteLink = document.querySelectorAll(".deleteLink");
+
+const deleteOperation = (e) => {
+	const idToDelete = e.target.dataset.operation; //id del elemento a eliminar
+	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
+
+	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
+
+	for (let i = 0; i < storageAux.operations.length; i++) {
+		if (storageAux.operations[i].id == idToDelete) {
+			storageAux.operations.splice(i, 1); // posicion y cuantos elementos elimino
+			break;
+		}
+	}
+
+	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
+	//addOperationToList();
+	operationFilter();
+};
 
 //######### FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
 
@@ -460,17 +284,3 @@ const toggleFilters = () => {
 }
 
 toggleLink.addEventListener('click', toggleFilters)
-
-
-// TODO
-// const typeOpFilter = (operationList, sortType) => {
-// 	const storage: LocalStorage = getStorage();
-
-// 	let operationsType = storage.operations.filter(
-// 		(operation) => operation.type === type
-// 	);
-
-// 	balance(operationsType);
-
-// 	return addOperationToList(operationsType);
-// };
