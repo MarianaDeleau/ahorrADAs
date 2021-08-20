@@ -187,7 +187,7 @@ const operationFilter = (event) => {
 	const sortFilter = document.getElementById("sortFilter");
 	const sortType = sortFilter.value;
 	operationsArray = operationsSort(operationsArray, sortType)
-console.log(sortType)
+
 	balance(operationsArray);
 
 	return addOperationToList(operationsArray);
@@ -214,7 +214,6 @@ const deleteOperation = (e) => {
 	}
 
 	localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
-	//addOperationToList();
 	operationFilter();
 };
 
