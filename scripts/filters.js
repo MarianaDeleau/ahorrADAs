@@ -89,14 +89,9 @@ var sortDate = function (op1, op2) {
     return 0;
 };
 var sortAmount = function (op1, op2) {
-    if (Number(op1.amount) > Number(op2.amount)) {
-        return 1;
-    }
-    if (Number(op1.amount) < Number(op2.amount)) {
-        return -1;
-    }
-    // a must be equal to b
-    return 0;
+    var numberA = op1.type === 'Ganancia' ? Number(op1.amount) : (Number(op1.amount) * -1);
+    var numberB = op2.type === 'Ganancia' ? Number(op2.amount) : (Number(op2.amount) * -1);
+    return numberA - numberB;
 };
 var sortAZ = function (op1, op2) {
     if (op1.description > op2.description) {
@@ -134,8 +129,6 @@ var operationFilter = function (event) {
     divNoOps.style.display = "none";
     divWithOps.style.display = "block";
     operationsList.innerHTML = "";
-    //   console.log("*** event.target.name *** ", event.target.name)  
-    //   console.log("*** event.target.value *** ", event.target.value)
     // Operations list
     var storage = getStorage();
     var operationsArray = storage.operations;
@@ -153,6 +146,7 @@ var operationFilter = function (event) {
     var sortFilter = document.getElementById("sortFilter");
     var sortType = sortFilter.value;
     operationsArray = operationsSort(operationsArray, sortType);
+    console.log(sortType);
     balance(operationsArray);
     return addOperationToList(operationsArray);
 };

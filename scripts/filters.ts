@@ -116,14 +116,12 @@ const sortDate = (op1, op2) => {
 }
 
 const sortAmount = (op1, op2) => {
-  if (Number(op1.amount) > Number(op2.amount)) {
-    return 1
-  }
-  if (Number(op1.amount) < Number(op2.amount)) {
-    return -1;
-  }
-  // a must be equal to b
-  return 0;
+	
+	const numberA = op1.type === 'Ganancia' ? Number(op1.amount) : (Number(op1.amount) * -1)
+	const numberB = op2.type === 'Ganancia'?Number(op2.amount):(Number(op2.amount)*-1)
+	
+	return numberA - numberB
+
 }
 
 const sortAZ = (op1, op2) => {
@@ -167,8 +165,6 @@ const operationFilter = (event) => {
 	divWithOps.style.display = "block";
 	operationsList.innerHTML = "";
 
-//   console.log("*** event.target.name *** ", event.target.name)  
-//   console.log("*** event.target.value *** ", event.target.value)
 
   // Operations list
 	const storage: LocalStorage = getStorage();
@@ -191,7 +187,7 @@ const operationFilter = (event) => {
 	const sortFilter = document.getElementById("sortFilter");
 	const sortType = sortFilter.value;
 	operationsArray = operationsSort(operationsArray, sortType)
-
+console.log(sortType)
 	balance(operationsArray);
 
 	return addOperationToList(operationsArray);
