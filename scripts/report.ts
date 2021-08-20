@@ -2,34 +2,6 @@ const storage: LocalStorage = getStorage();
 
 const operaciones = storage.operations;
 
-//###### RESUMEN GENERAL ######
-
-let report = {}
-
-operaciones.forEach((op) => {
-	const date = new Date(op.date);
-	const year = date.getFullYear()
-	const month = date.getMonth()+1
-
-	if (!report[year]) {
-		report[year] = {};
-	}
-	if (!report[year][month]) {
-		report[year][month] = {};
-	}
-	if (!report[year][month][op.category]) {
-		report[year][month][op.category] = {};
-	}
-	if (!report[year][month][op.category][op.type]) {
-		report[year][month][op.category][op.type] = 0;
-	}
-
-	report[year][month][op.category][op.type] += Number(op.amount);
-
-	return report
-});
-
-console.log(report);
 
 //###### RESUMEN POR CATEGORIA ######
 
@@ -48,12 +20,8 @@ let reportByCategory = {}
 		reportByCategory[op.category][op.type] += Number(op.amount);
 
 		return reportByCategory
-
 		
 	});		
-
-
-console.log(reportByCategory);
 
 //###### VISTA RESUMEN POR CATEGORIA ######
 
@@ -110,8 +78,8 @@ operaciones.forEach((op) => {
 	return reportByMonth
 });
 
-console.log(reportByMonth);
 
+//###### VISTA RESUMEN POR MES ######
 
 const addReportByMonthToList = (object) => {
 
@@ -119,7 +87,7 @@ const addReportByMonthToList = (object) => {
 		
 	for (const prop in object) {
 			
-		for(const i in object[prop]){
+		for (const i in object[prop]) {
 			
 			const month = createNode('div', { class: "col-md-3 fs-5 text-start ps-4" }, document.createTextNode(`${i}/${prop}`));
 
@@ -145,24 +113,128 @@ const addReportByMonthToList = (object) => {
 			
 	}
 		
-}
+};
 
 
 addReportByMonthToList(reportByMonth)
 
- //###### FUNCION PARA CREAR LAS FILAS CON LOS RESUMENES POR MES ######
+//###### VISTA RESUMEN GENERAL ######
 
-// const totalsByMonth = document.getElementById('totalsByMonthDiv')
-// const createMonthReportLine = (obj) => {
-// 		for (const op in obj) {
-// 			const month = createNode('div', { class: "col-md-3 fs-5 text-start ps-4" }, document.createTextNode(DATO));
-// 			const ganancia = createNode('div', { class: "col-md-3 fs-5 text-end text-success" }, document.createTextNode(DATO));
-// 			const gasto = createNode('div', { class: "col-md-3 fs-5 text-end text-danger" }, document.createTextNode(DATO));
-// 			const balance = createNode('div', { class: "col-md-3 fs-5 text-end" }, document.createTextNode(DATO));
-// 			const row = createNode('div', { class: "row mb-3" }, month, ganancia, gasto, balance);
-// 			totalsByMonth.appendChild(row)
-// 		}
-// }
+//Categoría con mayor ganancia
 
-// createMonthReportLine(reportByMonth)
+const higherCategory = (object) => {
 
+	let max = 0;
+	let category = " ";
+	const categoryBadge = document.getElementById('higherGainByCategoryBadge');
+	const higherGain = document.getElementById('higherGainByCategory')
+	for (const prop in object) {
+		
+		if (object[prop].Ganancia > max) {
+			max = object[prop].Ganancia;
+			category = prop
+		}
+	}
+	categoryBadge.innerText = category
+	higherGain.innerText = `$ ${max}`
+	
+}
+
+higherCategory(reportByCategory)
+
+//Categoría con mayor gasto
+
+const lowerCategory = (object) => {
+
+	let max = 0;
+	let category = " ";
+	const categoryBadge = document.getElementById('higherExpenseByCategoryBadge');
+	const higherExpense = document.getElementById('higherExpenseByCategory')
+	for (const prop in object) {
+		
+		if (object[prop].Gasto > max) {
+			max = object[prop].Gasto;
+			category = prop
+		}
+	}
+	categoryBadge.innerText = category
+	higherExpense.innerText = `$ -${max}`
+	
+}
+
+lowerCategory(reportByCategory)
+
+//Categoría con mayor balance
+
+const balanceCategory = (object) => {
+
+	let max = 0;
+	let category = " ";
+	const categoryBadge = document.getElementById('higherBalanceByCategoryBadge');
+	const higherBalance = document.getElementById('higherBalanceByCategory')
+
+	for (const prop in object) {
+		let balance = object[prop].Ganancia - object[prop].Gasto 
+		if (balance > max) {
+			max = balance;
+			category = prop
+		}
+	}
+	categoryBadge.innerText = category
+	higherBalance.innerText = `$ ${max}`
+	
+}
+
+balanceCategory(reportByCategory)
+
+//Mes con mayor ganancia
+
+const gainByMonth = (object) => {
+
+	let max = 0;
+	let month = ""
+	const monthBadge = document.getElementById('gainByMonth');
+	const gain = document.getElementById('higherGainByMonth')
+
+	for (const prop in object) {
+			
+		for (const i in object[prop]) {
+		 
+			if (object[prop][i].Ganancia > max) {
+				max = object[prop][i].Ganancia;
+				month = `${i}/${prop}`
+			}
+		}
+	}
+	monthBadge.innerText = month
+	gain.innerText = `$ ${max}`
+	
+}
+
+gainByMonth(reportByMonth)
+
+//Mes con mayor gasto
+
+const expenseByMonth = (object) => {
+
+	let max = 0;
+	let month = ""
+	const monthBadge = document.getElementById('expenseByMonth');
+	const expense = document.getElementById('higherExpenseByMonth')
+
+	for (const prop in object) {
+			
+		for (const i in object[prop]) {
+		 
+			if (object[prop][i].Gasto > max) {
+				max = object[prop][i].Gasto;
+				month = `${i}/${prop}`
+			}
+		}
+	}
+	monthBadge.innerText = month
+	expense.innerText = `$ -${max}`
+	
+}
+
+expenseByMonth(reportByMonth)

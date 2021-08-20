@@ -18,22 +18,6 @@ type Operation = {
     type: string
 }
 
-type Gain = {
-    id: number;
-    category: Category[],
-    amount: number,
-    description: string,
-    date: Date
-}
-
-type Expense = {
-    id: number;
-    category: Category[],
-    amount: number,
-    description: string,
-    date: Date
-}
-
 
 //##### LEER EL STORAGE ######
 
@@ -42,7 +26,7 @@ const getStorage = (): LocalStorage => {
 
     if (!storageInfo) {
         storageInfo = {
-            categories: [{id:1, name: 'comidas'}],
+            categories: [{id:1, name: 'Comida'}, {id:2, name: 'Educación'}, {id:3, name: 'Salidas'}, {id:4, name: 'Servicios'}, {id:5, name: 'Trabajo'}, {id:6, name: 'Transporte'}],
             operations: []
         };
     }

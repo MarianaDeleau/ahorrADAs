@@ -3,7 +3,7 @@ var getStorage = function () {
     var storageInfo = JSON.parse(localStorage.getItem('key-ahorradas'));
     if (!storageInfo) {
         storageInfo = {
-            categories: [{ id: 1, name: 'comidas' }],
+            categories: [{ id: 1, name: 'Comida' }, { id: 2, name: 'Educación' }, { id: 3, name: 'Salidas' }, { id: 4, name: 'Servicios' }, { id: 5, name: 'Trabajo' }, { id: 6, name: 'Transporte' }],
             operations: []
         };
     }
