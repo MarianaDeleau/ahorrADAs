@@ -146,7 +146,6 @@ var operationFilter = function (event) {
     var sortFilter = document.getElementById("sortFilter");
     var sortType = sortFilter.value;
     operationsArray = operationsSort(operationsArray, sortType);
-    console.log(sortType);
     balance(operationsArray);
     return addOperationToList(operationsArray);
 };
@@ -164,7 +163,6 @@ var deleteOperation = function (e) {
         }
     }
     localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
-    //addOperationToList();
     operationFilter();
 };
 //######### FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######

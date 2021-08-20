@@ -159,3 +159,17 @@ var expenseByMonth = function (object) {
     expense.innerText = "$ -" + max;
 };
 expenseByMonth(reportByMonth);
+var displayReport = function () {
+    var divNoOps = document.getElementById("noOperations");
+    var divWithOps = document.getElementById("operationsReport");
+    console.log(operaciones);
+    if (operaciones.length === 0) {
+        divNoOps.style.display = "block";
+        divWithOps.style.display = "none";
+    }
+    else {
+        divNoOps.style.display = "none";
+        divWithOps.style.display = "block";
+    }
+};
+displayReport();

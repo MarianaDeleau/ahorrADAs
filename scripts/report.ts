@@ -3,6 +3,8 @@ const storage: LocalStorage = getStorage();
 const operaciones = storage.operations;
 
 
+
+
 //###### RESUMEN POR CATEGORIA ######
 
 let reportByCategory = {}
@@ -238,3 +240,21 @@ const expenseByMonth = (object) => {
 }
 
 expenseByMonth(reportByMonth)
+
+const displayReport = () => {
+
+	const divNoOps = document.getElementById("noOperations");
+	const divWithOps = document.getElementById("operationsReport");
+	
+	console.log(operaciones)
+	if (operaciones.length === 0) {
+		divNoOps.style.display = "block";
+		divWithOps.style.display = "none";
+	} else {
+		divNoOps.style.display = "none";
+		divWithOps.style.display = "block";
+	}
+
+}
+
+displayReport()
