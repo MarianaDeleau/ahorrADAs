@@ -42,7 +42,7 @@ const getStorage = (): LocalStorage => {
 
     if (!storageInfo) {
         storageInfo = {
-            categories: [],
+            categories: [{id:1, name: 'comidas'}],
             operations: []
         };
     }
@@ -75,3 +75,4 @@ const createNode = (tag, attr, ...children) => {
 
 
 
+//{"categories":[{"id":1,"name":"Educación"},{"id":2,"name":"Comida"},{"id":3,"name":"Trabajo"},{"id":4,"name":"Servicios Públicos"}],"operations":[{"id":4,"category":"Trabajo","amount":"200000","description":"Sueldo IT","date":"2021-08-05","type":"Ganancia"},{"id":7,"category":"Educación","amount":"35000","description":"Colegio","date":"2021-08-05","type":"Gasto"},{"id":9,"category":"Servicios Públicos","amount":"2000","description":"Gas","date":"2021-08-05","type":"Gasto"},{"id":10,"category":"Trabajo","amount":"25000","description":"Viaticos","date":"2021-08-15","type":"Gasto"},{"id":11,"category":"Educación","amount":"35000","description":"Colegio","date":"2021-07-05","type":"Gasto"},{"id":12,"category":"Trabajo","amount":"150000","description":"Sueldo","date":"2021-07-07","type":"Ganancia"},{"id":13,"category":"Comida","amount":"8000","description":"Supermercado","date":"2021-07-14","type":"Gasto"},{"id":14,"category":"Comida","amount":"7500","description":"Supermercado","date":"2021-08-04","type":"Gasto"},{"id":15,"category":"Comida","amount":"13000","description":"Supermercado","date":"2021-06-15","type":"Gasto"},{"id":16,"category":"Trabajo","amount":"150000","description":"Sueldo","date":"2021-05-05","type":"Ganancia"}]}

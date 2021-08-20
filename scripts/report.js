@@ -56,9 +56,6 @@ var addReportByCategoryToList = function (object) {
         var balance = createNode('div', { "class": "col-md-3 fs-5 text-end" }, document.createTextNode("$ " + (Number(object[prop].Ganancia) - Number(object[prop].Gasto))));
         var row = createNode('div', { "class": "row mb-4" }, divP, ganancia, gasto, balance);
         totalsByCategory.appendChild(row);
-        // console.log(object[prop]) //imprime Propiedad y valor - {Ganancia: 150000, Gasto: 25000}
-        // console.log(prop) //imprime Propiedad categoria - Trabajo
-        // console.log(Object.values(object[prop])) //imprime el valor solo - [150000, 25000]
     }
 };
 addReportByCategoryToList(reportByCategory);
@@ -84,30 +81,19 @@ console.log(reportByMonth);
 var addReportByMonthToList = function (object) {
     var totalsByMonth = document.getElementById('totalsByMonthDiv');
     for (var prop in object) {
-        for (var i = 0; i < prop.length; i++) {
-            var month = createNode('div', { "class": "col-md-3 fs-5 text-start ps-4" }, document.createTextNode(Object.keys(object[prop])[i] + "/" + prop));
-            if (Object.values(object[prop])[i].Ganancia) {
-                var ganancia = createNode('div', { "class": "col-md-3 fs-5 text-end text-success" }, document.createTextNode("$ " + Object.values(object[prop])[i].Ganancia));
-            }
-            else {
-                var ganancia = createNode('div', { "class": "col-md-3 fs-5 text-end text-success" }, document.createTextNode("$ " + (Object.values(object[prop])[i].Ganancia = 0)));
-            }
-            if (Object.values(object[prop])[i].Gasto) {
-                var gasto = createNode('div', { "class": "col-md-3 fs-5 text-end text-danger" }, document.createTextNode("$ " + Object.values(object[prop])[i].Gasto));
-            }
-            else {
-                var gasto = createNode('div', { "class": "col-md-3 fs-5 text-end text-danger" }, document.createTextNode("$ " + (Object.values(object[prop])[i].Gasto = 0)));
-            }
-            var balance = createNode('div', { "class": "col-md-3 fs-5 text-end" }, document.createTextNode("$ " + (Object.values(object[prop])[i].Ganancia - Object.values(object[prop])[i].Gasto)));
+        for (var i in object[prop]) {
+            var month = createNode('div', { "class": "col-md-3 fs-5 text-start ps-4" }, document.createTextNode(i + "/" + prop));
+            var isProfit = object[prop][i].Ganancia && object[prop][i].Ganancia >= 0;
+            var isExpense = object[prop][i].Gasto && object[prop][i].Gasto >= 0;
+            var profit = isProfit ? object[prop][i].Ganancia : 0;
+            var expense = isExpense ? object[prop][i].Gasto : 0;
+            var ganancia = createNode('div', { "class": "col-md-3 fs-5 text-end text-success" }, document.createTextNode("$ " + profit));
+            var gasto = createNode('div', { "class": "col-md-3 fs-5 text-end text-danger" }, document.createTextNode("$ " + expense * -1));
+            var balance = createNode('div', { "class": "col-md-3 fs-5 text-end" }, document.createTextNode("$ " + (profit - expense)));
             var row = createNode('div', { "class": "row mb-4" }, month, ganancia, gasto, balance);
             totalsByMonth.appendChild(row);
         }
     }
-    // console.log(object[prop]) //imprime Propiedad y valor - 7: {Ganancia: 150000, Gasto: 25000}
-    // console.log(prop) //imprime Propiedad año - 2021
-    // console.log(Object.keys(object[prop])) //imprime meses - ["7", "8"]
-    // console.log(Object.keys(object[prop])[1]) //imprime mes - 7
-    // console.log(Object.values(object[prop])[0].Ganancia) //imprime valores - 150000
 };
 addReportByMonthToList(reportByMonth);
 //###### FUNCION PARA CREAR LAS FILAS CON LOS RESUMENES POR MES ######
