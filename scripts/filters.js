@@ -25,31 +25,31 @@ var addOperationToList = function (array) {
         if (operation.type === "Gasto") {
             var h6 = createNode("h6", { "class": "text-center" }, document.createTextNode(operation.description));
             var divDescription = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, h6);
-            var badge = createNode("div", { "class": "badge p-2 text-dark text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
-            var divCategory = createNode('div', { "class": "col-md-3 d-flex align-items-center" }, badge);
+            var badge = createNode("div", { "class": "badge p-2 text-dark text-wrap", style: "width: 7rem" }, document.createTextNode(operation.category));
+            var divCategory = createNode('div', { "class": "col-3 col-md-3 d-flex align-items-center" }, badge);
             var date = createNode("p", { "class": "text-end" }, document.createTextNode(operation.date));
-            var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
+            var divDate = createNode("div", { "class": "col-3 col-md-2 d-flex align-items-center justify-content-end" }, date);
             var amount = createNode("h6", { "class": "text-end", style: "color:red; font-weight:800" }, document.createTextNode("-" + operation.amount)); //document.createTextNode((parseInt(operation.amount) * -1).toString()));
             var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
             var editLink = createNode("a", { "class": "text-end editLink", data: { operation: operation.id }, href: "./editarOperacion.html?id=" + operation.id + "&description=" + operation.description + "&amount=" + operation.amount + "&type=" + operation.type + "&category=" + operation.category + "&date=" + operation.date }, document.createTextNode("Editar"));
             var deleteLink_1 = createNode("a", { "class": "text-end deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             var divLinks = createNode("div", { "class": "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink_1);
-            var newOperationLine = createNode("div", { "class": "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
+            var newOperationLine = createNode("div", { "class": "row row-cols-6 justify-content-between" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
         }
         else if (operation.type === "Ganancia") {
             var h6 = createNode("h6", { "class": "text-center" }, document.createTextNode(operation.description));
             var divDescription = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, h6);
-            var badge = createNode("div", { "class": "badge p-2 text-dark text-wrap", style: "width: 6rem" }, document.createTextNode(operation.category));
-            var divCategory = createNode("div", { "class": "col-md-3 d-flex align-items-center" }, badge);
+            var badge = createNode("div", { "class": "badge p-2 text-dark text-wrap", style: "width: 7rem" }, document.createTextNode(operation.category));
+            var divCategory = createNode("div", { "class": "col-3 col-md-3 d-flex align-items-center" }, badge);
             var date = createNode("p", { "class": "text-end" }, document.createTextNode(operation.date));
-            var divDate = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, date);
+            var divDate = createNode("div", { "class": "col-3 col-md-2 d-flex align-items-center justify-content-end" }, date);
             var amount = createNode("h6", { "class": "text-end", style: "color:green; font-weight:800" }, document.createTextNode(operation.amount));
             var divAmount = createNode("div", { "class": "col-md-2 d-flex align-items-center justify-content-end" }, amount);
             var editLink = createNode("a", { "class": "text-end editLink", data: { operation: operation.id }, href: "./editarOperacion.html?id=" + operation.id + "&description=" + operation.description + "&amount=" + operation.amount + "&type=" + operation.type + "&category=" + operation.category + "&date=" + operation.date }, document.createTextNode("Editar"));
             var deleteLink_2 = createNode("a", { "class": "text-end deleteLink", data: { operation: operation.id } }, document.createTextNode("Eliminar"));
             var divLinks = createNode("div", { "class": "col-md-2 d-flex align-items-end flex-column justify-content-center" }, editLink, deleteLink_2);
-            var newOperationLine = createNode("div", { "class": "row mt-3" }, divDescription, divCategory, divDate, divAmount, divLinks);
+            var newOperationLine = createNode("div", { "class": "row row-cols-6 justify-content-between" }, divDescription, divCategory, divDate, divAmount, divLinks);
             operationsList.appendChild(newOperationLine);
         }
     }
