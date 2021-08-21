@@ -33,31 +33,31 @@ const addOperationToList = (array) => {
 		if (operation.type === "Gasto") {
 			const h6 = createNode("h6",	{ class: "text-center" }, document.createTextNode(operation.description));
 			const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6	);
-			const badge = createNode("div",	{ class: "badge p-2 text-dark text-wrap", style: "width: 6rem"	}, document.createTextNode(operation.category));
-			const divCategory = createNode('div', { class: "col-md-3 d-flex align-items-center" }, badge);
+			const badge = createNode("div",	{ class: "badge p-2 text-dark text-wrap", style: "width: 7rem"	}, document.createTextNode(operation.category));
+			const divCategory = createNode('div', { class: "col-3 col-md-3 d-flex align-items-center" }, badge);
 			const date = createNode("p", { class: "text-end" }, document.createTextNode(operation.date));
-			const divDate = createNode(	"div", { class: "col-md-2 d-flex align-items-center justify-content-end"},	date);
+			const divDate = createNode(	"div", { class: "col-3 col-md-2 d-flex align-items-center justify-content-end"},	date);
 			const amount = createNode( "h6", { class: "text-end", style: "color:red; font-weight:800" }, document.createTextNode(`-${operation.amount}`)); //document.createTextNode((parseInt(operation.amount) * -1).toString()));
 			const divAmount = createNode("div",	{ class: "col-md-2 d-flex align-items-center justify-content-end"},	amount);
 			const editLink = createNode("a", { class: "text-end editLink", data: { operation: operation.id }, href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}` }, document.createTextNode("Editar"));
 			const deleteLink = createNode("a",	{ class: "text-end deleteLink",	data: { operation: operation.id }}, document.createTextNode("Eliminar")	);
 			const divLinks = createNode("div",	{class: "col-md-2 d-flex align-items-end flex-column justify-content-center"},	editLink,deleteLink	);
-			const newOperationLine = createNode("div",	{ class: "row mt-3" },	divDescription,	divCategory, divDate, divAmount, divLinks);
+			const newOperationLine = createNode("div",	{ class: "row row-cols-6 justify-content-between" },	divDescription,	divCategory, divDate, divAmount, divLinks);
 			operationsList.appendChild(newOperationLine);
 
 		} else if (operation.type === "Ganancia") {
 			const h6 = createNode("h6", { class: "text-center" }, document.createTextNode(operation.description));
 			const divDescription = createNode("div", { class: "col-md-3 d-flex align-items-center" }, h6);
-			const badge = createNode("div",	{ class: "badge p-2 text-dark text-wrap", style: "width: 6rem"	},	document.createTextNode(operation.category));
-			const divCategory = createNode(	"div",	{ class: "col-md-3 d-flex align-items-center" },	badge);
+			const badge = createNode("div",	{ class: "badge p-2 text-dark text-wrap", style: "width: 7rem"	},	document.createTextNode(operation.category));
+			const divCategory = createNode(	"div",	{ class: "col-3 col-md-3 d-flex align-items-center" },	badge);
 			const date = createNode("p",	{ class: "text-end" },	document.createTextNode(operation.date));
-			const divDate = createNode(	"div", { class: "col-md-2 d-flex align-items-center justify-content-end"}, date);
+			const divDate = createNode(	"div", { class: "col-3 col-md-2 d-flex align-items-center justify-content-end"}, date);
 			const amount = createNode("h6",	{ class: "text-end", style: "color:green; font-weight:800" },	document.createTextNode(operation.amount));
 			const divAmount = createNode("div",	{	class: "col-md-2 d-flex align-items-center justify-content-end"},	amount);
 			const editLink = createNode("a", {	class: "text-end editLink",	data: { operation: operation.id }, href: `./editarOperacion.html?id=${operation.id}&description=${operation.description}&amount=${operation.amount}&type=${operation.type}&category=${operation.category}&date=${operation.date}`},	document.createTextNode("Editar"));
 			const deleteLink = createNode("a",	{ class: "text-end deleteLink",	data: { operation: operation.id },}, document.createTextNode("Eliminar"));
 			const divLinks = createNode("div",	{	class: "col-md-2 d-flex align-items-end flex-column justify-content-center"}, editLink,deleteLink);
-			const newOperationLine = createNode("div",	{ class: "row mt-3" },	divDescription,	divCategory, divDate, divAmount, divLinks);
+			const newOperationLine = createNode("div",	{ class: "row row-cols-6 justify-content-between" },	divDescription,	divCategory, divDate, divAmount, divLinks);
 			operationsList.appendChild(newOperationLine);
 		}
 	}
