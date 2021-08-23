@@ -1,3 +1,4 @@
+// ####### VARIABLES #######
 // Input del usuario
 var inputCategory = document.getElementById("editCategory");
 // Boton para confirmar la edicion de la categoría
@@ -8,7 +9,7 @@ var paramsUrl = new URLSearchParams(window.location.search);
 var idUrl = paramsUrl.get("id");
 var categoryUrl = paramsUrl.get("category");
 inputCategory.value = categoryUrl;
-//######### FUNCION PARA EDTAR CATEGORIAS DE LA VISTA Y DEL LOCAL STORAGE #######
+//######### EDIT CATEGORIES FROM VIEW AND LOCAL STORAGE OPERATIONS / FUNCION PARA EDTAR CATEGORIAS DE LA VISTA Y DEL LOCAL STORAGE #######
 var editCategories = function (e) {
     e.preventDefault();
     var input = inputCategory.value;
@@ -30,6 +31,7 @@ var editCategories = function (e) {
     }
 };
 btnEditCategory.addEventListener("click", editCategories);
+//######### CLOSE WINDOW CANCELING / FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 var canceled = function () {
     window.location.href = "categorias.html";
 };

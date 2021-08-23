@@ -1,6 +1,7 @@
+//####### VARIABLES #######
 var storage = getStorage();
 var operaciones = storage.operations;
-//###### RESUMEN POR CATEGORIA ######
+//###### REPORT BY CATEGOR OBJECT / RESUMEN POR CATEGORIA, OBJETO ######
 var reportByCategory = {};
 operaciones.forEach(function (op) {
     if (!reportByCategory[op.category]) {
@@ -12,7 +13,7 @@ operaciones.forEach(function (op) {
     reportByCategory[op.category][op.type] += Number(op.amount);
     return reportByCategory;
 });
-//###### VISTA RESUMEN POR CATEGORIA ######
+//###### VIEW REPORT BY CATEGORY / VISTA RESUMEN POR CATEGORIA ######
 var addReportByCategoryToList = function (object) {
     var totalsByCategory = document.getElementById('totalsByCategoryDiv');
     for (var prop in object) {
@@ -36,7 +37,7 @@ var addReportByCategoryToList = function (object) {
     }
 };
 addReportByCategoryToList(reportByCategory);
-//###### FUNCION RESUMEN POR MES ######
+//###### REPORT BY MONTH OBJECT / REPORTE POR MES, OBJETO ######
 var reportByMonth = {};
 operaciones.forEach(function (op) {
     var date = new Date(op.date);
@@ -54,7 +55,7 @@ operaciones.forEach(function (op) {
     reportByMonth[year][month][op.type] += Number(op.amount);
     return reportByMonth;
 });
-//###### VISTA RESUMEN POR MES ######
+//###### REPORT BY MONTH VIEW / VISTA RESUMEN POR MES ######
 var addReportByMonthToList = function (object) {
     var totalsByMonth = document.getElementById('totalsByMonthDiv');
     for (var prop in object) {
@@ -73,8 +74,8 @@ var addReportByMonthToList = function (object) {
     }
 };
 addReportByMonthToList(reportByMonth);
-//###### VISTA RESUMEN GENERAL ######
-//Categoría con mayor ganancia
+//###### GENERAL REPORT VIEW / VISTA RESUMEN GENERAL ######
+// Higher gain category / Categoría con mayor ganancia
 var higherCategory = function (object) {
     var max = 0;
     var category = " ";
@@ -90,7 +91,7 @@ var higherCategory = function (object) {
     higherGain.innerText = "$ " + max;
 };
 higherCategory(reportByCategory);
-//Categoría con mayor gasto
+//Higher expense category / Categoría con mayor gasto
 var lowerCategory = function (object) {
     var max = 0;
     var category = " ";
@@ -106,7 +107,7 @@ var lowerCategory = function (object) {
     higherExpense.innerText = "$ -" + max;
 };
 lowerCategory(reportByCategory);
-//Categoría con mayor balance
+//Higher balance category / Categoría con mayor balance
 var balanceCategory = function (object) {
     var max = 0;
     var category = " ";
@@ -123,7 +124,7 @@ var balanceCategory = function (object) {
     higherBalance.innerText = "$ " + max;
 };
 balanceCategory(reportByCategory);
-//Mes con mayor ganancia
+//Higher gain month / Mes con mayor ganancia
 var gainByMonth = function (object) {
     var max = 0;
     var month = "";
@@ -141,7 +142,7 @@ var gainByMonth = function (object) {
     gain.innerText = "$ " + max;
 };
 gainByMonth(reportByMonth);
-//Mes con mayor gasto
+//Higher expense month / Mes con mayor gasto
 var expenseByMonth = function (object) {
     var max = 0;
     var month = "";
@@ -159,6 +160,7 @@ var expenseByMonth = function (object) {
     expense.innerText = "$ -" + max;
 };
 expenseByMonth(reportByMonth);
+//####### DISPLAY REPORT WITH OPERATIONS / DISPLAY REPORTE CON OPERACIONES O SIN OPERACIONES
 var displayReport = function () {
     var divNoOps = document.getElementById("noOperations");
     var divWithOps = document.getElementById("operationsReport");

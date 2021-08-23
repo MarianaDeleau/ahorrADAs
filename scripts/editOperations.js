@@ -1,4 +1,5 @@
-//##### FUNCION PARA EDITAR OPERACIONES #####
+//##### EDIR OPERATIONS FUNCTION / FUNCION PARA EDITAR OPERACIONES #####
+// ####### VARIABLES #######
 // boton a de filters creado por nodos
 var btnEditOperation = document.getElementById("editLink");
 //inputs editar operacion 
@@ -10,7 +11,7 @@ var inputDate = document.getElementById('dateEditOp');
 //botones de editarOperacion.html
 var btnCanceledEdit = document.getElementById("btnCancelEditOp");
 var btnAddEditOp = document.getElementById("btnAddEditOp");
-// ver como agregar la nueva descripcion de la operacion ??????
+//search URL params
 var paramsUrl = new URLSearchParams(window.location.search);
 var idUrl = parseInt(paramsUrl.get("id"));
 var descriptionUrl = paramsUrl.get("description");
@@ -23,6 +24,7 @@ inputAmount.value = amountUrl;
 inputType.value = typeUrl;
 inputCategory.value = categoryUrl;
 inputDate.value = dateUrl;
+// edit function
 var editOperations = function (e) {
     e.preventDefault();
     var editDescription = inputDescription.value;
@@ -47,16 +49,12 @@ var editOperations = function (e) {
     }
 };
 btnAddEditOp.addEventListener("click", editOperations);
-//######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
-// const cancelEditOp = () => {
-//     closeOpenedWindow()
-// }
-// btnCanceledEdit.addEventListener("click", cancelEditOp)
+//######### CLOSE WINDOW CANCELING / FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 var canceled = function () {
     window.location.href = "index.html";
 };
 btnCanceledEdit.addEventListener("click", canceled);
-//######### AGREGA CATEGORIAS AL SELECT DE EDITAR OPERACIONES #######
+//######### ADD CATEGORIES TO SELECT EDIT OPERATIONS / AGREGA CATEGORIAS AL SELECT DE EDITAR OPERACIONES #######
 var categoryEditOperation = function () {
     var storage = getStorage();
     var selectCategoriesNuevaOp = document.getElementById('categoriesEditOp');
@@ -68,7 +66,7 @@ var categoryEditOperation = function () {
         selectCategoriesNuevaOp.appendChild(elem);
     }
 };
-//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
+//######### INITIALIZE HTML TO ADD ELEMENTS FROM STORAGE / INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 var init4 = function () {
     categoryEditOperation();
 };

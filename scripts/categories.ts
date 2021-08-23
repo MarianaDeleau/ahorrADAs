@@ -1,5 +1,10 @@
+// ####### VARIABLES #######
+
+
 const formAddCategory = document.getElementById("form-add-category");
 const categoriesList = document.getElementById("categoriesList");
+
+//####### SET DINAMIC ID FOR CATEGORIES / SETEAR ID DINAMICOS PARA CATEGORIAS  #######
 
 const getIdCategory = () => {
 	const storage: LocalStorage = getStorage();
@@ -11,6 +16,9 @@ const getIdCategory = () => {
 
 	return 1;
 };
+
+
+//####### CREATE CATEGORIES TO LOCAL STORAGE / CREAR CATEGORIAS AL LOCAL STORAGE  #######
 
 const createCategory = (e) => {
 	e.preventDefault();
@@ -32,12 +40,12 @@ const createCategory = (e) => {
 	addcategoryToList();
 };
 
-// ##### Eliminar Categoria #####
+//####### DELETE CATEGORIES IN THE VIEW AND THE LOCAL STORAGE / ELIMINAR CATEGORIAS EN LA VISTA Y EN EL LOCAL STORAGE  #######
 
 const deleteCategory = (e) => {
 
 	const idToDelete = e.target.dataset.category; //id del elemento a eliminar
-  //console.log(idToDelete,e.target)
+
 	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
 	let categoryNameToDelete;
 	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
@@ -62,11 +70,7 @@ const deleteCategory = (e) => {
 };
 
 
-//{"categories":[{"id":1,"name":"comida"},{"id":2,"name":"vea"},{"id":3,"name":"hola"}],"operations":[{"id":1,"category":"vea","amount":"200","description":"peras","date":"2021-08-16","type":"Ganancia"},{"id":2,"category":"vea","amount":"200","description":"frutas","date":"2021-08-16","type":"Ganancia"},{"id":3,"category":"vea","amount":"3000","description":"verdura","date":"2021-08-16","type":"Ganancia"},{"id":4,"category":"comida","amount":"30","description":"nonooo","date":"2021-08-16","type":"Ganancia"}]}
-
-
-
-//### agrega lista de categorias ###
+//###### ADD CATEGORIES TO VIEW / AGREGA CATEGORIAS A LA VISTA ###
 
 const addcategoryToList = () => {
 	categoriesList.innerHTML = " ";
@@ -74,46 +78,12 @@ const addcategoryToList = () => {
 
 	for (const category of storage.categories) {
 		const newCategoryLine = document.createElement("div");
-		const p = createNode(
-			"p",
-			{ class: "fs-5 badge p-2 text-dark text-wrap ms-3" },
-			document.createTextNode(category.name)
-		);
-		const div = createNode(
-			"div",
-			{ class: "col-9 align-items-center d-flex" },
-			p
-		);
-		const btnEdit = createNode(
-			"a",
-			{
-				class: "btn me-3 edit-btn",
-				href: `./editarCategoria.html?id=${category.id}&category=${category.name}`
-			},
-			document.createTextNode("Editar")
-		);
-    
-		const btnDelete = createNode(
-			"button",
-			{
-				class: "btn delete-btn",
-				data: { category: category.id },
-				type: "button",
-			},
-			document.createTextNode("Eliminar")
-		);
-		const divTwo = createNode(
-			"div",
-			{ class: "col-3 d-flex justify-content-end" },
-			btnEdit,
-			btnDelete
-		);
-		const divContainer = createNode(
-			"div",
-			{ class: "row mt-5 mb-5" },
-			div, divTwo
-		);
-
+		const p = createNode("p", { class: "fs-5 badge p-2 text-dark text-wrap ms-3" },	document.createTextNode(category.name));
+		const div = createNode(	"div",	{ class: "col-9 align-items-center d-flex" }, p	);
+		const btnEdit = createNode(	"a", { class: "btn me-3 edit-btn",	href: `./editarCategoria.html?id=${category.id}&category=${category.name}`}, document.createTextNode("Editar"));
+    	const btnDelete = createNode("button",	{ class: "btn delete-btn", 	data: { category: category.id }, type: "button", },	document.createTextNode("Eliminar"));
+		const divTwo = createNode( "div", { class: "col-3 d-flex justify-content-end" }, btnEdit, btnDelete	);
+		const divContainer = createNode("div",	{ class: "row mt-5 mb-5" },	div, divTwo	);
 	
 		newCategoryLine.appendChild(divContainer);
 		categoriesList.appendChild(newCategoryLine);
@@ -129,6 +99,8 @@ const addcategoryToList = () => {
 
 formAddCategory.addEventListener("submit", createCategory);
 
+
+//######### INITIALIZE HTML TO ADD ELEMENTS FROM STORAGE / INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 
 
 const init3 = () => {

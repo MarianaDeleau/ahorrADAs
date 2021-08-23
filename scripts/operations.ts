@@ -1,6 +1,9 @@
-
+//####### VARIABLES #######
 
 const formOperation = document.getElementById('formNewOperation');
+
+
+//####### SET DINAMIC ID FOR OPERATIONS / SETEAR ID DINAMICOS PARA OPERACIONES  #######
 
 const getOperationId = () => {
 
@@ -13,6 +16,8 @@ const getOperationId = () => {
  
     return 1;
 }
+
+//####### ADD OPERATIONS TO LOCAL STORAGE / AGREGAR OPERACIONES AL LOCAL STORAGE  #######
  
 const addOperation= (e)=>{
     e.preventDefault();
@@ -40,7 +45,7 @@ const addOperation= (e)=>{
 
 formOperation.addEventListener("submit", addOperation);
 
-//######### AGREGA CATEGORIAS AL SELECT DE NUEVAS OPERACIONES #######
+//######### ADD CATEGORYS TO SELECT IN NEW OPERATIONS /  AGREGA CATEGORIAS AL SELECT DE NUEVAS OPERACIONES #######
 
 const categoryNewOperation = () => {
     
@@ -57,7 +62,7 @@ const categoryNewOperation = () => {
     }
 };
 
-//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
+//######### INITIALIZE HTML TO ADD ELEMENTS FROM STORAGE / INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 
 const init2 = () => {
     categoryNewOperation();
@@ -65,7 +70,7 @@ const init2 = () => {
 
 init2();
 
-//######### FUNCION PARA CERRAR VENTANA LUEGO DE AGREGAR OPERACION #######
+//######### CLOSE WINDOW AFTER ADDING OPERATIONS / FUNCION PARA CERRAR VENTANA LUEGO DE AGREGAR OPERACION #######
 
 const closeOpenedWindow = () => {
     
@@ -73,7 +78,7 @@ const closeOpenedWindow = () => {
 }
 
 
-//######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
+//######### CLOSE WINDOW CANCELING / FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 
 const cancelNewOp = () => {
 

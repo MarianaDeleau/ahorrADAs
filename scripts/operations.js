@@ -1,5 +1,7 @@
+//####### VARIABLES #######
 var _this = this;
 var formOperation = document.getElementById('formNewOperation');
+//####### SET DINAMIC ID FOR OPERATIONS / SETEAR ID DINAMICOS PARA OPERACIONES  #######
 var getOperationId = function () {
     var storage = getStorage();
     if (storage.operations.length > 0) {
@@ -8,6 +10,7 @@ var getOperationId = function () {
     }
     return 1;
 };
+//####### ADD OPERATIONS TO LOCAL STORAGE / AGREGAR OPERACIONES AL LOCAL STORAGE  #######
 var addOperation = function (e) {
     e.preventDefault();
     var form = e.target;
@@ -30,7 +33,7 @@ var addOperation = function (e) {
     closeOpenedWindow();
 };
 formOperation.addEventListener("submit", addOperation);
-//######### AGREGA CATEGORIAS AL SELECT DE NUEVAS OPERACIONES #######
+//######### ADD CATEGORYS TO SELECT IN NEW OPERATIONS /  AGREGA CATEGORIAS AL SELECT DE NUEVAS OPERACIONES #######
 var categoryNewOperation = function () {
     var storage = getStorage();
     var selectCategoriesNuevaOp = document.getElementById('categoriesNuevaOp');
@@ -42,16 +45,16 @@ var categoryNewOperation = function () {
         selectCategoriesNuevaOp.appendChild(elem);
     }
 };
-//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
+//######### INITIALIZE HTML TO ADD ELEMENTS FROM STORAGE / INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 var init2 = function () {
     categoryNewOperation();
 };
 init2();
-//######### FUNCION PARA CERRAR VENTANA LUEGO DE AGREGAR OPERACION #######
+//######### CLOSE WINDOW AFTER ADDING OPERATIONS / FUNCION PARA CERRAR VENTANA LUEGO DE AGREGAR OPERACION #######
 var closeOpenedWindow = function () {
     _this.close();
 };
-//######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
+//######### CLOSE WINDOW CANCELING / FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 var cancelNewOp = function () {
     closeOpenedWindow();
 };
