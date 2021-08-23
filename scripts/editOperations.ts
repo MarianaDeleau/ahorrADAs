@@ -1,4 +1,6 @@
-//##### FUNCION PARA EDITAR OPERACIONES #####
+//##### EDIR OPERATIONS FUNCTION / FUNCION PARA EDITAR OPERACIONES #####
+
+// ####### VARIABLES #######
 
 // boton a de filters creado por nodos
 const btnEditOperation = document.getElementById("editLink");
@@ -13,11 +15,10 @@ const inputDate = document.getElementById('dateEditOp');
 //botones de editarOperacion.html
 const btnCanceledEdit = document.getElementById("btnCancelEditOp");
 const btnAddEditOp = document.getElementById("btnAddEditOp"); 
-// ver como agregar la nueva descripcion de la operacion ??????
 
+//search URL params
 const paramsUrl = new URLSearchParams(window.location.search);
 const idUrl = parseInt(paramsUrl.get("id"));
-
 const descriptionUrl = paramsUrl.get("description")
 const amountUrl = paramsUrl.get("amount")
 const typeUrl = paramsUrl.get("type")
@@ -29,6 +30,8 @@ inputAmount.value = amountUrl
 inputType.value = typeUrl
 inputCategory.value = categoryUrl
 inputDate.value = dateUrl
+
+// edit function
 
 const editOperations = (e) => {
 	e.preventDefault();
@@ -58,21 +61,14 @@ btnAddEditOp.addEventListener("click", editOperations);
 
 
 
-//######### FUNCION PARA CERRAR VENTANA CON CANCELAR #######
+//######### CLOSE WINDOW CANCELING / FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 
-// const cancelEditOp = () => {
-
-//     closeOpenedWindow()
-
-// }
-
-// btnCanceledEdit.addEventListener("click", cancelEditOp)
 const canceled = () =>{
   window.location.href = "index.html";
 }
 btnCanceledEdit.addEventListener("click",canceled)
 
-//######### AGREGA CATEGORIAS AL SELECT DE EDITAR OPERACIONES #######
+//######### ADD CATEGORIES TO SELECT EDIT OPERATIONS / AGREGA CATEGORIAS AL SELECT DE EDITAR OPERACIONES #######
 
 const categoryEditOperation = () => {
     
@@ -89,7 +85,7 @@ const categoryEditOperation = () => {
     }
 };
 
-//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
+//######### INITIALIZE HTML TO ADD ELEMENTS FROM STORAGE / INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE#######
 
 const init4 = () => {
     categoryEditOperation();

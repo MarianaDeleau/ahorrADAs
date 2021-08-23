@@ -1,3 +1,5 @@
+//##### SET TYPES / DEFINIR TIPOS ######
+
 type LocalStorage = {
     categories?: Category[],
     operations?: Operation[]
@@ -18,7 +20,7 @@ type Operation = {
 }
 
 
-//##### LEER EL STORAGE ######
+//##### READING LOCAL STORAGE / LEER EL STORAGE ######
 
 const getStorage = (): LocalStorage => {
     let storageInfo: LocalStorage = JSON.parse(localStorage.getItem('key-ahorradas'));
@@ -34,7 +36,7 @@ const getStorage = (): LocalStorage => {
 };
 
 
-//##### CREAR NODOS DE MANERA DINAMICA ######
+//##### CREATE NODES FUNCTION / FUNCIOND PARA CREAR NODOS DE MANERA DINAMICA ######
 
 const createNode = (tag, attr, ...children) => {
 	const elem = document.createElement(tag);
@@ -55,7 +57,3 @@ const createNode = (tag, attr, ...children) => {
 
 	return elem;
 }; 
-
-
-
-//{"categories":[{"id":1,"name":"Educación"},{"id":2,"name":"Comida"},{"id":3,"name":"Trabajo"},{"id":4,"name":"Servicios Públicos"}],"operations":[{"id":4,"category":"Trabajo","amount":"200000","description":"Sueldo IT","date":"2021-08-05","type":"Ganancia"},{"id":7,"category":"Educación","amount":"35000","description":"Colegio","date":"2021-08-05","type":"Gasto"},{"id":9,"category":"Servicios Públicos","amount":"2000","description":"Gas","date":"2021-08-05","type":"Gasto"},{"id":10,"category":"Trabajo","amount":"25000","description":"Viaticos","date":"2021-08-15","type":"Gasto"},{"id":11,"category":"Educación","amount":"35000","description":"Colegio","date":"2021-07-05","type":"Gasto"},{"id":12,"category":"Trabajo","amount":"150000","description":"Sueldo","date":"2021-07-07","type":"Ganancia"},{"id":13,"category":"Comida","amount":"8000","description":"Supermercado","date":"2021-07-14","type":"Gasto"},{"id":14,"category":"Comida","amount":"7500","description":"Supermercado","date":"2021-08-04","type":"Gasto"},{"id":15,"category":"Comida","amount":"13000","description":"Supermercado","date":"2021-06-15","type":"Gasto"},{"id":16,"category":"Trabajo","amount":"150000","description":"Sueldo","date":"2021-05-05","type":"Ganancia"},{"id":17,"category":"Trabajo","amount":"250000","description":"Sueldo/Bono","date":"2020-12-01","type":"Ganancia"}]}

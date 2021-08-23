@@ -1,4 +1,4 @@
-//######### AGREGA CATEGORIAS AL SELECT DE FILTROS #######
+//######### ADD CATEGORIES FROM LOCAL ATOGARE TO FILTER SELECT / AGREGA CATEGORIAS DEL LOCAL STORAGE AL SELECT DE FILTROS #######
 var loadSelect = function () {
     var storage = getStorage();
     var selectCategories = document.getElementById("categories");
@@ -12,12 +12,12 @@ var loadSelect = function () {
         selectCategories.appendChild(elem);
     }
 };
-//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
+//######### INITIALIZE HTML TO ADD ELEMENTS FROM STORAGE / INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
 var init = function () {
     loadSelect();
 };
 init();
-//######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
+//######### ADD OPERATIONS TO VIEW / AGREGA OPERACIONES A LA VISTA #######
 var operationsList = document.getElementById("operations");
 var addOperationToList = function (array) {
     for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
@@ -53,31 +53,31 @@ var addOperationToList = function (array) {
             operationsList.appendChild(newOperationLine);
         }
     }
-    //RECORRE LOS BOTONES
+    //BUTTONS TO DELETE OPERATIONS / BOTONES PARA ELIMINAR OPERACIONES
     var deleteLink = document.querySelectorAll(".deleteLink");
     for (var i = 0; i < deleteLink.length; i++) {
         deleteLink[i].addEventListener("click", deleteOperation);
     }
 };
-//######### FILTRA POR GASTO O GANANCIA #######
+//######### GAIN OR EXPENSE FILTER / FILTRO POR GASTO O GANANCIA #######
 var typeOpFilter = function (operationsArray, filterType) {
     if (filterType !== "Todas")
         return operationsArray.filter(function (operation) { return operation.type === filterType; });
     return operationsArray;
 };
-//######### FILTRA POR CATEGORIA #######
+//######### CATEGORY FILTER / FILTRA POR CATEGORIA #######
 var categoryOpFilter = function (operationsArray, category) {
     if (category !== "Todas")
         return operationsArray.filter(function (operation) { return operation.category === category; });
     return operationsArray;
 };
-//######### FILTRA POR FECHA #######
+//######### DATE FILTER / FILTRA POR FECHA #######
 var operationsDate = function (operationsArray, date) {
     return operationsArray.filter(function (op) {
         return date <= new Date(op.date);
     });
 };
-//######### FILTRO ORDENAR #######
+//######### SORT FILTER / FILTRO ORDENAR #######
 var sortDate = function (op1, op2) {
     if (op1.date > op2.date) {
         return 1;
@@ -85,7 +85,6 @@ var sortDate = function (op1, op2) {
     if (op1.date < op2.date) {
         return -1;
     }
-    // a must be equal to b
     return 0;
 };
 var sortAmount = function (op1, op2) {
@@ -100,7 +99,6 @@ var sortAZ = function (op1, op2) {
     if (op1.description < op2.description) {
         return -1;
     }
-    // a must be equal to b
     return 0;
 };
 var operationsSort = function (operationsArray, sortType) {
@@ -121,7 +119,7 @@ var operationsSort = function (operationsArray, sortType) {
             return operationsArray;
     }
 };
-//######### FUNCION PARA FILTROS GENERAL #######
+//######### GENERAL FILTER FUNCTION / FUNCION PARA FILTROS GENERAL #######
 var formFilters = document.getElementById("filtersForm");
 var divNoOps = document.getElementById("noOperations");
 var divWithOps = document.getElementById("operationsListHeader");
@@ -129,7 +127,6 @@ var operationFilter = function (event) {
     divNoOps.style.display = "none";
     divWithOps.style.display = "block";
     operationsList.innerHTML = "";
-    // Operations list
     var storage = getStorage();
     var operationsArray = storage.operations;
     var typeFilter = document.getElementById("typeFilter");
@@ -150,7 +147,7 @@ var operationFilter = function (event) {
     return addOperationToList(operationsArray);
 };
 formFilters.addEventListener("change", operationFilter);
-//######### FUNCION PARA ELIMINAR OPERACIONES #######
+//######### DELETE OPERATIONS FUNCTION / FUNCION PARA ELIMINAR OPERACIONES #######
 var deleteLink = document.querySelectorAll(".deleteLink");
 var deleteOperation = function (e) {
     var idToDelete = e.target.dataset.operation; //id del elemento a eliminar
@@ -165,14 +162,14 @@ var deleteOperation = function (e) {
     localStorage.setItem("key-ahorradas", JSON.stringify(storageAux));
     operationFilter();
 };
-//######### FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
+//######### OPEN NEW OPERATION WINDOW / FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
 var openedWindow;
 var btnNewOp = document.getElementById("btnNewOp");
 var openWindow = function () {
     openedWindow = window.open("./nuevaOperacion.html");
 };
 btnNewOp.addEventListener("click", openWindow);
-//######### FUNCION PARA BALANCE #######
+//######### BALANCE VIEW  FUNCTION / FUNCION PARA VISTA DE BALANCE #######
 var balanceGastos = 0;
 var balanceGanancias = 0;
 var res = 0;
@@ -200,7 +197,7 @@ var balance = function (operations) {
     balanceGanancias = 0;
     res = 0;
 };
-//######### TOGGLE FILTROS #######
+//######### TOGGLE FILTERS #######
 var toggleLink = document.getElementById('toggle-filtros');
 var hideFilters = document.getElementById('hideFilters');
 var displayFilters = document.getElementById('displayFilters');

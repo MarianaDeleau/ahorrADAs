@@ -1,11 +1,11 @@
+//####### VARIABLES #######
+
 const storage: LocalStorage = getStorage();
 
 const operaciones = storage.operations;
 
 
-
-
-//###### RESUMEN POR CATEGORIA ######
+//###### REPORT BY CATEGOR OBJECT / RESUMEN POR CATEGORIA, OBJETO ######
 
 let reportByCategory = {}
 
@@ -25,7 +25,7 @@ let reportByCategory = {}
 		
 	});		
 
-//###### VISTA RESUMEN POR CATEGORIA ######
+//###### VIEW REPORT BY CATEGORY / VISTA RESUMEN POR CATEGORIA ######
 
 const addReportByCategoryToList = (object) => {
 
@@ -56,7 +56,7 @@ const addReportByCategoryToList = (object) => {
 
 addReportByCategoryToList(reportByCategory)
 
-//###### FUNCION RESUMEN POR MES ######
+//###### REPORT BY MONTH OBJECT / REPORTE POR MES, OBJETO ######
 
 let reportByMonth = {}
 
@@ -81,7 +81,7 @@ operaciones.forEach((op) => {
 });
 
 
-//###### VISTA RESUMEN POR MES ######
+//###### REPORT BY MONTH VIEW / VISTA RESUMEN POR MES ######
 
 const addReportByMonthToList = (object) => {
 
@@ -120,9 +120,9 @@ const addReportByMonthToList = (object) => {
 
 addReportByMonthToList(reportByMonth)
 
-//###### VISTA RESUMEN GENERAL ######
+//###### GENERAL REPORT VIEW / VISTA RESUMEN GENERAL ######
 
-//Categoría con mayor ganancia
+// Higher gain category / Categoría con mayor ganancia
 
 const higherCategory = (object) => {
 
@@ -144,7 +144,7 @@ const higherCategory = (object) => {
 
 higherCategory(reportByCategory)
 
-//Categoría con mayor gasto
+//Higher expense category / Categoría con mayor gasto
 
 const lowerCategory = (object) => {
 
@@ -166,7 +166,7 @@ const lowerCategory = (object) => {
 
 lowerCategory(reportByCategory)
 
-//Categoría con mayor balance
+//Higher balance category / Categoría con mayor balance
 
 const balanceCategory = (object) => {
 
@@ -189,7 +189,7 @@ const balanceCategory = (object) => {
 
 balanceCategory(reportByCategory)
 
-//Mes con mayor ganancia
+//Higher gain month / Mes con mayor ganancia
 
 const gainByMonth = (object) => {
 
@@ -215,7 +215,7 @@ const gainByMonth = (object) => {
 
 gainByMonth(reportByMonth)
 
-//Mes con mayor gasto
+//Higher expense month / Mes con mayor gasto
 
 const expenseByMonth = (object) => {
 
@@ -240,6 +240,10 @@ const expenseByMonth = (object) => {
 }
 
 expenseByMonth(reportByMonth)
+
+
+//####### DISPLAY REPORT WITH OPERATIONS / DISPLAY REPORTE CON OPERACIONES O SIN OPERACIONES
+
 
 const displayReport = () => {
 

@@ -1,3 +1,4 @@
+// ####### VARIABLES #######
 
 // Input del usuario
 const inputCategory = document.getElementById("editCategory");
@@ -13,7 +14,7 @@ const categoryUrl = paramsUrl.get("category")
 
 inputCategory.value = categoryUrl
 
-//######### FUNCION PARA EDTAR CATEGORIAS DE LA VISTA Y DEL LOCAL STORAGE #######
+//######### EDIT CATEGORIES FROM VIEW AND LOCAL STORAGE OPERATIONS / FUNCION PARA EDTAR CATEGORIAS DE LA VISTA Y DEL LOCAL STORAGE #######
 
 const editCategories = (e) => {
 	e.preventDefault();
@@ -39,6 +40,10 @@ const editCategories = (e) => {
 	}
 };
 btnEditCategory.addEventListener("click", editCategories);
+
+
+
+//######### CLOSE WINDOW CANCELING / FUNCION PARA CERRAR VENTANA CON CANCELAR #######
 
 const canceled = () =>{
   window.location.href = "categorias.html";

@@ -1,4 +1,4 @@
-//######### AGREGA CATEGORIAS AL SELECT DE FILTROS #######
+//######### ADD CATEGORIES FROM LOCAL ATOGARE TO FILTER SELECT / AGREGA CATEGORIAS DEL LOCAL STORAGE AL SELECT DE FILTROS #######
 
 const loadSelect = () => {
 	const storage: LocalStorage = getStorage();
@@ -15,7 +15,7 @@ const loadSelect = () => {
 	}
 };
 
-//######### INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
+//######### INITIALIZE HTML TO ADD ELEMENTS FROM STORAGE / INICIALIZA LA PAGINA PARA CARGAR DATOS DEL STORAGE #######
 
 const init = () => {
 	loadSelect();
@@ -24,7 +24,7 @@ const init = () => {
 init();
 
 
-//######### AGREGA LOS DIV DE LA OPERACIONES A LA LISTA #######
+//######### ADD OPERATIONS TO VIEW / AGREGA OPERACIONES A LA VISTA #######
 
 const operationsList = document.getElementById("operations");
 
@@ -62,7 +62,7 @@ const addOperationToList = (array) => {
 		}
 	}
 
-	//RECORRE LOS BOTONES
+	//BUTTONS TO DELETE OPERATIONS / BOTONES PARA ELIMINAR OPERACIONES
 
 	const deleteLink = document.querySelectorAll(".deleteLink");
 	for (let i = 0; i < deleteLink.length; i++) {
@@ -73,7 +73,7 @@ const addOperationToList = (array) => {
 
 
 
-//######### FILTRA POR GASTO O GANANCIA #######
+//######### GAIN OR EXPENSE FILTER / FILTRO POR GASTO O GANANCIA #######
 
 const typeOpFilter = (operationsArray, filterType) => {
   if (filterType !== "Todas")
@@ -83,7 +83,7 @@ const typeOpFilter = (operationsArray, filterType) => {
   return operationsArray;
 };
 
-//######### FILTRA POR CATEGORIA #######
+//######### CATEGORY FILTER / FILTRA POR CATEGORIA #######
 
 const categoryOpFilter = (operationsArray, category) => {
   if(category !== "Todas") 
@@ -93,7 +93,7 @@ const categoryOpFilter = (operationsArray, category) => {
   return operationsArray;
 };
 
-//######### FILTRA POR FECHA #######
+//######### DATE FILTER / FILTRA POR FECHA #######
 
 
 const operationsDate = (operationsArray, date) => {
@@ -102,7 +102,7 @@ const operationsDate = (operationsArray, date) => {
 	});
 };
 
-//######### FILTRO ORDENAR #######
+//######### SORT FILTER / FILTRO ORDENAR #######
 
 const sortDate = (op1, op2) => {
   if (op1.date > op2.date) {
@@ -111,7 +111,7 @@ const sortDate = (op1, op2) => {
   if (op1.date < op2.date) {
     return -1;
   }
-  // a must be equal to b
+  
   return 0;
 }
 
@@ -131,7 +131,7 @@ const sortAZ = (op1, op2) => {
   if (op1.description < op2.description) {
     return -1;
   }
-  // a must be equal to b
+ 
   return 0;
 }
 
@@ -154,7 +154,7 @@ const operationsSort = (operationsArray, sortType) => {
   }
 };
 
-//######### FUNCION PARA FILTROS GENERAL #######
+//######### GENERAL FILTER FUNCTION / FUNCION PARA FILTROS GENERAL #######
 
 const formFilters = document.getElementById("filtersForm");
 const divNoOps = document.getElementById("noOperations");
@@ -166,7 +166,6 @@ const operationFilter = (event) => {
 	operationsList.innerHTML = "";
 
 
-  // Operations list
 	const storage: LocalStorage = getStorage();
     let operationsArray = storage.operations;
 
@@ -196,7 +195,7 @@ const operationFilter = (event) => {
 
 formFilters.addEventListener("change", operationFilter);
 
-//######### FUNCION PARA ELIMINAR OPERACIONES #######
+//######### DELETE OPERATIONS FUNCTION / FUNCION PARA ELIMINAR OPERACIONES #######
 
 const deleteLink = document.querySelectorAll(".deleteLink");
 
@@ -205,7 +204,6 @@ const deleteOperation = (e) => {
 	const storageAux = getStorage(); // Leo el local storage y me lo guardo en esta variable
 
 	// Recorro el local storage en búsqueda del elemento que tengo que eliminar
-
 	for (let i = 0; i < storageAux.operations.length; i++) {
 		if (storageAux.operations[i].id == idToDelete) {
 			storageAux.operations.splice(i, 1); // posicion y cuantos elementos elimino
@@ -217,7 +215,7 @@ const deleteOperation = (e) => {
 	operationFilter();
 };
 
-//######### FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
+//######### OPEN NEW OPERATION WINDOW / FUNCION PARA ABRIR VENTANA NUEVA OPERACION #######
 
 let openedWindow;
 
@@ -229,7 +227,7 @@ const openWindow = () => {
 
 btnNewOp.addEventListener("click", openWindow);
 
-//######### FUNCION PARA BALANCE #######
+//######### BALANCE VIEW  FUNCTION / FUNCION PARA VISTA DE BALANCE #######
 
 let balanceGastos: number = 0;
 let balanceGanancias: number = 0;
@@ -263,7 +261,7 @@ let balance = (operations) => {
 
 
 
-//######### TOGGLE FILTROS #######
+//######### TOGGLE FILTERS #######
 
 const toggleLink = document.getElementById('toggle-filtros')
 const hideFilters = document.getElementById('hideFilters')
