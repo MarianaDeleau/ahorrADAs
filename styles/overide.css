@@ -57,7 +57,9 @@ p{
 .dnone{
  display: none
 }
-
+.hidden{
+  display:block;
+}
 
 
 /* CSS HEX
@@ -77,3 +79,7 @@ $gradient-bottom-right: linear-gradient(135deg, #e63946ff, #f1faeeff, #a8dadcff,
 $gradient-top-left: linear-gradient(225deg, #e63946ff, #f1faeeff, #a8dadcff, #457b9dff, #1d3557ff);
 $gradient-bottom-left: linear-gradient(315deg, #e63946ff, #f1faeeff, #a8dadcff, #457b9dff, #1d3557ff);
 $gradient-radial: radial-gradient(#e63946ff, #f1faeeff, #a8dadcff, #457b9dff, #1d3557ff); */
+@media screen and (max-width: 500px){
+  .hidden {
+    display: none;
+  }
